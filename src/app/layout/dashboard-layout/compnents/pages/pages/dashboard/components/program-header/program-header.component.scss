@@ -1,0 +1,32 @@
+.custom-breadcrumb {
+  .breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 0.5rem;
+
+    .breadcrumb-item {
+      display: inline-flex;
+      align-items: center;
+
+      &::before {
+        display: none; // إخفاء الفاصل الافتراضي
+      }
+
+      .separator {
+        margin: 0 0.5rem;
+        color: #6c757d;
+      }
+
+      &.active {
+        color: #000;
+      }
+    }
+  }
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--ncgr_txt_color-primary, #333);
+  margin-bottom: 1.5rem;
+}

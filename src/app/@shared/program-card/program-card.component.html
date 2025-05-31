@@ -1,0 +1,167 @@
+<!-- Programs Box -->
+<div class="programs-box-outer mt-2 mb-3">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-5 col-lg-12 programs-photo-side mb-xl-0 mb-2">
+        <img
+          [src]="program.programPicturePath || 'sample-dashboard-content_6.jpg'"
+          alt=""
+        />
+      </div>
+      <div class="col-xl-7 col-lg-12 ps-xl-0">
+        <div class="row justify-content-between">
+          <div class="col programs-box-title">
+            {{ program.titleAr || "تطوير مهارات إعداد التقارير الرقابية" }}
+          </div>
+          <div class="col-auto programs-box-upper-menu">
+            <div class="nav-item dropdown position-relative">
+              <a
+                aria-label="link"
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                <img src="icons/dots-outline.svg" alt="" />
+              </a>
+              <ul class="dropdown-menu animate slideIn p-3">
+                <li class="row align-items-center justify-content-between">
+                  <div class="col-auto">
+                    <p class="mb-0 text-muted">المنشئ</p>
+                    <h6>{{ program.creator || "احمد البليسي" }}</h6>
+                  </div>
+                  <div class="col-auto programs-box-upper-menu-date">
+                    {{ program.createDate| date:'yyyy-MM-dd' }}
+                  </div>
+                </li>
+                <li class="row align-items-center justify-content-between">
+                  <div class="col-auto">
+                    <p class="mb-0 text-muted">المعتمد</p>
+                    <h6>{{ program.approver || "احمد البليسي" }}</h6>
+                  </div>
+                  <div class="col-auto programs-box-upper-menu-date">
+                    {{ program.createDate| date:'yyyy-MM-dd' }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row pt-3 programs-box-meta-data">
+          <p>
+            <img width="20" src="icons/24.svg" alt="" />
+            {{ program.categoryName || "الجهات الحكومية" }}
+          </p>
+          <p>
+            <img width="20" src="icons/25.svg" alt="" />
+            {{ program.participants || "0" }} متدرب
+          </p>
+          <p>
+            <img width="20" src="icons/26.svg" alt="" />
+            {{ program.rate || "0 / 5" }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row p-0 pt-1">
+      <div class="col programs-box-tags">
+        <div class="programs-tags-item">
+          {{ program.tagsName || "إعداد التقارير" }}
+        </div>
+        <div class="programs-tags-item">
+          {{ program.language === 1 ? "بالعربية" : "بالانجليزية" }}
+        </div>
+      </div>
+    </div>
+    <div class="row pt-2 align-items-center">
+      <div class="col-xxl-auto col-xl-4 col-lg-12 mb-lg-2 col-md-3">
+        {{ program.programStatusName || "منشور" }}
+        <img width="20" src="icons/27.svg" alt="" />
+      </div>
+      <div class="col-xxl-4 col-xl-8 col-lg-12 mb-lg-2 col-md-5">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          (change)="onStatusChange($event)"
+        >
+          <option selected>التغيير الي ...</option>
+          <option *ngFor="let option of statusOptions" [value]="option.id">
+            {{ option.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-xxl-4 col-xl-12 col-lg-12 col-md-4">
+        {{ program.createDate| date:'yyyy-MM-dd' }}
+      </div>
+    </div>
+    <hr class="mt-3" />
+    <div class="row align-items-center text-center programs-box-btns">
+      <div class="col border-start mb-2">
+        <a
+          aria-label="link"
+          routerLink="/dashboard/{{ program.id }}/{{ program.title }}"
+          class="d-block p-2"
+        >
+          <img
+            width="28"
+            src="icons/28.svg"
+            alt=""
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="تفاصيل"
+          />
+        </a>
+      </div>
+      <div class="col border-start mb-2">
+        <a
+          href="#"
+          class="d-block p-2"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="تعديل"
+          (click)="$event.preventDefault(); edit()"
+        >
+          <img width="28" src="icons/29.svg" alt="" />
+        </a>
+      </div>
+      <div class="col border-start mb-2">
+        <a
+          routerLink="/training-content/{{ program.id }}"
+          class="d-block p-2"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="المحتوي التدريبي"
+          (click)="$event.preventDefault(); navigateToTrainingContent()"
+        >
+          <img width="28" src="icons/30.svg" alt="" />
+        </a>
+      </div>
+      <div class="col border-start mb-2">
+        <a
+          href="#"
+          class="d-block p-2"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="المتدربين"
+          (click)="$event.preventDefault(); onTrainees()"
+        >
+          <img width="28" src="icons/31.svg" alt="" />
+        </a>
+      </div>
+      <div class="col mb-2">
+        <a
+          aria-label="link"
+          href="#"
+          class="d-block p-2"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="حذف"
+          (click)="$event.preventDefault(); onDelete()"
+        >
+          <img width="28" src="icons/32.svg" alt="" />
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<section class="create_program mt-4 mb-4">
+  <div class="container-xxl">
+    <div class="d-flex gap-4">
+      <div class="">
+        <app-side-bar></app-side-bar>
+      </div>
+      <div class="flex-grow-1">
+        <!-- Header with breadcrumb -->
+        <app-program-header></app-program-header>
+
+        <!-- Search and filter area -->
+        <app-program-searsh-filter
+          [searchForm]="searchForm"
+          [category]="category"
+          [paths]="paths"
+          [tags]="tags"
+          (loadPrograms)="loadPrograms()"
+          (resetFilters)="resetFilters()"
+          (addProgram)="onAddProgram()"
+        ></app-program-searsh-filter>
+
+        <!-- Loading State -->
+        <div *ngIf="isLoading" class="text-center mt-4">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+
+        <!-- Programs List -->
+        <div class="row" *ngIf="!isLoading && programs.length > 0">
+          <div class="col-md-4 mt-4" *ngFor="let program of programs">
+            <app-program-card
+              [program]="program"
+              [statusOptions]="statusOptions"
+              (viewDetails)="onProgramView($event)"
+              (editProgram)="onProgramEdit($event)"
+              (deleteProgram)="onProgramDelete($event)"
+              (viewTrainees)="onTraineesView($event)"
+              (statusChange)="onStatusChange($event)"
+            ></app-program-card>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div
+          *ngIf="!isLoading && programs.length === 0"
+          class="alert alert-info mt-4 text-center"
+        >
+          <p>لا توجد برامج تدريبية متاحة</p>
+          <button class="btn btn-primary" (click)="createNewProgram()">
+            إضافة برنامج تدريبي جديد
+          </button>
+        </div>
+
+        <!-- Pagination -->
+        <app-track-pagination
+          *ngIf="!isLoading && programs.length > 0"
+          [currentPage]="currentPage"
+          [totalPages]="totalPages"
+          (pageChange)="onPageChange($event)"
+        ></app-track-pagination>
+      </div>
+    </div>
+  </div>
+</section>

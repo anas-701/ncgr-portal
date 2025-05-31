@@ -1,0 +1,214 @@
+<section class="container-fluid">
+  <div class="row ncgr-main-area dashboard-pages">
+    <div class="dashboard_link_sec col-2">
+      <app-side-bar></app-side-bar>
+    </div>
+    <!-- content page here  -->
+    <!-- Content | start -->
+    <div class="col-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+          <li class="breadcrumb-item"><a href="#"> المسارات التدريبية</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            المسار المالي
+          </li>
+        </ol>
+      </nav>
+      <h1>{{ getTitle() }}</h1>
+      <div class="row justify-content-start mt-3 mb-4">
+        <div class="col-auto border-3 border-end mb-2">
+          {{ getLanguageText() }}
+        </div>
+        <div class="col-auto border-3 border-end mb-2">
+          {{
+            trackDetails?.pathTrainingProgramCount != 0
+              ? trackDetails?.pathTrainingProgramCount + " برنامج تدريبي"
+              : " لا يوجد برنامج تدريبي "
+          }}
+        </div>
+
+        <div class="col-auto border-3 border-end mb-2">
+          {{
+            trackDetails?.generalProgramsCount != 0
+              ? "2 برنامج عام"
+              : " لا يوجد برنامج عام "
+          }}
+        </div>
+        <div
+          class="col-auto d-flex justify-content-center gap-1 align-items-center mb-2"
+        >
+          <span class="tags_paths_point me-1 on"></span>
+          <span class="d-inline-block">{{ trackDetails?.statusName }}</span>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="البحث عن برنامج ..."
+            aria-label="البحث عن برنامج ..."
+            aria-describedby="button-addon2"
+          />
+          <div class="dropdown search-options-btn_menu">
+            <button
+              aria-label="button"
+              type="submit"
+              class="d-flex align-items-center text-decoration-none dropdown-toggle position-relative search-options-btn btn btn-outline-secondary"
+              id="dropdownUser2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="تصفية"
+                width="32"
+                src="23.svg"
+                alt=""
+              />
+            </button>
+            <ul
+              class="dropdown-menu shadow animate slideIn"
+              aria-labelledby="dropdownUser2"
+            >
+              <li class="p-2 dropdown-menu_body">
+                <h6>نوع الخدمة</h6>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault1"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault1">
+                    برنامج تدريبي
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault2"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault2s">
+                    برنامج عام
+                  </label>
+                </div>
+                <h6>لغة التدريب</h6>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault1s"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault1s">
+                    العربية
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault2s"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault2">
+                    الانجليزية
+                  </label>
+                </div>
+              </li>
+              <li class="pt-2 pb-2">
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <div class="p-2">
+                  <button type="button" class="btn btn-primary me-2">
+                    تطبيق
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary">
+                    إعادة تعيين
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row pt-2">
+        <!-- tags_paths Box -->
+
+        @for (program of trackDetails?.pathTrainingProgram; track $index) {
+        <div class="col-xxl-4 col-xl-6 tags_paths-box-outer mt-2 mb-3">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12 tags_paths-photo-side">
+                <img
+                  src="sample-dashboard-content_6.jpg"
+                  [alt]="
+                    selectedLanguage === 'ar'
+                      ? program.titleAr
+                      : program.titleEn
+                  "
+                />
+              </div>
+            </div>
+            <div class="row p-0 pt-3">
+              <div class="col tags_paths-box-tags">
+                <!-- You might want to add conditions for these tags based on your data -->
+                <div
+                  class="tags_paths-tags-item"
+                  *ngIf="program.privateProgram === false"
+                >
+                  برنامج عام
+                </div>
+
+                <!-- Private Program Tag -->
+                <div
+                  class="tags_paths-tags-item"
+                  *ngIf="program.privateProgram === true"
+                >
+                  برنامج خاص
+                </div>
+                <div
+                  class="tags_paths-tags-item"
+                  *ngIf="program.language === 1 || program.language === 3"
+                >
+                  العربية
+                </div>
+                <div
+                  class="tags_paths-tags-item"
+                  *ngIf="program.language === 2 || program.language === 3"
+                >
+                  الانجليزية
+                </div>
+              </div>
+            </div>
+            <div class="col tags_paths-title mt-3 mb-4">
+              {{
+                selectedLanguage === "ar" ? program.titleAr : program.titleEn
+              }}
+            </div>
+
+            <div
+              class="row align-items-center justify-content-end tags_paths-btns"
+            >
+              <a
+                class="col-auto me-2"
+                [routerLink]="['/dashboard', program.id]"
+              >
+                عرض التفاصيل <img src="52.svg" width="21" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    <!-- end code    -->
+  </div>
+</section>

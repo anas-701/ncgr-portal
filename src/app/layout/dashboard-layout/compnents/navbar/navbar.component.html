@@ -1,0 +1,146 @@
+<!-- navbar.component.html -->
+<div class="container-fluid">
+  <div class="row ncgr-r02-menu">
+    <div class="container-xxl">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid ms-0 me-0 ps-0 pe-0">
+          <!-- Start Group -->
+          <div class="navbar-start-group">
+            <a class="navbar-brand" routerLink="/home" title="Logo">
+              <img src="logo_ar.png" alt="Logo" />
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+              aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              <span class="fs-6">القائمة</span>
+            </button>
+          </div>
+
+          <!-- Nav Items -->
+          <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/home">الرئيسية</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/aboutacademy">عن الاكاديمية</a>
+              </li>
+              <li class="nav-item dropdown position-relative dropdown-hover">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                  خدمات التدريب
+                </a>
+                <ul class="dropdown-menu animate slideIn">
+                  <li>
+                    <a class="dropdown-item" routerLink="/training-services">البرامج التدريبية</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="/general-programs">البرامج العامة</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="/workshops">الورش التدريبية</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" routerLink="/training-paths">المسارات التدريبية</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/media-center">مركز الوسائط</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/verify-certificate">التحقق من الشهادة</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- End Group -->
+          <form class="d-flex align-items-center navbar-end-group">
+            <a class="btn btn-link lang-switch me-2" >
+              <img class="d-inline-block pe-2" src="icons/header-lang.png" alt="" />
+              English
+            </a>
+
+            <!-- <a class="btn btn-primary" routerLink="/login">تسجيل الدخول</a> -->
+            <div *ngIf="!isLoginPage" class="dropdown dropdown-hover dashboard">
+              <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle position-relative"
+                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="avatar-img.png" alt="" width="50" height="50" class="rounded-circle me-3">
+                <div class="pe-0 mx-3">
+                  <div class="dashboard_user_name">احمد البليسى</div>
+                  <div class="dashboard_role">مدير المنصة</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu shadow animate slideIn mx-2" aria-labelledby="dropdownUser1">
+                <li>
+                  <a class="dropdown-item" href="#/dashboard">
+                    <img src="assets/img/icons/dashboard-icon-01.png" alt="">
+                    <span class="ps-1">لوحة التحكم</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="dashboard_admin_profile.html">
+                    <img src="assets/img/icons/dashboard-icon-02.png" alt="">
+                    <span class="ps-1">الملف الشخصي</span>
+                  </a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li>
+                  <a class="dropdown-item" href="index.html">
+                    <img src="assets/img/icons/dashboard-icon-03.png" alt="">
+                    <span class="ps-1">تسجيل الخروج</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- لو على صفحة /login -->
+            <a *ngIf="isLoginPage" class="btn btn-primary" routerLink="/login">تسجيل الدخول</a>
+
+            <!-- After login elements can be toggled based on auth state -->
+            <a class="btn btn-link notifications-bill me-2 d-none" data-bs-toggle="tooltip" data-bs-placement="top"
+              title="الاشعارات">
+              <img class="d-inline-block pe-2" src="icons/bill.png" alt="" />
+            </a>
+
+            <div class="dropdown dropdown-hover dashboard d-none">
+              <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle position-relative"
+                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="avatar-img.png" alt="" width="50" height="50" class="rounded-circle me-3" />
+                <div class="pe-3">
+                  <div class="dashboard_user_name">عبد الله السعيد</div>
+                  <div class="dashboard_role">مدير المنصة</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu shadow animate slideIn" aria-labelledby="dropdownUser1">
+                <li>
+                  <a class="dropdown-item" routerLink="/dashboard">
+                    <img src="icons/dashboard-icon-01.png" alt="" />
+                    <span class="ps-1">لوحة التحكم</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/my-profile">
+                    <img src="icons/dashboard-icon-02.png" alt="" />
+                    <span class="ps-1">الملف الشخصي</span>
+                  </a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/login">
+                    <img src="icons/dashboard-icon-03.png" alt="" />
+                    <span class="ps-1">تسجيل الخروج</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

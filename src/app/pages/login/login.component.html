@@ -1,0 +1,44 @@
+<main class="form-signin my-5">
+  <form>
+    <div class="text-center">
+      <a href="index.html"
+        ><img class="mb-3" src="/logo_ar.svg" width="200" alt=""
+      /></a>
+    </div>
+    <h3 class="mb-4 text-center">تسجيل الدخول</h3>
+
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="floatingInput"
+        placeholder="name@example.com"
+      />
+      <label for="floatingInput text-end">اسم المستخدم</label>
+    </div>
+    <div class="form-floating">
+      <input
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="Password"
+      />
+      <label for="floatingPassword text-end">كلمة المرور</label>
+    </div>
+
+    <div class="checkbox mt-3 mb-3">
+      <label> <input type="checkbox" value="remember-me" /> تذكرني </label>
+    </div>
+    <button
+      class="submit-btn w-100 btn btn-primary p-2 rounded-0"
+      type="submit"
+      routerLink="/dashboard"
+      (click)="logged()"
+    >
+      تسجيل الدخول
+    </button>
+    <p class="mt-5 mb-3 text-muted">
+      جميع الحقوق محفوظة – المركز الوطني لنظم الموارد الحكومية © 2025
+    </p>
+  </form>
+</main>

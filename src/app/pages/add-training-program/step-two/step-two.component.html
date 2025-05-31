@@ -1,0 +1,239 @@
+<div class="step-two-form" [formGroup]="formGroup">
+  <div class="row">
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="language-selector">
+          <label class="form-label d-block">نوع البرنامج </label>
+          <div class="language-option">
+            <input
+              type="radio"
+              id="private"
+              name="programType"
+              value="1"
+              formControlName="programType"
+            />
+            <label for="private">خاص</label>
+          </div>
+          <div class="language-option">
+            <input
+              type="radio"
+              id="general"
+              name="programType"
+              value="2"
+              formControlName="programType"
+            />
+            <label for="general">عام</label>
+          </div>
+        </div>
+      </div>
+      <!-- Target category only shows when program type is private -->
+      <div class="col-md-6" *ngIf="formGroup.get('programType')?.value === '1'">
+        <!-- <div class="form-group mb-4">
+          <label for="paths" class="form-label">الفئة المستهدفة</label>
+          <select id="paths" class="form-select">
+            <option value="1">قسم 1</option>
+            <option value="2">قسم 2</option>
+            <option value="3">قسم 3</option>
+          </select>
+        </div> -->
+        <div class="form-group mb-4">
+          <label for="targetAudience" class="form-label">الفئة المستهدفة</label>
+          <select
+            id="targetAudience"
+            class="form-select"
+            formControlName="targetAudienceId"
+            [ngClass]="{
+              'is-invalid': isFieldInvalid('targetAudienceId')
+            }"
+          >
+            <option [ngValue]="null" disabled selected>
+              اختر الفئة المستهدفة
+            </option>
+            <option
+              *ngFor="let audience of targetAudiences"
+              [ngValue]="audience.id"
+            >
+              {{ audience.name }}
+            </option>
+          </select>
+          <div
+            class="invalid-feedback"
+            *ngIf="isFieldInvalid('targetAudienceId')"
+          >
+            {{ getErrorMessage("targetAudienceId") }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Left Column - Arabic -->
+    <div class="col-md-6">
+      <!-- Target Audience - Arabic -->
+      <div class="form-group mb-4">
+        <label for="targetAudience" class="form-label"
+          >متطلبات البرنامج (بالعربية):</label
+        >
+        <div class="rich-text-editor">
+          <div class="toolbar">
+            <div class="d-flex justify-content-between w-100">
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-right"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-center"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-left"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-justify"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ul"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ol"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-dash"></i>
+                </button>
+              </div>
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-bold"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-italic"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-underline"></i>
+                </button>
+                <button type="button" class="btn btn-sm">H1</button>
+                <button type="button" class="btn btn-sm">H2</button>
+                <button type="button" class="btn btn-sm">H3</button>
+                <button type="button" class="btn btn-sm">H4</button>
+                <button type="button" class="btn btn-sm">H5</button>
+                <button type="button" class="btn btn-sm">H6</button>
+              </div>
+            </div>
+          </div>
+          <textarea
+            id="programRequirements"
+            class="form-control editor-area"
+            formControlName="programRequirements"
+            rows="6"
+            [ngClass]="{
+              'is-invalid': isFieldInvalid('programRequirements')
+            }"
+          ></textarea>
+          <div
+            class="invalid-feedback"
+            *ngIf="isFieldInvalid('programRequirements')"
+          >
+            {{ getErrorMessage("programRequirements") }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column - English -->
+    <div class="col-md-6">
+      <!-- Target Audience - English -->
+      <div class="form-group mb-4">
+        <label for="targetAudienceEn" class="form-label"
+          >متطلبات البرنامج (بالإنجليزية):</label
+        >
+        <div class="rich-text-editor">
+          <div class="toolbar">
+            <div class="d-flex justify-content-between w-100">
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-right"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-center"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-left"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-justify"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ul"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ol"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-dash"></i>
+                </button>
+              </div>
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-bold"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-italic"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-underline"></i>
+                </button>
+                <button type="button" class="btn btn-sm">H1</button>
+                <button type="button" class="btn btn-sm">H2</button>
+                <button type="button" class="btn btn-sm">H3</button>
+                <button type="button" class="btn btn-sm">H4</button>
+                <button type="button" class="btn btn-sm">H5</button>
+                <button type="button" class="btn btn-sm">H6</button>
+              </div>
+            </div>
+          </div>
+          <textarea
+            id="programRequirementsEn"
+            class="form-control editor-area"
+            formControlName="programRequirementsEn"
+            rows="6"
+            [ngClass]="{
+              'is-invalid': isFieldInvalid('programRequirementsEn')
+            }"
+          ></textarea>
+          <div
+            class="invalid-feedback"
+            *ngIf="isFieldInvalid('programRequirementsEn')"
+          >
+            {{ getErrorMessage("programRequirementsEn") }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Language Options -->
+  <div class="form-group mb-4 mt-2">
+    <div class="col-md-6">
+      <div class="language-selector">
+        <label class="form-label d-block">برنامج خاص بالبرامج العامة </label>
+        <div class="language-option">
+          <input
+            type="radio"
+            id="yes"
+            name="PrivateProgram"
+            value="1"
+            formControlName="PrivateProgram"
+          />
+          <label for="yes">نعم</label>
+        </div>
+        <div class="language-option">
+          <input
+            type="radio"
+            id="no"
+            name="PrivateProgram"
+            value="0"
+            formControlName="PrivateProgram"
+          />
+          <label for="no">لا</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

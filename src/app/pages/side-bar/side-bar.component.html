@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row">
+    <nav class="sidebar d-flex flex-column flex-shrink-0">
+      <button aria-label="link" class="toggle-btn" (click)="toggleSidebar()">
+        <img src="/icons/93.svg" width="18" alt="" />
+      </button>
+
+      <div class="p-3 pb-0 text-white">
+        <h4 class="logo-text fw-bold mb-0">لوحة التحكم</h4>
+        <hr />
+      </div>
+
+      <div class="nav flex-column">
+        <a
+          *ngFor="let item of sidebarItems"
+          [routerLink]="item.children ? null : item.route"
+          routerLinkActive="active"
+          class="sidebar-link text-decoration-none"
+          [attr.data-bs-toggle]="item.children ? 'collapse' : null"
+          [attr.href]="item.children ? '#contentPages' + item.label : null"
+          [attr.role]="item.children ? 'button' : null"
+        >
+          <img
+            class="d-inline-block pe-1"
+            width="25"
+            [src]="'/icons/' + item.icon"
+            alt=""
+          />
+          <span class="hide-on-collapse">{{ item.label }}</span>
+        </a>
+
+        <ng-container *ngFor="let item of sidebarItems">
+          <div
+            *ngIf="item.children"
+            class="collapse collaps_item_list"
+            [id]="'contentPages' + item.label"
+          >
+            <div class="sm_card_list">
+              <ul class="sm_list_dashboard">
+                <li *ngFor="let child of item.children">
+                  <a [routerLink]="child.route">{{ child.label }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </nav>
+  </div>
+</div>

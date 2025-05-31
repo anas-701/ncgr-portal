@@ -1,0 +1,192 @@
+.step-one-form {
+  direction: rtl;
+  text-align: right;
+}
+.step-one-form .form-label {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.step-one-form .form-control,
+.step-one-form .form-select {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  padding-right: 37px;
+  transition: border-color 0.2s;
+}
+.step-one-form .form-control:focus,
+.step-one-form .form-select:focus {
+  border-color: #166a45;
+  box-shadow: 0 0 0 0.25rem rgba(0, 102, 51, 0.25);
+}
+.step-one-form .form-control.is-invalid,
+.step-one-form .form-select.is-invalid {
+  border-color: #dc3545;
+}
+.step-one-form .rich-text-editor {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.step-one-form .rich-text-editor .toolbar {
+  background-color: #f8f9fa;
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #ddd;
+}
+.step-one-form .rich-text-editor .toolbar > div {
+  display: flex;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+.step-one-form .rich-text-editor .toolbar > div:last-child {
+  margin-left: 0;
+}
+.step-one-form .rich-text-editor .toolbar .btn {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  color: #333;
+  margin-left: 5px;
+  padding: 0.25rem 0.5rem;
+  font-size: 12px;
+}
+.step-one-form .rich-text-editor .toolbar .btn:hover {
+  background-color: #e9ecef;
+}
+.step-one-form .rich-text-editor .toolbar .btn:active, .step-one-form .rich-text-editor .toolbar .btn.active {
+  background-color: #e2e6ea;
+  border-color: #166a45;
+}
+.step-one-form .rich-text-editor .toolbar .btn:last-child {
+  margin-left: 0;
+}
+.step-one-form .rich-text-editor .editor-area {
+  border: none;
+  border-radius: 0;
+  resize: vertical;
+  min-height: 150px;
+}
+.step-one-form .invalid-feedback {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+.step-one-form .upload-area {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.step-one-form .upload-area .upload-container {
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  background-color: #f3f4f6;
+  transition: all 0.3s;
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step-one-form .upload-area .upload-container:hover {
+  border-color: #166a45;
+  background-color: rgba(0, 102, 51, 0.05);
+}
+.step-one-form .upload-area .upload-container.has-image {
+  padding: 0;
+  border: none;
+  background: none;
+}
+.step-one-form .upload-area .upload-container .image-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+}
+.step-one-form .upload-area .upload-container .image-preview img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px;
+}
+.step-one-form .upload-area .upload-container .image-preview .image-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+.step-one-form .upload-area .upload-container .image-preview .image-actions .btn-remove {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.step-one-form .upload-area .upload-container .image-preview .image-actions .btn-remove:hover {
+  background: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+.step-one-form .upload-area .upload-container .image-preview .image-actions .btn-remove i {
+  color: #dc3545;
+  font-size: 20px;
+}
+.step-one-form .upload-area .upload-container .upload-interface {
+  width: 100%;
+}
+.step-one-form .upload-area .upload-container .upload-icon {
+  font-size: 36px;
+  color: #166a45;
+  margin-bottom: 10px;
+}
+.step-one-form .upload-area .upload-container .upload-text {
+  margin-bottom: 10px;
+}
+.step-one-form .upload-area .upload-container .upload-text p {
+  margin-bottom: 2px;
+  color: #555;
+}
+.step-one-form .upload-area .upload-container .upload-text p.text-gray {
+  color: #888;
+  font-size: 14px;
+}
+.step-one-form .upload-area .upload-container .upload-text .file-input {
+  display: none;
+}
+.step-one-form .upload-area .upload-container .upload-text .btn-outline-primary {
+  color: #166a45;
+  border-color: #166a45;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.step-one-form .upload-area .upload-container .upload-text .btn-outline-primary:hover {
+  background-color: #166a45;
+  color: white;
+}
+.step-one-form .upload-area .upload-container .upload-hint {
+  font-size: 11px;
+  color: #777;
+  margin: 10px 0;
+}
+
+.language-option {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 6px;
+}
+.language-option input[type=radio] {
+  width: 22px;
+  height: 22px;
+  accent-color: #166a45;
+  cursor: pointer;
+  margin: 0;
+}/*# sourceMappingURL=step-one.component.css.map */

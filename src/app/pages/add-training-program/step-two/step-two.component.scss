@@ -1,0 +1,202 @@
+.step-two-form {
+  direction: rtl;
+  text-align: right;
+
+  .form-label {
+    margin-bottom: 8px;
+    font-size: 14;
+  }
+
+  .form-control,
+  .form-select {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    padding-right: 37px;
+
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #166a45;
+      box-shadow: 0 0 0 0.25rem rgba(0, 102, 51, 0.25);
+    }
+
+    &.is-invalid {
+      border-color: #dc3545;
+    }
+  }
+
+  .rich-text-editor {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+
+    .toolbar {
+      background-color: #f8f9fa;
+      padding: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #ddd;
+
+      > div {
+        display: flex;
+        margin-left: 10px;
+        margin-bottom: 5px;
+
+        &:last-child {
+          margin-left: 0;
+        }
+      }
+
+      .btn {
+        background-color: transparent;
+        border: 1px solid #ddd;
+        color: #333;
+        margin-left: 5px;
+        padding: 0.25rem 0.5rem;
+        font-size: 12px;
+
+        &:hover {
+          background-color: #e9ecef;
+        }
+
+        &:active,
+        &.active {
+          background-color: #e2e6ea;
+          border-color: #166a45;
+        }
+
+        &:last-child {
+          margin-left: 0;
+        }
+      }
+    }
+
+    .editor-area {
+      border: none;
+      border-radius: 0;
+      resize: vertical;
+      min-height: 150px;
+    }
+  }
+
+  .language-options {
+    margin-top: 10px;
+
+    .language-option {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+
+      input[type="radio"] {
+        margin-left: 10px;
+        cursor: pointer;
+
+        &:checked + .form-check-label {
+          color: #166a45;
+          font-weight: bold;
+        }
+      }
+
+      .form-check-label {
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      &:has(input:checked) {
+        border-color: #166a45;
+        background-color: rgba(0, 102, 51, 0.05);
+      }
+    }
+  }
+
+  .invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+
+  // File upload styles (if needed)
+  .upload-area {
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    .upload-container {
+      border: 2px dashed #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      background-color: #f8f9fa;
+      transition: all 0.3s;
+
+      &:hover {
+        border-color: #166a45;
+        background-color: rgba(0, 102, 51, 0.05);
+      }
+
+      .upload-icon {
+        font-size: 36px;
+        color: #166a45;
+        margin-bottom: 10px;
+      }
+
+      .upload-text {
+        margin-bottom: 10px;
+
+        p {
+          margin-bottom: 2px;
+          color: #555;
+
+          &.text-gray {
+            color: #888;
+            font-size: 14px;
+          }
+        }
+
+        .btn-outline-primary {
+          color: #166a45;
+          border-color: #166a45;
+          margin-top: 5px;
+
+          &:hover {
+            background-color: #166a45;
+            color: white;
+          }
+        }
+      }
+
+      .upload-hint {
+        font-size: 11px;
+        color: #777;
+        margin: 10px 0;
+      }
+
+      .btn-outline-secondary {
+        font-size: 12px;
+        padding: 4px 10px;
+        margin-top: 5px;
+      }
+    }
+  }
+}
+.language-option {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 6px;
+  input[type="radio"] {
+    width: 22px;
+    height: 22px;
+    accent-color: #166a45;
+    cursor: pointer;
+    margin: 0;
+  }
+}

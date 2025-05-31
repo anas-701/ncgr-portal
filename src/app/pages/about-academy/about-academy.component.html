@@ -1,0 +1,61 @@
+<section class="academy_inner_page">
+    <div class="inner_banner">
+      <img [src]="academyData.images.innerBanner" alt="">
+    </div>
+    <div class="container">
+      <div class="sm_inner_header">
+        <div class="breadcrumb_inner">
+          <ul>
+            <li class="link_page">
+              <a routerLink="/">الرئيسية</a>
+              <img [src]="academyData.images.arrowBread" alt="">
+            </li>
+            <li>عن الاكاديمية</li>
+          </ul>
+        </div>
+        <div class="share_btns">
+          <a href=""><img [src]="academyData.images.print" alt=""></a>
+          <a href=""><img [src]="academyData.images.share" alt=""></a>
+          <a href=""><img [src]="academyData.images.email" alt=""></a>
+        </div>
+      </div>
+  
+      <div class="academy_title">
+        <h5 class="title_text">
+          {{ academyData.titles.pageTitle }}
+        </h5>
+  
+        <div class="row mt-4">
+          <div class="col-md-7">
+            <div class="details_side">
+              <h6>{{ academyData.titles.firstSectionTitle }}</h6>
+              <p>{{ academyData.description }}</p>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="img_side_1">
+              <img [src]="academyData.images.firstSectionImage" alt="">
+            </div>
+          </div>
+        </div>
+  
+        <div class="row mt-4">
+          <div class="col-md-5">
+            <div class="img_side_1">
+              <img [src]="academyData.images.secondSectionImage" alt="">
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="details_side">
+              <h6>{{ academyData.titles.secondSectionTitle }}</h6>
+              <span *ngFor="let point of academyData.points">
+                {{ point }}
+              </span>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  

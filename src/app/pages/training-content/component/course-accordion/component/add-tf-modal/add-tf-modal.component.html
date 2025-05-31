@@ -1,0 +1,44 @@
+<div class="modal fade" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header m_header">
+          <h1 class="modal-title modal_title sm_modal">
+            <img src="012.svg" alt="">
+            <span>اضافة سؤال صواب وخطأ</span>
+          </h1>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form_modal">
+            <div class="form_c">
+              <label>نص السؤال</label>
+              <input type="text" [(ngModel)]="newQuestion.text" placeholder="ادخل نص السؤال بالعربيه">
+            </div>
+            <div class="form_c">
+              <label>درجة السؤال</label>
+              <input type="number" [(ngModel)]="newQuestion.score" placeholder="ادخل درجة السؤال">
+            </div>
+            
+            <h6>الاجابة الصحيحة</h6>
+            <div class="form_rad">
+              <input type="radio" id="trueAnswer" name="correctAnswer" 
+                     [(ngModel)]="newQuestion.correctAnswer" [value]="true">
+              <label for="trueAnswer">صواب</label>
+            </div>
+            <div class="form_rad">
+              <input type="radio" id="falseAnswer" name="correctAnswer" 
+                     [(ngModel)]="newQuestion.correctAnswer" [value]="false">
+              <label for="falseAnswer">خطأ</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="modal_f_btns">
+            <button type="button" class="add" (click)="onSave()">اضافة</button>
+            <button type="button" (click)="closeModal()">الغاء</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'"></div>

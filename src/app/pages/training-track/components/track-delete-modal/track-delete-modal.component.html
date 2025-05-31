@@ -1,0 +1,57 @@
+<!-- Delete Confirmation Modal -->
+<div
+  class="modal fade show"
+  [class.d-block]="showModal"
+  [class.d-none]="!showModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteTrackModalLabel"
+  [attr.aria-hidden]="!showModal"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteTrackModalLabel">تأكيد حذف المسار</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="onClose()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" *ngIf="deleteError">
+          {{ deleteError }}
+        </div>
+        <div class="alert alert-success" *ngIf="deleteSuccess">
+          {{ deleteSuccess }}
+        </div>
+
+        <p>هل أنت متأكد من حذف المسار "{{ track?.titleAr }}"؟</p>
+        <p>هذا الإجراء لا يمكن التراجع عنه.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="onClose()">
+          إلغاء
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          [disabled]="processingDelete"
+          (click)="onConfirmDelete()"
+        >
+          <span
+            *ngIf="processingDelete"
+            class="spinner-border spinner-border-sm me-1"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          حذف
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade show" *ngIf="showModal"></div>

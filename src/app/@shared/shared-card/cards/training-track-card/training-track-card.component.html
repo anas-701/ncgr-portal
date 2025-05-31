@@ -1,0 +1,136 @@
+<div class="container-fluid paths-box-outer">
+  <div class="row align-items-center text-center mt-3">
+    <div class="col-12 mb-2">
+      <h5>{{ data.titleAr }}</h5>
+    </div>
+  </div>
+  <div class="row justify-content-center mb-3">
+    <!-- Language indicators -->
+    <div
+      class="col-auto tag-item mb-2"
+      *ngIf="data.isEnglish && !data.isArabic"
+    >
+      الانجليزية
+    </div>
+    <div
+      class="col-auto tag-item mb-2"
+      *ngIf="data.isArabic && !data.isEnglish"
+    >
+      العربية
+    </div>
+    <div class="col-auto tag-item mb-2" *ngIf="data.isArabic && data.isEnglish">
+      العربية والانجليزية
+    </div>
+
+    <!-- Training Programs Count -->
+    <div
+      class="col-auto tag-item mb-2"
+      *ngIf="data.trainingProgramsCount && data.trainingProgramsCount > 0"
+    >
+      {{ data.trainingProgramsCount }} برنامج تدريبي
+    </div>
+
+    <!-- General Programs Count -->
+    <div
+      class="col-auto tag-item mb-2"
+      *ngIf="data.generalProgramsCount && data.generalProgramsCount > 0"
+    >
+      {{ data.generalProgramsCount }} برنامج عام
+    </div>
+
+    <!-- No Programs Icon -->
+    <div
+      class="col-auto tag-item mb-2"
+      *ngIf="!data.trainingProgramsCount || data.trainingProgramsCount === 0"
+    >
+      <img class="pe-1" src="icons/35.svg" width="25" alt="" /> غير مرتبط ببرامج
+    </div>
+    <div
+      class="col-auto tag-item mb-2"
+      *ngIf="!data.generalProgramsCount || data.generalProgramsCount === 0"
+    >
+      <img class="pe-1" src="icons/35.svg" width="25" alt="" /> غير مرتبط ببرامج
+    </div>
+  </div>
+  <div class="row pt-2 align-items-center">
+    <div class="col-auto">
+      <span class="fw-500">
+        {{ data.statusName == "مفعل" ? "مُفعل" : "غير مفعل" }}</span
+      >
+      <img width="20" src="icons/27.svg" alt="" />
+    </div>
+    <div class="col">
+      <select
+        class="form-select"
+        aria-label="تغيير الحالة"
+        [disabled]="isProcessing"
+        (change)="onStatusChange($event)"
+      >
+        <option value="" disabled selected>التغيير الي ...</option>
+        <option
+          *ngFor="let status of statuses"
+          [value]="status.id"
+          [disabled]="currentStatus === status.id"
+        >
+          {{ status.name }}
+        </option>
+      </select>
+      <div *ngIf="isProcessing" class="mt-1 text-center">
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+        <span class="ms-1">جاري التحديث...</span>
+      </div>
+    </div>
+  </div>
+  <hr class="mt-3" />
+  <div class="row align-items-center text-center programs-box-btns">
+    <div class="col action-btn mb-2">
+      <a
+        aria-label="link"
+        href="#"
+        class="d-block p-2"
+        (click)="$event.preventDefault(); onView()"
+      >
+        <img
+          width="28"
+          src="icons/28.svg"
+          alt=""
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="تفاصيل "
+      /></a>
+    </div>
+    <div
+      class="col action-btn mb-2"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="تعديل"
+    >
+      <a
+        aria-label="link"
+        href="#"
+        class="d-block p-2"
+        (click)="$event.preventDefault(); onEdit()"
+        ><img width="28" src="icons/29.svg" alt=""
+      /></a>
+    </div>
+
+    <div
+      class="col action-btn mb-2"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="حذف"
+    >
+      <a
+        aria-label="link"
+        href="#"
+        class="d-block p-2"
+        (click)="$event.preventDefault(); onDelete()"
+        ><img width="28" src="icons/32.svg" alt=""
+      /></a>
+    </div>
+  </div>
+</div>

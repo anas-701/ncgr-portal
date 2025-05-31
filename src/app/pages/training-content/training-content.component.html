@@ -1,0 +1,95 @@
+<section class="create_program mt-4 mb-4" [formGroup]="sectionForm">
+  <div class="container-xxl">
+    <div class="d-flex gap-4">
+      <div class="dashboard_link_sec">
+        <app-side-bar></app-side-bar>
+      </div>
+      <div class="flex-grow-1">
+        <div class="create_all_prog">
+          <app-content-header
+            [programTitle]="programTitle"
+          ></app-content-header>
+        </div>
+
+        <div class="add-lecture">
+          <app-course-accordion
+            [programId]="programId"
+            #courseAccordion
+          ></app-course-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="addsection"
+  tabindex="-1"
+  aria-labelledby="addsectionLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" style="max-width: 50%">
+    <div class="modal-content">
+      <div class="modal-header m_header">
+        <h1 class="modal-title modal_title">
+          <img src="40.svg" alt="" />
+          <span> اضافة قسم جديد</span>
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          id="closeModalBtn"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="sectionForm" (ngSubmit)="onSubmit()">
+          <div class="form_modal">
+            <div class="form_c">
+              <label for="arabicTitle">عنوان القسم (بالعربية)</label>
+              <input
+                type="text"
+                class="form-control"
+                id="arabicTitle"
+                formControlName="arabicTitle"
+                placeholder="ادخل اسم القسم بالعربيه"
+              />
+            </div>
+            <div class="form_c">
+              <label for="englishTitle">عنوان القسم (بالإنجليزية)</label>
+              <input
+                type="text"
+                class="form-control"
+                id="englishTitle"
+                formControlName="englishTitle"
+                placeholder="ادخل اسم القسم بالانجليزية"
+              />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <div class="modal_f_btns">
+              <button
+                class="add btn btn-primary"
+                type="submit"
+                [disabled]="sectionForm.invalid"
+              >
+                اضافة
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                الغاء
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="modal fade" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header m_header">
+          <h1 class="modal-title modal_title">
+            <img src="acc_icon_5.svg" alt="">
+            <span>تأكيد حذف المحاضرة</span>
+          </h1>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form_modal">
+            <p>هل أنت متأكد من رغبتك في حذف المحاضرة "{{lectureTitle}}"؟</p>
+            <p>سيتم حذف المحاضرة بشكل دائم ولن تتمكن من استعادتها.</p>
+            <p>اضغط "تأكيد الحذف" لإكمال العملية أو "إلغاء" للتراجع.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="modal_f_btns">
+            <button type="button" class="add" (click)="onConfirm()">تأكيد الحذف</button>
+            <button type="button" (click)="closeModal()">إلغاء</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'"></div>

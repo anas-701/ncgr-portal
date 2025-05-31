@@ -1,0 +1,32 @@
+<div class="modal fade" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'" *ngIf="isOpen">
+    <div class="modal-dialog" *ngIf="editedSection">
+      <div class="modal-content">
+        <div class="modal-header m_header">
+          <h1 class="modal-title modal_title">
+            <img src="acc_icon_2.svg" alt="">
+            <span>تعديل قسم</span>
+          </h1>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form_modal">
+            <div class="form_c">
+              <label for="sectionNameAr">اسم القسم (بالعربية)</label>
+              <input type="text" id="sectionNameAr" [(ngModel)]="editedSection.titleAr" placeholder="ادخل اسم القسم بالعربيه">
+            </div>
+            <div class="form_c">
+              <label for="sectionNameEn">اسم القسم (بالانجليزية)</label>
+              <input type="text" id="sectionNameEn" [(ngModel)]="editedSection.titleEn" placeholder="ادخل اسم القسم بالانجليزية">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="modal_f_btns">
+            <button type="button" class="add" (click)="onSave()">حفظ التعديل</button>
+            <button type="button" (click)="closeModal()">الغاء</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'"></div>

@@ -1,0 +1,44 @@
+<!-- Can't Delete Modal -->
+<div
+  class="modal fade show"
+  [class.d-block]="showModal"
+  [class.d-none]="!showModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="cantDeleteModalLabel"
+  [attr.aria-hidden]="!showModal"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cantDeleteModalLabel">
+          <img width="32" src="33.svg" alt="" /> لا يمكن حذف المسار
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="onClose()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          لا يمكن حذف المسار ، لأنه مرتبط ببرامج. يرجى إلغاء ارتباط البرامج
+          أولاً قبل محاولة الحذف
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary me-2 ps-4 pe-4"
+          (click)="onClose()"
+        >
+          حسنا
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade show" *ngIf="showModal"></div>

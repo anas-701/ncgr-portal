@@ -1,0 +1,40 @@
+<div
+  class="modal fade"
+  [class.show]="isOpen"
+  [style.display]="isOpen ? 'block' : 'none'"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header m_header">
+        <h1 class="modal-title modal_title sm_modal">
+          <img src="acc_icon_41.svg" alt="" />
+          <span>إضافة نص لـ {{ lectureTitle }}</span>
+        </h1>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form_modal">
+          <div class="form_c">
+            <label for="lectureText">النص الجديد</label>
+            <textarea
+              id="lectureText"
+              [(ngModel)]="newText"
+              rows="5"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="modal_f_btns">
+          <button type="button" class="add" (click)="onSave()">حفظ</button>
+          <button type="button" (click)="closeModal()">الغاء</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal-backdrop fade"
+  [class.show]="isOpen"
+  [style.display]="isOpen ? 'block' : 'none'"
+></div>

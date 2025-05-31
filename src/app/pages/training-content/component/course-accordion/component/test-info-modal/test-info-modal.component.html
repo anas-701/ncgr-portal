@@ -1,0 +1,145 @@
+<div class="modal fade" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content p-4">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="info_data"*ngIf="lecture?.typeId !== 6">
+              <h5>{{lecture?.titleAr}}</h5>
+              <span>برنامج: {{lecture?.titleEn}}</span>
+            </div>
+
+        <ng-container *ngIf="lecture?.typeId === 6">
+        <div class="test_ur_info mb-4">
+          <div class="info_data">
+            <h5>{{lecture?.titleAr}}</h5>
+            <span>برنامج: {{lecture?.titleEn}}</span>
+          </div>
+          <div class="info_result" >
+            <div class="all_question">
+              <span>الاسئلة الحالية: {{lecture?.exameQuestions?.length || 0}}</span>
+              <span>الدرجات الحالية: {{getTotalScore()}} / {{lecture?.exameTotal}}</span>
+            </div>
+          </div>
+        </div>
+  
+        <div class="all_quest_info mb-4" *ngFor="let question of lecture?.exameQuestions  || []">
+          <div class="question_list">
+            <h6>السؤال: {{question.question}}</h6>
+            
+            <div class="question_check" *ngIf="(question?.questionChoics?.length || 0) > 0">
+              <div class="questio_title" *ngFor="let option of question.questionChoics; let i = index">
+                <input type="radio" [id]="'q'+question.id+'o'+i" 
+                       [name]="'q'+question.id" [value]="option.isCorrect" [checked]="option.isCorrect" disabled>
+                <label [for]="'q'+question.id+'o'+i">{{option.choice}}</label>
+              </div>
+            </div>
+            
+            <div class="question_check" *ngIf="(question?.questionChoics?.length || 0) === 0">
+              <div class="questio_title">
+                <input type="radio" [id]="'q'+question.id+'t'" 
+                       [name]="'q'+question.id" value="true" [checked]="question.choiceCorrect === 'true'" disabled>
+                <label [for]="'q'+question.id+'t'">True</label>
+              </div>
+              <div class="questio_title">
+                <input type="radio" [id]="'q'+question.id+'f'" 
+                       [name]="'q'+question.id" value="false" [checked]="question.choiceCorrect === 'false'" disabled>
+                <label [for]="'q'+question.id+'f'">False</label>
+              </div>
+            </div>
+            
+            <div class="correct_answer">
+              <span>الإجابة الصحيحة: {{question.choiceCorrect}}</span>
+            </div>
+          </div>
+          
+          <div class="question_action">
+            <button class="btn" (click)="onEditQuestion(question)">
+              <img src="acc_icon_2.svg" alt="">
+              <span>تعديل</span>
+            </button>
+            <button class="btn" (click)="onDeleteQuestion(question.id)">
+              <img src="acc_icon_3.svg" alt="">
+              <span>حذف</span>
+            </button>
+            <div class="all_question">
+              <span>درجات السؤال: {{question.questionDegree}}</span>
+            </div>
+          </div>
+        </div>
+        </ng-container>
+        <ng-container *ngIf="lecture?.typeId === 2">
+          <div class="video-content mb-4">
+            
+            
+            <div class="video-container mt-3">
+              <video controls width="100%" [src]="lecture?.videoFileName" type="video/mp4">
+                المتصفح لا يدعم تشغيل الفيديو
+              </video>
+            </div>
+          </div>
+        </ng-container>
+         <ng-container *ngIf="lecture?.typeId === 4">
+          <div class="audio-content mb-4">
+            
+            
+            <div class="audio-container mt-3">
+              <audio controls style="width: 100%" [src]="lecture?.soundFileName" type="audio/mpeg">
+             
+                المتصفح لا يدعم تشغيل الصوت
+              </audio>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="lecture?.typeId === 1">
+          <div class="text-content mb-4">
+            
+            <div class="text-container mt-3 p-3 bg-light rounded">
+              <div [innerHTML]="lecture?.contentDetails"></div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="lecture?.typeId === 5">
+          <div class="image-content mb-4">
+            
+            
+            <div class="image-container mt-3 text-center">
+              <img [src]="lecture?.imageName" 
+                   [alt]="lecture?.image" 
+                   class="img-fluid rounded border"
+                   style="max-height: 500px;">
+            </div> 
+          </div>
+        </ng-container>
+        <ng-container *ngIf="lecture?.typeId === 3">
+          <div class="pdf-content mb-4">
+            
+            
+            <div class="pdf-container mt-3 border rounded p-3">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                  <i class="fas fa-file-pdf fs-1 text-danger"></i>
+                  <span class="ms-2">{{lecture?.pdfFileName?.split('/')?.pop()}}</span>
+                </div>
+                <a [href]="lecture?.pdfFileName" 
+                   target="_blank" 
+                   class="btn btn-primary">
+                  <i class="fas fa-download me-2"></i>تحميل الملف
+                </a>
+              </div>
+              
+              <div class="pdf-preview mt-3 bg-light rounded text-center p-4">
+                <iframe [src]="getSafePdfUrl()" 
+                          width="100%" height="600px"style="border: none;"> </iframe>
+                <div *ngIf="!lecture?.pdfFile" class="text-muted">
+                  <i class="fas fa-file-pdf fs-1"></i>
+                  <p class="mt-2">لا يوجد معاينة متاحة</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'"></div>

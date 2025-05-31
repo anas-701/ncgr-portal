@@ -1,0 +1,170 @@
+<!-- Edit Modal -->
+<div
+  class="modal fade show"
+  [class.d-block]="showModal"
+  [class.d-none]="!showModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="editTrackModalLabel"
+  [attr.aria-hidden]="!showModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editTrackModalLabel">
+          <img class="pe-1" width="28" src="36.svg" alt="" />
+          تعديل المسار
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="onClose()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Alert Messages -->
+        <div class="alert alert-danger" *ngIf="formError">
+          {{ formError }}
+        </div>
+        <div class="alert alert-success" *ngIf="formSuccess">
+          {{ formSuccess }}
+        </div>
+
+        <div class="container-fluid">
+          <div class="row">
+            <form [formGroup]="trackForm">
+              <div class="mb-4 mt-2">
+                <label for="titleAr" class="form-label fw-500">
+                  اسم المسار (بالعربية)
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="titleAr"
+                  formControlName="titleAr"
+                  placeholder="ادخل اسم المسار بالعربية"
+                />
+                <div
+                  class="text-danger small"
+                  *ngIf="
+                    trackForm.get('titleAr')?.invalid &&
+                    trackForm.get('titleAr')?.touched
+                  "
+                >
+                  الاسم بالعربية مطلوب
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="titleEn" class="form-label fw-500">
+                  اسم المسار (بالانجليزية)
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="titleEn"
+                  formControlName="titleEn"
+                  placeholder="ادخل اسم المسار بالانجليزية"
+                />
+                <div
+                  class="text-danger small"
+                  *ngIf="
+                    trackForm.get('titleEn')?.invalid &&
+                    trackForm.get('titleEn')?.touched
+                  "
+                >
+                  الاسم بالإنجليزية مطلوب
+                </div>
+              </div>
+
+              <div class="mb-2 fw-500">لغة محتوي المسار</div>
+              <div class="mb-3">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="isArabic"
+                    formControlName="isArabic"
+                  />
+                  <label class="form-check-label" for="isArabic"
+                    >اللغة العربية</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="isEnglish"
+                    formControlName="isEnglish"
+                  />
+                  <label class="form-check-label" for="isEnglish"
+                    >اللغة الانجليزية</label
+                  >
+                </div>
+                <div
+                  class="text-danger small"
+                  *ngIf="
+                    !trackForm.get('isArabic')?.value &&
+                    !trackForm.get('isEnglish')?.value
+                  "
+                >
+                  يجب اختيار لغة واحدة على الأقل
+                </div>
+              </div>
+
+              <div class="mb-2 fw-500">حالة المسار</div>
+              <div class="fr">
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="statusId"
+                    [value]="1"
+                    [checked]="trackForm.get('statusId')?.value === 1"
+                    (change)="onUpdateStatus($event)"
+                  />
+                  <label class="form-check-label" for="statusId">
+                    {{
+                      trackForm.get("statusId")?.value === 1
+                        ? "مفعل"
+                        : "غير مفعل"
+                    }}
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary me-2 ps-4 pe-4"
+          [disabled]="trackForm.invalid || processingForm"
+          (click)="onSave()"
+        >
+          <span
+            *ngIf="processingForm"
+            class="spinner-border spinner-border-sm me-1"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          حفظ
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary ps-4 pe-4"
+          (click)="onClose()"
+        >
+          إلغاء
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fade show" *ngIf="showModal"></div>

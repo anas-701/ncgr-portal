@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-4 mt-4" *ngFor="let track of trainingTracks">
+    <app-training-track-card
+      [data]="{
+        id: track.id,
+        titleAr: track.titleAr,
+        titleEn: track.titleEn,
+        isArabic: track.isArabic,
+        isEnglish: track.isEnglish,
+        statusName: track.statusName,
+        statusId: track.statusId,
+        trainingProgramsCount: track.trainingProgramsCount,
+        generalProgramsCount: track.generalProgramsCount
+      }"
+      (edit)="onEdit(track.id)"
+      (view)="onView(track.id)"
+      (delete)="onDelete(track.id)"
+      (statusChange)="onStatusChange($event)"
+    ></app-training-track-card>
+  </div>
+</div>

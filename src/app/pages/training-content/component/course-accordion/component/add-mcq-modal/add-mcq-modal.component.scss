@@ -1,0 +1,209 @@
+.radio_options {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.option_preview {
+  margin-right: 30px;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.form_rad {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.form_rad input[type="radio"] {
+  margin-left: 10px;
+}
+$black-color: #000;
+$white-color: #ffffff;
+$text-color: #222222;
+$sm-text-color: #216445;
+$gray_bg_color: #f3f3f3;
+$box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.2);
+$main-background-color: #166a45;
+$dark-green-bg-color: #074d31;
+$main-fontSize-10: 10px;
+$main-fontSize-12: 12px;
+$main-fontSize-14: 14px;
+$main-fontSize-16: 16px;
+$main-fontSize-18: 18px;
+$main-fontSize-20: 20px;
+$main-fontSize-22: 22px;
+$main-fontSize-24: 24px;
+$main-fontSize-28: 28px;
+$main-fontSize-30: 30px;
+$main-fontSize-36: 36px;
+$main-fontSize-38: 38px; // ************************
+@mixin flex-bar-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-bar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-bar-start {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+@mixin flex-bar-end {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+@mixin img-property {
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  min-width: 100%;
+}
+h1.modal-title.modal_title {
+  @include flex-bar-start;
+  &.sm_modal {
+    img {
+      width: 30px;
+      height: 30px;
+      fill: #166a45;
+      filter: invert(33%) sepia(53%) saturate(496%) hue-rotate(101deg)
+        brightness(93%) contrast(103%);
+    }
+    span {
+      color: #166a45;
+    }
+  }
+  img {
+    width: 20px;
+    height: 20px;
+  }
+  span {
+    color: $text-color;
+    font-size: $main-fontSize-16;
+    padding-inline-start: 10px;
+  }
+}
+
+.form_c {
+  margin: 10px 0;
+  label {
+    display: block;
+    font-size: $main-fontSize-14;
+    color: $text-color;
+    font-weight: 500;
+    padding-bottom: 5px;
+  }
+  input,
+  textarea,
+  select {
+    width: 100%;
+    border: 1px solid #d2d6db;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+}
+
+.modal_f_btns {
+  @include flex-bar-start;
+  button {
+    border: 1px solid $main-background-color;
+    padding: 10px 40px;
+    margin-inline-end: 10px;
+    border-radius: 6px;
+    font-size: $main-fontSize-16;
+    color: $main-background-color;
+    background: unset;
+    &.add {
+      background: $main-background-color;
+      color: $white-color;
+    }
+  }
+}
+
+// ************************
+.acc_list_bar {
+  @include flex-bar-start;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  padding: 5px 5px;
+  border-radius: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  .coolaps_btn {
+    box-shadow: unset !important;
+    background-color: unset;
+    width: max-content;
+    padding: 0;
+  }
+  .accordion_heder {
+    @include flex-bar-start;
+  }
+  .add-new-lecture {
+    position: absolute;
+    left: 10px;
+    button {
+      &:after {
+        display: none;
+      }
+      span {
+        color: $main-background-color;
+        font-size: $main-fontSize-16;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.form_modal {
+  p {
+    color: #000;
+    font-size: $main-fontSize-16;
+    padding-bottom: 10px;
+    font-weight: 500;
+  }
+  em {
+    color: #000;
+    font-size: 14px;
+  }
+}
+/* Styles for the track add modal component */
+
+.modal-header {
+  justify-content: space-between;
+}
+.modal-header .btn-close {
+  margin-right: auto !important;
+  margin: 0;
+}
+.form-check-input:checked {
+  background-color: #166a45;
+  border-color: #166a45;
+}
+.btn.disabled,
+.btn:disabled,
+fieldset:disabled .btn {
+  pointer-events: none;
+  background-color: #074d31;
+  border-color: #074d31;
+  opacity: var(--bs-btn-disabled-opacity);
+}
+.fr {
+  display: flex;
+  gap: 52px;
+  align-items: center;
+}

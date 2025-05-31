@@ -1,0 +1,49 @@
+<!-- Toast Notifications -->
+<div class="position-fixed top-0 start-0 p-3 z-index-11">
+  <!-- Success Toast -->
+  <div
+    class="toast"
+    [ngClass]="{ show: showSuccessToast, hide: !showSuccessToast }"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header">
+      <img src="37.svg" width="24" class="rounded me-2" alt="..." />
+      <strong class="me-auto toast-title">تم بنجاح</strong>
+      <button
+        type="button"
+        class="btn-close"
+        (click)="onHideToasts()"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body">{{ successMessage }}</div>
+  </div>
+</div>
+
+<!-- Error Toast -->
+<div
+  class="position-fixed top-0 start-0 p-3 z-index-11"
+  style="margin-top: 90px"
+>
+  <div
+    class="toast bg-danger text-white"
+    [ngClass]="{ show: showErrorToast, hide: !showErrorToast }"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header bg-danger text-white">
+      <img src="33.svg" width="24" class="rounded me-2" alt="..." />
+      <strong class="me-auto toast-title">حدث خطأ</strong>
+      <button
+        type="button"
+        class="btn-close"
+        (click)="onHideToasts()"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body">{{ errorMessage }}</div>
+  </div>
+</div>

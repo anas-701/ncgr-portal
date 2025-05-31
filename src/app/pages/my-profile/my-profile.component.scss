@@ -1,0 +1,313 @@
+/* ------------------------| search | inner |------------------------ */
+
+.search-options-btn {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+.search-options-btn::after {
+  display: none;
+}
+
+.dropdown-menu_body {
+  height: 300px;
+  overflow: auto;
+}
+
+.dropdown-menu_body h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* ------------------------| after login |  Profile |------------------------ */
+
+.user-main-data-card {
+  position: relative;
+  overflow: hidden;
+  background: #e9f4ec;
+  /* border: 1px solid rgba(0, 0, 0, .1); */
+  /* box-shadow: var(--ncgr_box-shadow); */
+  width: calc(36% - 30px);
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.profile-user-full-name {
+  color: var(--ncgr_txt_color-dark);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.profile-user-meta-data span {
+  font-size: 0.91rem;
+  padding-bottom: 0px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.profile-photo-side {
+  width: 130px;
+  height: 100px;
+}
+
+.profile-photo-side img {
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.profile-data-side {
+  width: calc(100% - 130px);
+  font-weight: 500;
+}
+
+.profile-user-side-tags-item {
+  font-size: 0.91rem;
+  display: inline-block;
+  color: #000;
+  font-weight: 500;
+  padding: 5px 25px;
+  border-radius: 5px;
+  margin: 3px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.user-statstics-card {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #1b8354;
+  /* box-shadow: var(--ncgr_box-shadow); */
+  width: calc(12.8% - 10px);
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 10px;
+  padding-top: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.user-statstics-icon {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 50%;
+  background: #e7f0ec;
+}
+
+.user-statstics-icon img {
+  fill: #1b8354;
+  filter: invert(38%) sepia(85%) saturate(404%) hue-rotate(101deg)
+    brightness(90%) contrast(88%);
+  width: 25px;
+  height: auto;
+}
+
+.user-statstics-numb {
+  margin-top: 20px;
+  color: var(--ncgr_txt_color-primary);
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.user-statstics-title {
+  margin-top: 5px;
+  color: var(--ncgr_txt_color-dark);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.user-statstics-brif {
+  margin-top: 5px;
+  color: #a2a2a2;
+}
+
+.user-statstics-info .nav-pills {
+  border: 1px solid #ccc;
+}
+
+.user-statstics-info .nav-pills .nav-link {
+  font-weight: 500;
+  color: var(--ncgr_txt_color-dark);
+}
+
+.user-statstics-info .nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: var(--ncgr_primary_bg_color);
+}
+
+.user-statstics-info .nav-pills .nav-link.active img {
+  fill: #fff;
+  filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(94deg)
+    brightness(101%) contrast(102%);
+  height: auto;
+}
+
+.user-statstics-info-box {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: var(--ncgr_box-shadow);
+  width: calc(50% - 20px);
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.user-statstics-info-box-title a {
+  text-decoration: none;
+  color: var(--ncgr_txt_color-primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: var(--ncgr_transition);
+}
+
+.user-statstics-info-box-title a:hover {
+  color: var(--ncgr_dark_green_bg_color);
+}
+
+.user-statstics-info-box-link a {
+  text-decoration: none;
+  color: var(--ncgr_txt_color-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--ncgr_transition);
+}
+
+.user-statstics-info-box .progress {
+  border-radius: 0.5rem;
+  font-weight: 700;
+}
+
+.user-statstics-d-c {
+  color: var(--ncgr_txt_color-primary);
+  text-decoration: none;
+  transition: var(--ncgr_transition);
+}
+
+.user-statstics-d-c img {
+  fill: #166a45;
+  filter: invert(33%) sepia(53%) saturate(496%) hue-rotate(101deg)
+    brightness(93%) contrast(103%);
+}
+
+.user-statstics-d-c:hover {
+  color: var(--ncgr_dark_green_bg_color);
+}
+
+.applications-status-table th {
+  font-weight: 500;
+}
+
+.applications-status-table td {
+  padding: 15px;
+}
+
+.applications-status-table a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ncgr_txt_color-primary);
+  text-decoration: none;
+  transition: var(--ncgr_transition);
+}
+
+.applications-status-table a:hover {
+  color: var(--ncgr_dark_green_bg_color);
+}
+
+.applications-status {
+  font-weight: 500;
+}
+
+.applications-status.accepted {
+  color: var(--ncgr_txt_color-success);
+}
+
+.applications-status.pending {
+  color: var(--ncgr_txt_color-warning);
+}
+
+.applications-status.rejected {
+  color: var(--ncgr_txt_color-danger);
+}
+
+/* ====================================================================================================
+Responcive Cases |----------------------------- |
+================================================================= */
+
+@media only screen and (max-width: 1400px) {
+  /* ------------------------| Profile |------------------------ */
+  .user-main-data-card {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+  .user-statstics-card {
+    width: calc(20% - 10px);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* ------------------------| Profile |------------------------ */
+  .profile-photo-side {
+    width: 130px;
+    height: 100px;
+  }
+  .profile-photo-side img {
+    display: block;
+    object-fit: fill;
+    object-position: center center;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+  .profile-data-side {
+    margin-top: 20px;
+    width: 100%;
+    font-weight: 500;
+  }
+  .user-statstics-card {
+    width: calc(50% - 10px);
+    margin-bottom: 10px;
+  }
+  .table-responsive {
+    margin-bottom: 20px;
+  }
+  .table-responsive table {
+    min-width: 100vh;
+    overflow: auto;
+  }
+  .user-statstics-info-box {
+    width: calc(100% - 20px);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .nav-item,
+  .nav-item .nav-link {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .user-statstics-card {
+    width: calc(100% - 10px);
+  }
+}
+
+.user-main-data-card.admin {
+  width: 100%;
+}

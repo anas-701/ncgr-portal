@@ -1,0 +1,192 @@
+/* ------------------------| R03 carousel |------------------------ */
+
+.carousel-control-next,
+.carousel-control-prev {
+  width: 5%;
+}
+
+/* ------------------------| R04 Welcome |------------------------ */
+
+.ncgr-r04-welcome {
+  padding-top: var(--ncgr_home-sections-padding-t-b);
+  padding-bottom: var(--ncgr_home-sections-padding-t-b);
+}
+
+/* ------------------------| R05 News |------------------------ */
+
+.ncgr-r05-news {
+  background-color: var(--ncgr_gray_bg_color);
+  padding-top: var(--ncgr_home-sections-padding-t-b);
+  padding-bottom: var(--ncgr_home-sections-padding-t-b);
+}
+
+.ncgr-home-news-box {
+  background: #fff;
+  box-shadow: var(--ncgr_box-shadow);
+  width: calc(50% - 30px);
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.news-photo-side {
+  min-height: 200px;
+}
+
+.news-photo-side img {
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.news-data-side,
+.news-photo-side {
+  margin: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.ncgr-home-news-box .new-img {
+  border-radius: 10px;
+}
+
+.home-newsbox-title {
+  padding-top: 10px;
+  font-size: 1.1rem;
+  color: var(--ncgr_txt_color-primary);
+  font-weight: 500;
+}
+
+.home-newsbox-brif {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+}
+
+/* ------------------------| R06 statistics |------------------------ */
+
+.ncgr-r06-statistics {
+  background-color: var(--ncgr_primary_bg_color);
+  padding-top: var(--ncgr_home-sections-padding-t-b);
+  padding-bottom: var(--ncgr_home-sections-padding-t-b);
+}
+
+.ncgr-r06-statistics h1 {
+  color: #fff;
+}
+
+.ncgr-r06-statistics h6 {
+  color: var(--ncgr_txt_color-secondary-light);
+}
+
+.home-statistics-date {
+  color: #fff;
+  font-weight: 500;
+}
+
+.ncgr-home-stat-box {
+  text-align: center;
+  background: #fff;
+  box-shadow: var(--ncgr_box-shadow);
+  width: calc(16.5% - 30px);
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.stat-box-icon img {
+  display: inline-block;
+  max-width: 60px;
+  height: auto;
+}
+
+.stat-box-numb {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--ncgr_txt_color-primary);
+}
+
+.stat-box-title {
+  margin-top: -10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* ------------------------| R07 partners |------------------------ */
+
+/* https://library.livecanvas.com/sections/  */
+
+.ncgr-r07-partners {
+  padding-top: var(--ncgr_home-sections-padding-t-b);
+  padding-bottom: var(--ncgr_home-sections-padding-t-b);
+}
+
+/* ====================================================================================================
+Responcive Cases |----------------------------- |
+================================================================= */
+
+@media only screen and (max-width: 1280px) {
+  /* ------------------------| index |------------------------ */
+  .ncgr-home-stat {
+    flex-wrap: wrap;
+  }
+  .ncgr-home-stat-box {
+    flex: 1 1 calc(33.33% - 30px);
+    width: calc(33.33% - 30px);
+    max-width: calc(33.33% - 30px);
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  /* ------------------------| index |------------------------ */
+  .ncgr-home-news-box {
+    width: calc(100% - 20px);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* ------------------------| news |------------------------ */
+  .news-data-side {
+    order: 2;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .news-photo-side {
+    order: 1;
+    max-height: 100px;
+    margin-bottom: 20px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* ------------------------| index |------------------------ */
+  .ncgr-home-stat-box {
+    flex: 1 1 calc(50% - 30px);
+    width: calc(50% - 30px);
+    max-width: calc(50% - 30px);
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  /* ------------------------| index |------------------------ */
+  .ncgr-home-stat-box {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+  }
+}

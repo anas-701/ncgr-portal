@@ -1,0 +1,62 @@
+<div class="modal fade" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header m_header">
+                <h1 class="modal-title modal_title sm_modal">
+                    <img src="011.svg" alt="">
+                    <span>اضافة سؤال اختيار من متعدد</span>
+                </h1>
+                <button type="button" class="btn-close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form_modal">
+                    <div class="form_c">
+                        <label>نص السؤال</label>
+                        <input type="text" [(ngModel)]="newQuestion.text" placeholder="ادخل نص السؤال بالعربيه">
+                    </div>
+                    <div class="form_c">
+                        <label>درجة السؤال</label>
+                        <input type="number" [(ngModel)]="newQuestion.score" placeholder="ادخل درجة السؤال">
+                    </div>
+
+                    <h6>الاختيارات</h6>
+                    <div class="form_c" *ngFor="let option of newQuestion.options; let i = index">
+                        <label for="option-{{i}}">الأختيار {{i + 1}}</label>
+                        <div class="input-group option-row">
+                            <input  type="text" id="option-{{i}}" [(ngModel)]="option.choice"  placeholder="ادخل نص الأختيار" class="form-control" >
+                            <div class="input-group-append">
+                            <div class="input-group-text">
+                                <input type="radio" name="correctAnswer" [checked]="newQuestion.correctAnswer === i" (change)="newQuestion.correctAnswer = i" [id]="'correct-'+i">
+                                <label [for]="'correct-'+i" class="ml-2 mb-0">إجابة صحيحة</label>
+                            </div>
+                            </div>
+                            <button 
+                            *ngIf="newQuestion.options.length > 2"
+                            (click)="removeOption(i)" 
+                            class="btn btn-icon"
+                            type="button"
+                            aria-label="حذف الأختيار"
+                            >
+                            <img src="acc_icon_02.svg" alt="حذف">
+                            </button>
+                        </div>
+                        </div>
+
+                    <div class="add_new_choose">
+                        <button type="button" class="btn" (click)="addOption()">
+                            <img src="acc_icon_48.svg" alt="">
+                            اضف اختيار اخر
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal_f_btns">
+                    <button type="button" class="add" (click)="onSave()">اضافة</button>
+                    <button type="button" (click)="closeModal()">الغاء</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade" [class.show]="isOpen" [style.display]="isOpen ? 'block' : 'none'"></div>

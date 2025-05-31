@@ -1,0 +1,511 @@
+<div class="step-one-form" [formGroup]="formGroup">
+  <div class="row">
+    <!-- Left Column -->
+    <div class="col-md-6">
+      <!-- Program Name - Arabic -->
+      <div class="form-group mb-4">
+        <label for="programName" class="form-label"
+          >عنوان البرنامج (بالعربية)</label
+        >
+        <input
+          type="text"
+          id="programName"
+          class="form-control"
+          formControlName="programName"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('programName')
+          }"
+        />
+        <div class="invalid-feedback" *ngIf="isFieldInvalid('programName')">
+          {{ getErrorMessage("programName") }}
+        </div>
+      </div>
+
+      <!-- Program Description - Arabic -->
+      <div class="form-group mb-4">
+        <label for="programDescription" class="form-label"
+          >وصف البرنامج التدريبي (بالعربية)</label
+        >
+        <div class="rich-text-editor">
+          <div class="toolbar">
+            <div class="d-flex justify-content-between w-100">
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-right"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-center"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-left"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-justify"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ul"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ol"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-dash"></i>
+                </button>
+              </div>
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-bold"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-italic"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-underline"></i>
+                </button>
+                <button type="button" class="btn btn-sm">H1</button>
+                <button type="button" class="btn btn-sm">H2</button>
+                <button type="button" class="btn btn-sm">H3</button>
+                <button type="button" class="btn btn-sm">H4</button>
+                <button type="button" class="btn btn-sm">H5</button>
+                <button type="button" class="btn btn-sm">H6</button>
+              </div>
+            </div>
+          </div>
+          <textarea
+            id="programDescription"
+            class="form-control editor-area"
+            formControlName="programDescription"
+            rows="6"
+            [ngClass]="{
+              'is-invalid': isFieldInvalid('programDescription')
+            }"
+          ></textarea>
+          <div
+            class="invalid-feedback"
+            *ngIf="isFieldInvalid('programDescription')"
+          >
+            {{ getErrorMessage("programDescription") }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Program Objectives - Arabic -->
+      <div class="form-group mb-4">
+        <label for="programObjectives" class="form-label"
+          >أهداف البرنامج التدريبي (بالعربية)</label
+        >
+        <div class="rich-text-editor">
+          <div class="toolbar">
+            <div class="d-flex justify-content-between w-100">
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-right"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-center"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-left"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-justify"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ul"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ol"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-dash"></i>
+                </button>
+              </div>
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-bold"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-italic"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-underline"></i>
+                </button>
+                <button type="button" class="btn btn-sm">H1</button>
+                <button type="button" class="btn btn-sm">H2</button>
+                <button type="button" class="btn btn-sm">H3</button>
+                <button type="button" class="btn btn-sm">H4</button>
+                <button type="button" class="btn btn-sm">H5</button>
+                <button type="button" class="btn btn-sm">H6</button>
+              </div>
+            </div>
+          </div>
+          <textarea
+            id="programObjectives"
+            class="form-control editor-area"
+            formControlName="programObjectives"
+            rows="6"
+            [ngClass]="{
+              'is-invalid': isFieldInvalid('programObjectives')
+            }"
+          ></textarea>
+          <div
+            class="invalid-feedback"
+            *ngIf="isFieldInvalid('programObjectives')"
+          >
+            {{ getErrorMessage("programObjectives") }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-md-6">
+      <!-- Program Name - English -->
+      <div class="form-group mb-4">
+        <label for="programNameEn" class="form-label"
+          >عنوان البرنامج (بالإنجليزية)</label
+        >
+        <input
+          type="text"
+          id="programNameEn"
+          class="form-control"
+          formControlName="programNameEn"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('programNameEn')
+          }"
+        />
+        <div class="invalid-feedback" *ngIf="isFieldInvalid('programNameEn')">
+          {{ getErrorMessage("programNameEn") }}
+        </div>
+      </div>
+
+      <!-- Program Description - English -->
+      <div class="form-group mb-4">
+        <label for="programDescriptionEn" class="form-label"
+          >وصف البرنامج التدريبي (بالإنجليزية)</label
+        >
+        <div class="rich-text-editor">
+          <div class="toolbar">
+            <div class="d-flex justify-content-between w-100">
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-right"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-center"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-left"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-justify"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ul"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ol"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-dash"></i>
+                </button>
+              </div>
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-bold"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-italic"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-underline"></i>
+                </button>
+                <button type="button" class="btn btn-sm">H1</button>
+                <button type="button" class="btn btn-sm">H2</button>
+                <button type="button" class="btn btn-sm">H3</button>
+                <button type="button" class="btn btn-sm">H4</button>
+                <button type="button" class="btn btn-sm">H5</button>
+                <button type="button" class="btn btn-sm">H6</button>
+              </div>
+            </div>
+          </div>
+          <textarea
+            id="programDescriptionEn"
+            class="form-control editor-area"
+            rows="6"
+            formControlName="programDescriptionEn"
+            [ngClass]="{
+              'is-invalid': isFieldInvalid('programDescriptionEn')
+            }"
+          ></textarea>
+          <div
+            class="invalid-feedback"
+            *ngIf="isFieldInvalid('programDescriptionEn')"
+          >
+            {{ getErrorMessage("programDescriptionEn") }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Program Objectives - English -->
+      <div class="form-group mb-4">
+        <label for="programObjectivesEn" class="form-label"
+          >أهداف البرنامج التدريبي (بالإنجليزية)</label
+        >
+        <div class="rich-text-editor">
+          <div class="toolbar">
+            <div class="d-flex justify-content-between w-100">
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-right"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-center"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-text-left"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-justify"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ul"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-list-ol"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-dash"></i>
+                </button>
+              </div>
+              <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-bold"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-italic"></i>
+                </button>
+                <button type="button" class="btn btn-sm">
+                  <i class="bi bi-type-underline"></i>
+                </button>
+                <button type="button" class="btn btn-sm">H1</button>
+                <button type="button" class="btn btn-sm">H2</button>
+                <button type="button" class="btn btn-sm">H3</button>
+                <button type="button" class="btn btn-sm">H4</button>
+                <button type="button" class="btn btn-sm">H5</button>
+                <button type="button" class="btn btn-sm">H6</button>
+              </div>
+            </div>
+          </div>
+          <textarea
+            id="programObjectivesEn"
+            class="form-control editor-area"
+            rows="6"
+            formControlName="programObjectivesEn"
+            [ngClass]="{
+              'is-invalid': isFieldInvalid('programObjectivesEn')
+            }"
+          ></textarea>
+          <div
+            class="invalid-feedback"
+            *ngIf="isFieldInvalid('programObjectivesEn')"
+          >
+            {{ getErrorMessage("programObjectivesEn") }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="language-selector">
+        <label class="form-label d-block">اللغة</label>
+        <div class="language-option">
+          <input
+            type="radio"
+            id="arabic"
+            name="language"
+            value="1"
+            formControlName="language"
+            checked
+          />
+          <label for="arabic">العربية</label>
+        </div>
+        <div class="language-option">
+          <input
+            type="radio"
+            id="english"
+            name="language"
+            value="2"
+            formControlName="language"
+          />
+          <label for="english">الإنجليزية</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <!-- <div class="form-group mb-4">
+        <label for="paths" class="form-label">المسار</label>
+        <select id="paths" class="form-select">
+          <option value="1">قسم 1</option>
+          <option value="2">قسم 2</option>
+          <option value="3">قسم 3</option>
+        </select>
+      </div>
+    </div> -->
+      <div class="form-group mb-4">
+        <label for="paths" class="form-label">المسار</label>
+        <select
+          id="paths"
+          class="form-select"
+          formControlName="PathId"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('PathId')
+          }"
+        >
+          <option [ngValue]="null" disabled selected>اختر المسار</option>
+          <option *ngFor="let path of paths" [ngValue]="path.id">
+            {{ path.name }}
+          </option>
+        </select>
+        <div class="invalid-feedback" *ngIf="isFieldInvalid('PathId')">
+          {{ getErrorMessage("PathId") }}
+        </div>
+      </div>
+    </div>
+    <!-- File Upload Section -->
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <!-- Upload Materials Section - Arabic -->
+        <label class="form-label">صورة الغلاف</label>
+        <div class="upload-area">
+          <div class="upload-container" [class.has-image]="coverPicturePath">
+            <!-- Image Preview -->
+            <div class="image-preview" *ngIf="coverPicturePath">
+              <img [src]="coverPicturePath" alt="صورة الغلاف" />
+              <div class="image-actions">
+                <button
+                  type="button"
+                  class="btn-remove"
+                  (click)="removeImage(true)"
+                  title="حذف الصورة"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Upload Interface -->
+            <div class="upload-interface" *ngIf="!coverPicturePath">
+              <div class="upload-icon">
+                <i class="bi bi-arrow-clockwise"></i>
+              </div>
+              <div class="upload-text">
+                <p>اسحب و أفلت الملفات هنا للرفع</p>
+                <input
+                  type="file"
+                  id="arabicImage"
+                  accept="image/jpeg,image/jpg,image/png"
+                  (change)="onFileSelected($event, true)"
+                  class="file-input"
+                />
+                <p class="upload-hint">
+                  أقصى حجم للملفات المسموح بها هو 5 ميجابايت وانواع الملفات
+                  المسموحة هي JPEG و JPG و PNG
+                </p>
+                <label
+                  for="arabicImage"
+                  class="btn btn-outline-primary border-0"
+                >
+                  تصفح الملفات
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <!-- Upload Materials Section - English -->
+        <label class="form-label">صورة البرنامج</label>
+        <div class="upload-area">
+          <div class="upload-container" [class.has-image]="programPicturePath">
+            <!-- Image Preview -->
+            <div class="image-preview" *ngIf="programPicturePath">
+              <img [src]="programPicturePath" alt="Program Image" />
+              <div class="image-actions">
+                <button
+                  type="button"
+                  class="btn-remove"
+                  (click)="removeImage(false)"
+                  title="Delete Image"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Upload Interface -->
+            <div class="upload-interface" *ngIf="!programPicturePath">
+              <div class="upload-icon">
+                <i class="bi bi-arrow-clockwise"></i>
+              </div>
+              <div class="upload-text">
+                <p>اسحب و أفلت الملفات هنا للرفع</p>
+                <input
+                  type="file"
+                  id="englishImage"
+                  accept="image/jpeg,image/jpg,image/png"
+                  (change)="onFileSelected($event, false)"
+                  class="file-input"
+                />
+                <p class="upload-hint">
+                  أقصى حجم للملفات المسموح بها هو 5 ميجابايت وانواع الملفات
+                  المسموحة هي JPEG و JPG و PNG
+                </p>
+                <label
+                  for="englishImage"
+                  class="btn btn-outline-primary border-0"
+                >
+                  تصفح الملفات
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dropdown selectors -->
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <!-- <div class="form-group mb-4">
+        <label for="subcategoryDropdown" class="form-label">الوسوم</label>
+        <select id="subcategoryDropdown" class="form-select">
+          <option value="1">الوسم 1</option>
+          <option value="2">الوسم 2</option>
+          <option value="3">الوسم 3</option>
+        </select>
+      </div> -->
+        <div class="form-group mb-4">
+          <label for="subcategoryDropdown" class="form-label">الوسوم</label>
+          <select
+            id="subcategoryDropdown"
+            class="form-select"
+            formControlName="TagsId"
+            [ngClass]="{
+              'is-invalid': isFieldInvalid('TagsId')
+            }"
+          >
+            <option [ngValue]="null" disabled selected>اختر الوسم</option>
+            <option *ngFor="let tag of tags" [ngValue]="tag.id">
+              {{ tag.name }}
+            </option>
+          </select>
+          <div class="invalid-feedback" *ngIf="isFieldInvalid('TagsId')">
+            {{ getErrorMessage("TagsId") }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

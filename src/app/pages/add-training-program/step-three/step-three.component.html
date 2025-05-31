@@ -1,0 +1,98 @@
+<div class="step-three-form" [formGroup]="formGroup">
+  <div class="row">
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="language-selector">
+          <label class="form-label d-block">تكلفة البرنامج </label>
+          <div class="language-option">
+            <input
+              type="radio"
+              id="private"
+              name="isPaid"
+              value="1"
+              checked
+              formControlName="categoryId"
+            />
+            <label for="private">مجاني</label>
+          </div>
+          <div class="language-option">
+            <input
+              type="radio"
+              id="general"
+              name="isPaid"
+              value="0"
+              formControlName="categoryId"
+            />
+            <label for="general">مدفوع</label>
+          </div>
+        </div>
+      </div>
+      <!-- Target category only shows when program type is private -->
+      <div class="col-md-6" *ngIf="formGroup.get('categoryId')?.value === '0'">
+        <div class="form-group mb-4">
+          <label for="ProgramCost" class="form-label">الرسوم</label>
+          <select
+            id="programCost"
+            class="form-select"
+            formControlName="price"
+            [ngClass]="{
+              'is-invalid': isFieldInvalid('price')
+            }"
+          >
+            <option [ngValue]="null" disabled selected>اختر الرسم</option>
+            <option *ngFor="let price of prices" [ngValue]="price.id">
+              {{ price.name }}
+            </option>
+          </select>
+          <div class="invalid-feedback" *ngIf="isFieldInvalid('price')">
+            {{ getErrorMessage("price") }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row flex-grow-1 mt-4">
+      <!-- Certificate Template -->
+      <div class="col-md-12">
+        <div class="form-group mb-4">
+          <label for="certificate" class="form-label">قالب الشهاده</label>
+          <select
+            id="certificate"
+            class="form-select"
+            formControlName="certificateId"
+            [ngClass]="{
+              'is-invalid': isFieldInvalid('certificateId')
+            }"
+          >
+            <option [ngValue]="null" disabled selected>اختر الشهادة</option>
+            <option
+              *ngFor="let certificate of certificates"
+              [ngValue]="certificate.id"
+            >
+              {{ certificate.name }}
+            </option>
+          </select>
+          <div class="invalid-feedback" *ngIf="isFieldInvalid('certificateId')">
+            {{ getErrorMessage("certificateId") }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Add some empty space to fill the container -->
+      <div
+        class="col-12 flex-grow-1 d-flex align-items-center justify-content-center"
+      >
+        <div
+          class="text-center text-muted"
+          *ngIf="formGroup.get('categoryId')?.value === '1'"
+        >
+          <i
+            class="bi bi-check-circle-fill text-success"
+            style="font-size: 2rem"
+          ></i>
+          <p class="mt-3">البرنامج مجاني ولا يحتاج إلى رسوم إضافية</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
