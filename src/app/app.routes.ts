@@ -18,6 +18,7 @@ import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TrainingTrackComponent } from './pages/training-track/training-track.component';
+import { WorkshopsComponent } from './pages/workshops/workshops.component';
 
 // export const routes: Routes = [
 //   {
@@ -90,6 +91,9 @@ export const routes: Routes = [
       { path: 'training-paths/:id', component: TrainingTrakeDetailsComponent },
       { path: 'my-profile', component: MyProfileComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'workshops', 
+        loadChildren: () => import('./pages/workshops/workshops.routes').then(m => m.workshopsRoutes)
+       },
 
     ],
   },

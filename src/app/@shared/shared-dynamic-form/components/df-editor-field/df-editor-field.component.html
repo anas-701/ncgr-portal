@@ -1,0 +1,22 @@
+<div [class]="styleClass">
+    @if (label) {
+
+    <label [for]="id" class="form-label">
+        {{ label }}
+        @if(required){
+        <span>*</span>
+        }
+    </label>
+    }
+    <div class="border rounded-1">
+
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+        <ngx-editor [editor]="editor" [id]="id" type="text" [formControl]="formControl"
+            [placeholder]="placeholder || ''" [disabled]="disabled" (input)="onInput($event)" (blur)="onTouched()"
+            [ngClass]="{
+      'is-invalid':control?.touched && control?.invalid
+    }"></ngx-editor>
+    </div>
+</div>
+<!-- Validation Messages -->
+<field-validation [control]="control" />

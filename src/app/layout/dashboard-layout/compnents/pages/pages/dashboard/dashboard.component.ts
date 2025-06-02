@@ -11,8 +11,8 @@ import { SharedCardComponent } from '../../../../../../@shared/shared-card/share
 import { ProgramCardComponent } from '../../../../../../@shared/program-card/program-card.component';
 import { SideBarComponent } from '../../../../../../pages/side-bar/side-bar.component';
 import { TrainingProgramsService } from '../../../../../../@core/services/training-programs.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+// import { MatPaginator } from '@angular/material/paginator';
+// import { MatSort } from '@angular/material/sort';
 import {
   GetAllProgramsRequest,
   OrderByValue,
@@ -51,8 +51,8 @@ export class DashboardComponent implements OnInit {
   paths: AppLookUpResponse[] = [];
   tags: AppLookUpResponse[] = [];
   selectedStatus: string = '';
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // @ViewChild(MatSort) sort!: MatSort;
   programs: GetAllProgramsResponse[] = [];
   allPrograms: GetAllProgramsResponse[] = [];
   totalItems = 0;

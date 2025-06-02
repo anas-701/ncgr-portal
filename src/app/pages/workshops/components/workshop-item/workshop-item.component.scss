@@ -1,0 +1,35 @@
+/* ------------------------| after login | admin | workshops |------------------------ */
+
+
+
+.workshops-photo-side {
+    padding: 0;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 0;
+    border-end-end-radius: 120px;
+    border-block-end: 5px solid var(--ncgr_primary_bg_color);
+}
+
+.workshops-photo-side img {
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: 100%;
+}
+
+.workshops-tag {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    padding: 0px 20px;
+    color: #fff;
+    /* font-weight: 500; */
+    line-height: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background: var(--ncgr_primary_bg_color);
+    margin-top: -19px;
+}
+

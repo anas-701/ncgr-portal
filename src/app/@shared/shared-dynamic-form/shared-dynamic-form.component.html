@@ -1,0 +1,68 @@
+<div [formGroup]="form" [class]="parentStyleClass">
+    @for (field of fields; track $index) {
+        @if (shouldShowField(field)) {
+            @switch (field.type) {
+                @case ('select') {
+                     <!-- Select Field -->
+                     <app-df-select-field [id]="field.key" [label]="field.label" [class]="field.styleClass"
+                         [placeholder]="field.placeholder" [control]="form.get(field.key)" [required]="isRequired(field)" [formControlName]="field.key" [options]="field.options">
+                     </app-df-select-field>
+                }
+                @case ('editor') {
+                     <!-- Editor Field -->
+                     <app-df-editor-field [id]="field.key" [label]="field.label" [class]="field.styleClass"
+                        [placeholder]="field.placeholder" [control]="form.get(field.key)" [required]="isRequired(field)" [formControlName]="field.key">
+                    </app-df-editor-field>
+                }
+                @case ('file') {
+                     <!-- File Field -->
+                     <app-df-file-field [id]="field.key" [label]="field.label" [class]="field.styleClass"
+                        [placeholder]="field.placeholder" [control]="form.get(field.key)" [required]="isRequired(field)" [formControlName]="field.key">
+                    </app-df-file-field>
+                }
+                @case ('radio') {
+                     <!-- Radio Field -->
+                     <app-df-radio-field [id]="field.key" [label]="field.label" [class]="field.styleClass"
+                        [placeholder]="field.placeholder" [control]="form.get(field.key)" [required]="isRequired(field)" [formControlName]="field.key" [options]="field.options">
+                    </app-df-radio-field>
+                }
+                @default {
+                    <!-- Text Field -->
+                    <app-df-input-field [id]="field.key" [label]="field.label" [class]="field.styleClass"
+                        [placeholder]="field.placeholder" [control]="form.get(field.key)" [required]="isRequired(field)" [formControlName]="field.key">
+                    </app-df-input-field>
+
+                }
+            }
+        }
+
+        <!-- Textarea Field -->
+        <!-- <textarea-field *ngIf="field.type === 'textarea'" [id]="field.key" [label]="field.label"
+            [placeholder]="field.placeholder" [required]="isRequired(field)" [formControlName]="field.key">
+        </textarea-field> -->
+
+        <!-- Select Field -->
+        <!-- <select-field *ngIf="field.type === 'select'" [id]="field.key" [label]="field.label"
+            [options]="field.options || []" [required]="isRequired(field)" [formControlName]="field.key">
+        </select-field> -->
+
+        <!-- Email Field -->
+        <!-- <email-field *ngIf="field.type === 'email'" [id]="field.key" [label]="field.label"
+            [placeholder]="field.placeholder" [required]="isRequired(field)" [formControlName]="field.key">
+        </email-field> -->
+
+        <!-- Number Field -->
+        <!-- <number-field *ngIf="field.type === 'number'" [id]="field.key" [label]="field.label"
+            [placeholder]="field.placeholder" [required]="isRequired(field)" [formControlName]="field.key">
+        </number-field> -->
+
+        <!-- Date Field -->
+        <!-- <date-field *ngIf="field.type === 'date'" [id]="field.key" [label]="field.label" [required]="isRequired(field)"
+            [formControlName]="field.key">
+        </date-field> -->
+
+        <!-- Validation Messages -->
+        <!-- <field-validation [control]="form.get(field.key)"></field-validation> -->
+    }
+
+</div>

@@ -1,0 +1,26 @@
+<div [class]="styleClass">
+    @if (label) {
+    
+        <label [for]="id" class="form-label">
+          {{ label }}
+          @if(required){
+              <span>*</span>
+          }
+        </label>
+    }
+    <input
+      [id]="id"
+      type="text"
+      [value]="value"
+      [placeholder]="placeholder || ''"
+      [disabled]="disabled"
+      (input)="onInput($event)"
+      (blur)="onTouched()"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':control?.touched && control?.invalid
+      }"
+    />
+  </div>
+ <!-- Validation Messages -->
+  <field-validation [control]="control" />

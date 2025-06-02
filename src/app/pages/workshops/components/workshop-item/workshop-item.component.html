@@ -1,0 +1,147 @@
+
+<div class="col upper-col p-0">
+    <div class="row position-relative p-0 m-0">
+        <div class="col-12 workshops-photo-side p-0 m-0">
+            <img [src]="workshop.imageUrl" alt="">
+        </div>
+        <div class="workshops-tag me-3">
+            {{workshop.mode}}
+
+
+        </div>
+    </div>
+    <div class="row ps-3 pe-3">
+        <h5 class="pt-3"> {{workshop.title}}
+
+        </h5>
+        <p>
+            <img data-bs-toggle="tooltip" data-bs-placement="top" title="المدرب "
+                class="pe-1" src="icons/39.svg" width="28" alt="">
+            <span class="d-inline-block">{{workshop.trainer}}
+
+            </span>
+        </p>
+        <p>
+            <img data-bs-toggle="tooltip" data-bs-placement="top"
+                title="الفئة المستهدفة " class="pe-1" src="icons/40.svg"
+                width="28" alt="">
+            <span class="d-inline-block">
+                {{workshop.targetAudience}}
+
+
+            </span>
+        </p>
+        <p>
+            <img data-bs-toggle="tooltip" data-bs-placement="top"
+                title="عدد المتدربين " class="pe-1" src="icons/41.svg"
+                width="28" alt="">
+            <span class="d-inline-block">
+                {{workshop.traineesCount}} متدرب
+
+
+
+
+            </span>
+        </p>
+        <p>
+            <img data-bs-toggle="tooltip" data-bs-placement="top" title="التاريخ "
+                class="pe-1" src="icons/42.svg" width="28" alt="">
+            <span class="d-inline-block">
+                {{workshop.startDate}} <img width="18" src="icons/27.svg" alt="">
+                {{workshop.endDate}}
+
+
+
+
+            </span>
+        </p>
+        <p>
+            <img data-bs-toggle="tooltip" data-bs-placement="top" title="الوقت "
+                class="pe-1" src="icons/43.svg" width="28" alt="">
+            <span class="d-inline-block">
+                {{workshop.time}}
+
+
+
+
+            </span>
+        </p>
+        <p>
+            <img data-bs-toggle="tooltip" data-bs-placement="top" title="المكان "
+                class="pe-1" src="icons/44.svg" width="28" alt="">
+            <span class="d-inline-block">
+                {{workshop.location?.city}}
+
+
+            </span>
+            <a rel="noopener" aria-label="link"
+                href="{{workshop.location?.mapLink}}"
+                target="_blank"><img class="pe-1" src="icons/46.svg"
+                    width="20" alt=""></a>
+        </p>
+        <p>
+            <img data-bs-toggle="tooltip" data-bs-placement="top" title="اللغة "
+                class="pe-1" src="icons/45.svg" width="28" alt="">
+            <span class="d-inline-block">
+                {{workshop.language}}
+
+
+            </span>
+        </p>
+    </div>
+</div>
+<div class="col-auto bottom-col mt-3">
+    <div class="row ps-3 pe-3 align-items-center">
+        <div class="col-auto "> {{workshop.status}}
+
+            <img width="20" src="icons/27.svg" alt="">
+        </div>
+        <div class="col">
+            <select id="mySelect" class="form-select"
+                aria-label="Default select example">
+                <option value="1">التغيير الي ...</option>
+                <option value="2">منشورة</option>   
+
+
+            </select>
+        </div>
+
+    </div>
+    <hr class="mt-3">
+    <div class="row p-1 m-0 align-items-center text-center programs-box-btns">
+        <div class="col p-0 border-end mb-2">
+            <a aria-label="link" href="#" class="d-block p-1" [routerLink]="['/workshops', workshop.id]"><img width="24"
+                    src="icons/28.svg" alt="" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="تفاصيل " ></a>
+        </div>
+        <div class="col p-0 border-end mb-2">
+            <a href="#" class="d-block  p-1" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="تعديل"><img width="24"
+                    src="icons/29.svg" alt=""></a>
+        </div>
+        <div class="col p-0 border-end mb-2">
+            <a href="#" class="d-block disable-this p-1" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="غير ممكن اعادة الجدولة "><img
+                    width="24" src="icons/38.svg" alt=""></a>
+        </div>
+        <div class="col p-0 border-end mb-2">
+            <a href="dashboard_workshops_content.html" class="d-block  p-1"
+                data-bs-toggle="tooltip" data-bs-placement="top"
+                title=" متطلبات الورشة"><img width="24"
+                    src="icons/30.svg" alt=""></a>
+        </div>
+        <div class="col p-0 border-end mb-2">
+            <a href="#" class="d-block  p-1" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="المتدربين"><img width="24"
+                    src="icons/31.svg" alt=""></a>
+        </div>
+
+        <div class="col p-0 mb-2">
+            <a aria-label="link" href="#" class="d-block  p-1"
+                data-bs-toggle="modal" data-bs-target="#exampleModal"><img
+                    width="24" src="icons/32.svg" alt=""
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="حذف"></a>
+        </div>
+    </div>
+</div>

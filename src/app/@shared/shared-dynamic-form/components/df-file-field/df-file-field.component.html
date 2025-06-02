@@ -1,0 +1,45 @@
+@if (label) {
+
+<label [for]="id" class="form-label">
+    {{ label }}
+    @if(required){
+    <span>*</span>
+    }
+</label>
+}
+<div class="upload-area">
+    <div class="upload-container" [class.has-image]="control?.value">
+        <!-- Image Preview -->
+        @if(control?.value){
+        <div class="image-preview">
+            <img [src]="control?.value" alt="صورة الغلاف" />
+            <div class="image-actions">
+                <button type="button" class="btn-remove" (click)="removeImage()" title="حذف الصورة">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </div>
+        }@else {
+        <!-- Upload Interface -->
+        <div class="upload-interface">
+            <div class="upload-icon">
+                <i class="bi bi-arrow-clockwise"></i>
+            </div>
+            <div class="upload-text">
+                <p>اسحب و أفلت الملفات هنا للرفع</p>
+                <input type="file" id="arabicImage" accept="image/jpeg,image/jpg,image/png"
+                    (change)="onFileSelected($event)" class="file-input" />
+                <p class="upload-hint">
+                    أقصى حجم للملفات المسموح بها هو 5 ميجابايت وانواع الملفات
+                    المسموحة هي JPEG و JPG و PNG
+                </p>
+                <label for="arabicImage" class="btn btn-outline-primary border-0">
+                    تصفح الملفات
+                </label>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+<!-- Validation Messages -->
+<field-validation [control]="control" />

@@ -1,0 +1,15 @@
+<div class="steps-indicator">
+    @for (step of steps(); track $index) {
+        <div class="step-item" [class.active]="currentStep() >= $index + 1" [class.completed]="currentStep() > $index + 1">
+            <div class="step-number">{{ $index + 1 }}</div>
+            <div class="step-label">
+                <div class="step-title">{{ step.title }}</div>
+                <div class="step-subtitle">{{ step.subtitle }}</div>
+            </div>
+        </div>
+
+        @if (!$last) {
+        <div class="step-line" [class.active]="currentStep() >= $index + 2"></div>
+        }
+    }
+</div>
