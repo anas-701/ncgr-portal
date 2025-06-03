@@ -19,6 +19,7 @@
             [disabled]="disabled"
             (change)="onSelect($event)"
             (blur)="onTouched()"
+            [checked]="control?.value"
             [ngClass]="{
               'is-invalid':control?.touched && control?.invalid
             }"
