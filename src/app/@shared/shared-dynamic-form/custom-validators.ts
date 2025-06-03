@@ -21,6 +21,11 @@ export class CustomValidators {
         ? null 
         : { 'customEmail': true };
     }
+    static url(control: AbstractControl): ValidationErrors | null {
+      return !control.value || /^(ftp|http|https):\/\/[^ "]+$/.test(control.value)
+        ? null 
+        : { 'url': true };
+    }
   
     // Additional useful validators
     static phoneNumber(control: AbstractControl): ValidationErrors | null {

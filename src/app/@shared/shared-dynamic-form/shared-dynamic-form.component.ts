@@ -8,6 +8,10 @@ import { DfSelectFieldComponent } from './components/df-select-field/df-select-f
 import { DfEditorFieldComponent } from './components/df-editor-field/df-editor-field.component';
 import { DfFileFieldComponent } from './components/df-file-field/df-file-field.component';
 import { DfRadioFieldComponent } from './components/df-radio-field/df-radio-field.component';
+import { DfDateFieldComponent } from './components/df-date-field/df-date-field.component';
+import { DfTimeFieldComponent } from './components/df-time-field/df-time-field.component';
+import { Subscription, debounceTime, distinctUntilChanged } from 'rxjs';
+
 
 @Component({
   selector: 'app-shared-dynamic-form',
@@ -17,16 +21,19 @@ import { DfRadioFieldComponent } from './components/df-radio-field/df-radio-fiel
     DfSelectFieldComponent,
     DfEditorFieldComponent,
     DfFileFieldComponent,
-    DfRadioFieldComponent
+    DfRadioFieldComponent,
+    DfDateFieldComponent,
+    DfTimeFieldComponent
   ],
   templateUrl: './shared-dynamic-form.component.html',
   styleUrl: './shared-dynamic-form.component.scss'
 })
-export class SharedDynamicFormComponent implements OnInit{
+export class SharedDynamicFormComponent implements OnInit {
   @Input() fields: FormFieldConfig[] = [];
   @Input() form!: FormGroup;
   @Input() parentStyleClass!: string;
-
+  private subscription: Subscription = new Subscription();
+  private isUpdatingVisibility = false; // Flag to prevent infinite loops
   ngOnInit() {
     this.addControlsToParentForm();
     this.setupConditionalVisibility();
@@ -35,33 +42,78 @@ export class SharedDynamicFormComponent implements OnInit{
   private addControlsToParentForm() {
     this.fields.forEach(field => {
       const validators = field.validators || [];
-      this.form.addControl(field.key, this.fb.control('', validators));
+      this.form.addControl(field.key!, this.fb.control('', validators));
     });
   }
 
+  // private setupConditionalVisibility() {
+  //   // Subscribe to form value changes to handle conditional visibility
+  //   this.form.valueChanges.subscribe(() => {
+  //     this.updateFieldVisibility();
+  //   });
+  // }
+
+  // private updateFieldVisibility() {
+  //   this.fields.forEach(field => {
+  //     if (field.conditionalVisibility) {
+  //       const shouldShow = this.shouldShowField(field);
+  //       const control = this.form.get(field.key);
+
+  //       if (!shouldShow && control) {
+  //         // Clear the value and disable the control when hidden
+  //         control.setValue('');
+  //         control.disable();
+  //       } else if (shouldShow && control) {
+  //         // Enable the control when shown
+  //         control.enable();
+  //       }
+  //     }
+  //   });
+  // }
+
   private setupConditionalVisibility() {
-    // Subscribe to form value changes to handle conditional visibility
-    this.form.valueChanges.subscribe(() => {
-      this.updateFieldVisibility();
+    // Subscribe to form value changes with debounce and distinctUntilChanged
+    const formSubscription = this.form.valueChanges.pipe(
+      debounceTime(10), // Small debounce to prevent rapid fire
+      distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr))
+    ).subscribe(() => {
+      if (!this.isUpdatingVisibility) {
+        this.updateFieldVisibility();
+      }
     });
+
+    this.subscription.add(formSubscription);
+
+    // Initial visibility check
+    setTimeout(() => {
+      this.updateFieldVisibility();
+    }, 0);
   }
 
   private updateFieldVisibility() {
+    this.isUpdatingVisibility = true;
+
     this.fields.forEach(field => {
       if (field.conditionalVisibility) {
         const shouldShow = this.shouldShowField(field);
-        const control = this.form.get(field.key);
-        
+        const control = this.form.get(field.key!);
+
         if (!shouldShow && control) {
           // Clear the value and disable the control when hidden
-          control.setValue('');
-          control.disable();
+          if (control.value !== '' || control.enabled) {
+            control.setValue('', { emitEvent: false }); // Don't emit event to prevent loop
+            control.disable({ emitEvent: false });
+          }
         } else if (shouldShow && control) {
           // Enable the control when shown
-          control.enable();
+          if (control.disabled) {
+            control.enable({ emitEvent: false });
+          }
         }
       }
     });
+
+    this.isUpdatingVisibility = false;
   }
 
   shouldShowField(field: FormFieldConfig): boolean {
@@ -71,13 +123,13 @@ export class SharedDynamicFormComponent implements OnInit{
 
     const condition = field.conditionalVisibility;
     const dependentControl = this.form.get(condition.dependsOn);
-    
+
     if (!dependentControl) {
       return false; // Hide field if dependent control doesn't exist
     }
 
     const dependentValue = dependentControl.value;
-    
+
     switch (condition.condition) {
       case 'equals':
         return dependentValue === condition.value;
@@ -100,3 +152,5 @@ export class SharedDynamicFormComponent implements OnInit{
 
   private fb = new FormBuilder();
 }
+
+

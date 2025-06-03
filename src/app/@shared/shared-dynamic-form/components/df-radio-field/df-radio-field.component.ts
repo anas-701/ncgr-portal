@@ -21,13 +21,23 @@ import { NgClass } from '@angular/common';
     }
   ],  
 })
-export class DfRadioFieldComponent extends BaseFieldComponent{
+export class DfRadioFieldComponent extends BaseFieldComponent {
   @Input() options?: any[] = [];
+  
   get formControl(): FormControl {
     return this.control as FormControl;
   }
+
   onSelect(event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    this.updateValue(target.value);
+    const target = event.target as HTMLInputElement; // تغيير من HTMLSelectElement إلى HTMLInputElement
+    if (target.checked) { // تأكد أن الـ radio محدد
+      this.updateValue(target.value);
+    }
+  }
+
+  // Override writeValue للتأكد من التحديث الصحيح
+  override writeValue(value: any): void {
+    super.writeValue(value);
+    // يمكنك إضافة منطق إضافي هنا إذا لزم الأمر
   }
 }

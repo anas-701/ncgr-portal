@@ -1,1 +1,11 @@
-<p>workshop-editor-step-four works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <app-shared-dynamic-form [form]="form" [fields]="formFields" [parentStyleClass]="'row'"/> 
+    <div class="d-flex gap-4 justify-content-end mt-4">
+        <button type="button" class="btn btn-primary" (click)="back()">
+            السابق
+        </button>
+        <button type="submit" class="btn btn-primary">
+            إنشاء
+        </button>
+    </div>
+</form>

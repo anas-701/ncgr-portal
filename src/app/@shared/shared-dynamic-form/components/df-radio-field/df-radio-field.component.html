@@ -1,6 +1,5 @@
 <div [class]="styleClass">
     @if (label) {
-    
         <label [for]="id" class="form-label">
           {{ label }}
           @if(required){
@@ -11,22 +10,21 @@
     @for (option of options; track $index) {
         <div class="custom-radio">
             <input
-            [id]="id+'_'+$index"
+            [id]="id + '_' + $index"
             type="radio"
             [name]="id"
             [value]="option?.value"
-            [placeholder]="placeholder || ''"
             [disabled]="disabled"
             (change)="onSelect($event)"
             (blur)="onTouched()"
-            [checked]="control?.value"
+            [checked]="control?.value === option?.value"
             [ngClass]="{
-              'is-invalid':control?.touched && control?.invalid
+              'is-invalid': control?.touched && control?.invalid
             }"
             />
-            <label for="arabic">{{option?.label}}</label>
+            <label [for]="id + '_' + $index">{{option?.label}}</label>
           </div>
     }
-  </div>
- <!-- Validation Messages -->
-  <field-validation [control]="control" />
+</div>
+<!-- Validation Messages -->
+<field-validation [control]="control" />

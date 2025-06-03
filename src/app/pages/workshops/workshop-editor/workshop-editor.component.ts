@@ -1,14 +1,14 @@
-import { NgClass } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { SideBarComponent } from '../../side-bar/side-bar.component';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { TrainingProgramsService } from '../../../@core/services/training-programs.service';
-import { ToastrService } from 'ngx-toastr';
 import { SharedStepsComponent } from '../../../@shared/shared-steps/shared-steps.component';
 import { WorkshopEditorStepOneComponent } from './workshop-editor-step-one/workshop-editor-step-one.component';
 import { WorkshopEditorService } from './services/workshop-editor.service';
+import { WorkshopEditorStepTwoComponent } from './workshop-editor-step-two/workshop-editor-step-two.component';
+import { WorkshopEditorStepThreeComponent } from './workshop-editor-step-three/workshop-editor-step-three.component';
+import { WorkshopEditorStepFourComponent } from './workshop-editor-step-four/workshop-editor-step-four.component';
 
 @Component({
   selector: 'app-workshop-editor',
@@ -16,14 +16,15 @@ import { WorkshopEditorService } from './services/workshop-editor.service';
     SideBarComponent,
     ReactiveFormsModule,
     SharedStepsComponent,
-    WorkshopEditorStepOneComponent
+    WorkshopEditorStepOneComponent,
+    WorkshopEditorStepTwoComponent,
+    WorkshopEditorStepThreeComponent,
+    WorkshopEditorStepFourComponent
   ],
   templateUrl: './workshop-editor.component.html',
   styleUrl: './workshop-editor.component.scss'
 })
 export class WorkshopEditorComponent implements OnInit{
-  
-  // _fb = inject(FormBuilder);
   _route = inject(ActivatedRoute);
   _router = inject(Router);
   _workshopEditorService=inject(WorkshopEditorService)

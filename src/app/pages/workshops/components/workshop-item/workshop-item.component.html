@@ -66,19 +66,22 @@
 
             </span>
         </p>
-        <p>
-            <img data-bs-toggle="tooltip" data-bs-placement="top" title="المكان "
-                class="pe-1" src="icons/44.svg" width="28" alt="">
-            <span class="d-inline-block">
-                {{workshop.location?.city}}
+        @if(workshop.location){
 
-
-            </span>
-            <a rel="noopener" aria-label="link"
-                href="{{workshop.location?.mapLink}}"
-                target="_blank"><img class="pe-1" src="icons/46.svg"
-                    width="20" alt=""></a>
-        </p>
+            <p>
+                <img data-bs-toggle="tooltip" data-bs-placement="top" title="المكان "
+                    class="pe-1" src="icons/44.svg" width="28" alt="">
+                <span class="d-inline-block">
+                    {{workshop.location.city}}
+    
+    
+                </span>
+                <a rel="noopener" aria-label="link"
+                    href="{{workshop.location.mapLink}}"
+                    target="_blank"><img class="pe-1" src="icons/46.svg"
+                        width="20" alt=""></a>
+            </p>
+        }
         <p>
             <img data-bs-toggle="tooltip" data-bs-placement="top" title="اللغة "
                 class="pe-1" src="icons/45.svg" width="28" alt="">
@@ -115,7 +118,7 @@
                     data-bs-placement="top" title="تفاصيل " ></a>
         </div>
         <div class="col p-0 border-end mb-2">
-            <a href="#" class="d-block  p-1" data-bs-toggle="tooltip"
+            <a href="#" class="d-block  p-1" [routerLink]="['/workshops/update', workshop.id]" data-bs-toggle="tooltip"
                 data-bs-placement="top" title="تعديل"><img width="24"
                     src="icons/29.svg" alt=""></a>
         </div>
