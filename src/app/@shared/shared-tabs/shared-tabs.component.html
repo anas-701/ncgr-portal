@@ -1,0 +1,22 @@
+<!-- Tabs -->
+<ul class="nav nav-tabs mb-3" id="programTabs" role="tablist">
+    @for (tab of tabs; track tab.id; let i = $index) {
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" [ngClass]="{ 'active': currentTab === i }" id="{{ tab.id }}-tab" data-bs-toggle="tab"
+            [attr.data-bs-target]="'#' + tab.id" type="button" role="tab" (click)="currentTab = i">
+            {{ tab.label }}
+        </button>
+    </li>
+    }
+</ul>
+
+<!-- Tab Content -->
+<div class="tab-content" id="programTabsContent">
+    @for (tab of tabs; track tab.id; let i = $index) {
+    <div class="tab-pane fade" [ngClass]="{ 'show active': currentTab === i }" id="{{ tab.id }}" role="tabpanel">
+
+        <!-- عرض الـ Component ديناميكياً -->
+        <ng-container *ngComponentOutlet="tab.component"></ng-container>
+    </div>
+    }
+</div>

@@ -170,7 +170,7 @@ export class WorkshopEditorStepThreeComponent implements OnInit {
     this.form.patchValue(existingData);
   }
   back(){
-    this.onChangeStep.emit(1)
+    this.onChangeStep.emit(2)
   }
   onSubmit() {
     console.log('form', this.form.value)
@@ -178,7 +178,7 @@ export class WorkshopEditorStepThreeComponent implements OnInit {
       this.form.markAllAsTouched()
       return
     }
-    this.onChangeStep.emit(3)
+    this.onChangeStep.emit(4)
   }
 
 
