@@ -1,0 +1,152 @@
+<div class="row programs_content_section_workshop-session justify-content-between align-items-center">
+          
+    <div class="col-auto section-workshop-session-title-side">
+      <span class="d-inline-block ps-1 pe-2 section-workshop-session-title">
+        <span 
+          class="section-workshop-session-title-img"
+          [attr.data-bs-toggle]="'tooltip'" 
+          [attr.data-bs-placement]="'top'"
+          [attr.title]="getTooltipText(session.type, session.isRequired)">
+          <img [src]="session.type==='session'?'icons/94.svg':'icons/86.svg'" width="30" alt="">
+        </span>
+        <span class="ps-1 fw-500">
+          {{ session.title }}
+        </span>
+        @if(session.type !='session'){
+            <span class="section-workshop-session-tag">{{session.type==='online-quiz'?'اختبار الكتروني':'اختبار حضوري'}}</span>
+            @if(session.currentQuestions){
+                <span class="section-workshop-session-tag">
+                  الاسئلة الحالية: {{ session.currentQuestions }}
+                </span>
+            }
+            @if(session.currentScore && session.totalScore){
+                <span class="section-workshop-session-tag">
+                    الدرجات الحالية: {{ session.currentScore}} / {{ session.totalScore}}
+                  </span>
+            }
+            
+        }
+      </span>
+    </div>
+    
+    <div class="col-auto section-workshop-session-icons-side">
+      
+      @if (session.date) {
+        <span 
+          class="d-inline-block workshop-session-date" 
+          [attr.data-bs-toggle]="'tooltip'"
+          [attr.data-bs-placement]="'top'" 
+          [attr.title]="getDateTooltip(session.type)">
+          {{ session.date }}
+        </span>
+
+        <span class="d-inline-block ps-2 pe-2">|</span>
+      }
+
+      @if (session.time) {
+        <span 
+          class="d-inline-block workshop-session-date" 
+          [attr.data-bs-toggle]="'tooltip'"
+          [attr.data-bs-placement]="'top'" 
+          [attr.title]="'موعد الاختبار'">
+          {{ session.time }}
+        </span>
+
+        <span class="d-inline-block ps-2 pe-2">|</span>
+      }
+      
+      @switch (session.type) {
+        @case ('session') {
+          @if (canRegisterAttendance(session)) {
+            <a 
+              title="تسجيل حضور"
+              class="section-workshop-session-icons-view d-inline-block pe-2"
+              (click)="onAttendanceClick(session)">
+              <img 
+                [attr.data-bs-toggle]="'tooltip'" 
+                [attr.data-bs-placement]="'top'" 
+                [attr.title]="'تسجيل حضور'"
+                src="icons/95.svg" width="24" alt="">
+            </a>
+          }
+        }
+
+        @case ('online-quiz') {
+          <a 
+            title="إضافة سؤال"
+            class="section-workshop-session-icons-view d-inline-block pe-2"
+            [id]="'dropdown'+session.id" data-bs-toggle="dropdown" aria-expanded="false">
+            <img 
+              [attr.data-bs-toggle]="'tooltip'" 
+              [attr.data-bs-placement]="'top'" 
+              [attr.title]="'اضف سؤال'"
+              src="icons/88.svg" width="24" alt="">
+          </a>
+          <ul class="dropdown-menu  shadow animate slideIn add-workshop-session-menu quiz-menu" [attr.aria-labelledby]="'dropdown'+session.id">
+            <li>
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal11">
+                    <img src="icons/89.svg" width="20" alt="" class="ms-2">
+                    <span>اضف سؤال اختيار من متعدد</span>
+                </a>
+            </li>
+            <li>
+                <a data-bs-toggle="modal" data-bs-target="#exampleModal12">
+                    <img src="icons/90.svg" width="20" alt="" class="ms-2">
+                    <span>أضف سؤال صواب وخطأ</span>
+                </a>
+
+            </li>
+        </ul>
+          <a 
+            title="عرض وتحرير الأسئلة"
+            class="section-workshop-session-icons-view d-inline-block pe-2"
+            data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"
+            (click)="onViewQuestionsClick(session)">
+            <img 
+              [attr.data-bs-toggle]="'tooltip'" 
+              [attr.data-bs-placement]="'top'"
+              [attr.title]="'عرض وتحرير الأسئلة'" 
+              src="icons/87.svg" width="24" alt="">
+          </a>
+        }
+
+        @case ('offline-exam') {
+          @if (canGradeExam(session)) {
+            <a 
+              title="رصد درجات الاختبار"
+              class="d-inline-block pe-2 section-workshop-session-icons-edit"
+              (click)="onGradeExamClick(session)">
+              <img 
+                [attr.data-bs-toggle]="'tooltip'" 
+                [attr.title]="'رصد درجات الاختبار'"
+                src="icons/96.svg" width="24" alt="">
+            </a>
+          }
+        }
+      }
+      
+      <a 
+        title="تعديل"
+        [class]="workshopInfo.isPublished?'disable-this':''"
+        class="d-inline-block pe-2 section-workshop-session-icons-edit"
+        (click)="onEditClick(session)">
+        <img 
+          [attr.data-bs-toggle]="'tooltip'" 
+          [attr.data-bs-placement]="'top'" 
+          [attr.title]="'تعديل'"
+          src="icons/78.svg" width="24" alt="">
+      </a>
+
+      <a 
+        title="حذف" 
+        [class]="workshopInfo.isPublished?'disable-this':''"
+        class="d-inline-block pe-1"
+        (click)="onDeleteClick(session)">
+        <img 
+          [attr.data-bs-toggle]="'tooltip'" 
+          [attr.data-bs-placement]="'top'" 
+          [attr.title]="'حذف'"
+          src="icons/79.svg" width="24" alt="">
+      </a>
+    </div>
+  </div>

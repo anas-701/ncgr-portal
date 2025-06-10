@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+        <app-shared-dynamic-form [form]="form" [fields]="formFields"/>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" id="toastbtn" class="btn btn-primary me-2 ps-4 pe-4"
+            data-bs-dismiss="modal">تأكيد</button>
+        <button type="button" class="btn btn-outline-secondary ps-4 pe-4"
+            data-bs-dismiss="modal">إلغاء</button>
+    </div>
+</form>

@@ -15,6 +15,10 @@ export const workshopsRoutes: Routes = [
     {
         path: ':id',
         loadComponent: () => import('./workshop-details/workshop-details.component').then(m => m.WorkshopDetailsComponent)
+    },
+    {
+        path: ':id/requirements',
+        loadComponent: () => import('./workshop-requirements/workshop-requirements.component').then(m => m.WorkshopRequirementsComponent)
     }
 ]
 

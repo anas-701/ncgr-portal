@@ -1,0 +1,15 @@
+.section-workshop-session-tag {
+    display: inline-block;
+    background: #c0edd0;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 2px;
+}
+.right-answer {
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 5px;
+    border: dashed 1px var(--ncgr_txt_color-primary);
+    color: var(--ncgr_txt_color-primary);
+}

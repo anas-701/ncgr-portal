@@ -1,0 +1,144 @@
+<section class="mt-4 mb-4">
+    <div class="container-xxl">
+        <div class="d-flex gap-4">
+            <div class="">
+                <app-side-bar />
+            </div>
+            <div class="flex-grow-1">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a>الرئيسية</a></li>
+                        <li class="breadcrumb-item"><a>الورش التدريبية </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">متطلبات الورشة</li>
+                    </ol>
+                </nav>
+                <div class="row mt-4 align-items-center justify-content-between">
+                    <div class="col-auto">
+                        <h1 class="mb-2">متطلبات الورشة </h1>
+                        <h5>ورشة: مهارات إعداد التقارير الرقابية </h5>
+                    </div>
+                    <div class="col-auto add-workshop-item">
+                        <button class="btn btn-primary ps-3 pe-3" type="submit" id="dropdownUser2"
+                            data-bs-toggle="dropdown" aria-expanded="false"><img width="18" src="icons/21.svg" alt="">
+                            اضافة متطلب </button>
+
+                        <ul class="dropdown-menu  shadow animate slideIn add-workshop-session-menu"
+                            aria-labelledby="dropdownUser2">
+
+                            <li>
+                                <a data-bs-toggle="modal" data-bs-target="#exampleModal01">
+                                    <img src="icons/94.svg" width="20" alt="">
+                                    <span> حضور جلسة</span>
+                                </a>
+
+                            </li>
+
+
+                            <li>
+                                <a data-bs-toggle="modal" data-bs-target="#exampleModal08">
+                                    <img src="icons/86.svg" width="20" alt="">
+                                    <span> اختبار</span>
+                                </a>
+
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-12">
+                        @for (session of sessions; track $index) {
+                        <app-workshop-requirement-item [session]="session" (onClick)="onClick($event)" />
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Modal | Add Content | Session -->
+<div class="modal  fade add-Content-mod" id="exampleModal01" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabe1l0ss00"><img width="32" src="icons/94.svg" alt=""> اضافة
+                    متطلب حضور جلسة
+
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <app-workshop-requirment-editor />
+        </div>
+    </div>
+</div>
+
+<!-- Modal | Add Content | Quiz -->
+<div class="modal  fade add-Content-mod" id="exampleModal08" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabe1sl000"><img width="32" src="icons/86.svg" alt=""> اضافة
+                    اختبار
+
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <app-workshop-exam-editor />
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal | Add Content | Quize | Question -->
+<div class="modal  fade add-Content-mod" id="exampleModal12" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabe1l000"><img width="32" src="icons/90.svg" alt="">
+                    اضافة سؤال صواب وخطأ
+
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <app-workshop-correct-question-editor />
+        </div>
+    </div>
+</div>
+
+<!-- Modal | Add Content | Quize | Multi-choice -->
+<div class="modal  fade add-Content-mod" id="exampleModal11" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="5" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabe1lss000"><img width="32" src="icons/89.svg" alt=""> اضافة
+                    سؤال اختيار من متعدد
+
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <app-workshop-multi-choice-question-editor />
+        </div>
+    </div>
+</div>
+
+<!-- Side Modal -->
+<div class="offcanvas offcanvas-end w-75 view-edit-quize" tabindex="-1" id="offcanvasExample"
+    aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header align-items-center justify-content-end">
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        @if(selectedSession){
+            <app-workshop-questions-view [session]="selectedSession"/>
+        }
+    </div>
+</div>

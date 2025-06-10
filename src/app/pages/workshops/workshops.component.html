@@ -1,4 +1,4 @@
-<section class="create_program mt-4 mb-4">
+<section class="mt-4 mb-4">
     <div class="container-xxl">
         <div class="d-flex gap-4">
             <div class="">
@@ -20,12 +20,12 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-auto">
-                            <button class="btn btn-primary ps-3 pe-3" type="submit" [routerLink]="['/workshops/create']"><img width="18"
-                                    src="icons/21.svg" alt=""> انشاء ورشة </button></div>
+                            <button class="btn btn-primary ps-3 pe-3" type="submit"
+                                [routerLink]="['/workshops/create']"><img width="18" src="icons/21.svg" alt=""> انشاء
+                                ورشة </button>
+                        </div>
                     </div>
                 </div>
-
-
 
                 <div class="row mt-4">
                     <div class="input-group mb-3 flex gap-3">
@@ -147,7 +147,7 @@
                     @for (item of workshops; track $index) {
                     <div
                         class="col-xxl-4 col-xl-6 workshops-box-outer mt-2 mb-3 p-0 d-flex flex-column justify-content-between overflow-hidden">
-                        <app-workshop-item [workshop]="item"></app-workshop-item>
+                        <app-workshop-item [workshop]="item" (onModel)="onModel($event)"></app-workshop-item>
                     </div>
                     }
                 </div>
@@ -157,4 +157,43 @@
     </div>
 
 </section>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+            @if (model) {
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title d-flex" id="exampleModalLabel">
+                        @if (model !== 'rescheduling') {
+                        <img src="33.svg" alt="" width="22">
+                        }
+                        {{ model === 'rescheduling' ? 'إعادة جدولة الورشة' : 'تأكيد الحذف' }}
+                    </h5>
+                    @if (model === 'rescheduling') {
+                    <p class="mb-0 fs-6 text-dark">أدوات قياس الأداء المؤسسي</p>
+                    }
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+            </div>
+
+            <div class="modal-body">
+                @if (model === 'rescheduling') {
+                <app-workshop-rescheduling />
+                } @else {
+                <p>
+                    هل أنت متأكد من رغبتك في حذف "مسار الموارد البشرية"؟ سيتم حذف البيانات بشكل دائم ولن تتمكن من
+                    استعادتها.
+                    اضغط "تأكيد الحذف" لإكمال العملية أو "إلغاء" للتراجع.
+                </p>
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-danger" (click)="confirmDelete()">تأكيد الحذف</button>
+                </div>
+                }
+            </div>
+            }
+        </div>
+    </div>
+</div>

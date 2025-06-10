@@ -53,8 +53,136 @@
         [timeFormat]="field.timeFormat" [showTimeFormat]="field?.showTimeFormat">
     </app-df-time-field>
     }
+    @case ('array'){
+        @if(field.arrayConfig){
+
+            <div formArrayName="{{ field.key }}">
+                @for (item of getFormArray(field.key!).controls; track itemIndex; let itemIndex = $index) {
+                    <div [formGroupName]="itemIndex" [class]="field.arrayConfig!.itemClass">
+                        
+                        <!-- Render array item fields -->
+                        @for (arrayField of field.arrayConfig!.fields; track arrayFieldIndex; let arrayFieldIndex = $index) {
+                            @switch (arrayField.type) {
+                                @case ('text') {
+                                    <app-df-input-field 
+                                        [id]="arrayField.key + '_' + itemIndex" 
+                                        [label]="arrayField.label!+' '+(itemIndex+1)" 
+                                        [class]="arrayField.styleClass"
+                                        [placeholder]="arrayField.placeholder" 
+                                        [control]="item.get(arrayField.key!)" 
+                                        [required]="isRequired(arrayField)"
+                                        [formControlName]="arrayField.key!">
+                                    </app-df-input-field>
+                                }
+                                @case ('select') {
+                                    <app-df-select-field 
+                                        [id]="arrayField.key + '_' + itemIndex" 
+                                        [label]="arrayField.label!" 
+                                        [class]="arrayField.styleClass"
+                                        [placeholder]="arrayField.placeholder" 
+                                        [control]="item.get(arrayField.key!)" 
+                                        [required]="isRequired(arrayField)"
+                                        [formControlName]="arrayField.key!" 
+                                        [options]="arrayField.options">
+                                    </app-df-select-field>
+                                }
+                                @case ('editor') {
+                                    <app-df-editor-field 
+                                        [id]="arrayField.key + '_' + itemIndex" 
+                                        [label]="arrayField.label!" 
+                                        [class]="arrayField.styleClass"
+                                        [placeholder]="arrayField.placeholder" 
+                                        [control]="item.get(arrayField.key!)" 
+                                        [required]="isRequired(arrayField)"
+                                        [formControlName]="arrayField.key!">
+                                    </app-df-editor-field>
+                                }
+                                @case ('file') {
+                                    <app-df-file-field 
+                                        [id]="arrayField.key + '_' + itemIndex" 
+                                        [label]="arrayField.label!" 
+                                        [class]="arrayField.styleClass"
+                                        [placeholder]="arrayField.placeholder" 
+                                        [control]="item.get(arrayField.key!)" 
+                                        [required]="isRequired(arrayField)"
+                                        [formControlName]="arrayField.key!">
+                                    </app-df-file-field>
+                                }
+                                @case ('radio') {
+                                    <app-df-radio-field 
+                                        [id]="arrayField.key + '_' + itemIndex" 
+                                        [label]="arrayField.label!" 
+                                        [class]="arrayField.styleClass"
+                                        [placeholder]="arrayField.placeholder" 
+                                        [control]="item.get(arrayField.key!)" 
+                                        [required]="isRequired(arrayField)"
+                                        [formControlName]="arrayField.key!" 
+                                        [options]="arrayField.options">
+                                    </app-df-radio-field>
+                                }
+                                @case ('date') {
+                                    <app-df-date-field 
+                                        [id]="arrayField.key + '_' + itemIndex" 
+                                        [label]="arrayField.label!" 
+                                        [class]="arrayField.styleClass"
+                                        [placeholder]="arrayField.placeholder" 
+                                        [control]="item.get(arrayField.key!)" 
+                                        [required]="isRequired(arrayField)"
+                                        [formControlName]="arrayField.key!" 
+                                        [minDate]="arrayField.minDate" 
+                                        [maxDate]="arrayField.maxDate"
+                                        [dateFormat]="arrayField.dateFormat">
+                                    </app-df-date-field>
+                                }
+                                @case ('time') {
+                                    <app-df-time-field 
+                                        [id]="arrayField.key + '_' + itemIndex" 
+                                        [label]="arrayField.label!" 
+                                        [class]="arrayField.styleClass"
+                                        [placeholder]="arrayField.placeholder" 
+                                        [control]="item.get(arrayField.key!)" 
+                                        [required]="isRequired(arrayField)"
+                                        [formControlName]="arrayField.key!" 
+                                        [maxTime]="arrayField.maxTime" 
+                                        [minTime]="arrayField.minTime" 
+                                        [step]="arrayField.step"
+                                        [timeFormat]="arrayField.timeFormat" 
+                                        [showTimeFormat]="arrayField?.showTimeFormat">
+                                    </app-df-time-field>
+                                }
+                                @default {
+                                    <div [class]="arrayField.styleClass" [innerHTML]="arrayField.template"></div>
+                                }
+                            }
+                        }
+                        
+                        <!-- Remove item button -->
+                        <button 
+                            type="button" 
+                            class="align-self-center"
+                            [class]="field.arrayConfig!.removeButtonClass"
+                            (click)="removeArrayItem(field.key!, itemIndex)">
+                            <img src="icons/91.svg" width="30" alt="">
+                            {{ field.arrayConfig.removeButtonText }}
+                        </button>
+                    </div>
+                }
+            </div>
+            
+            <!-- Add item button -->
+            <div class="d-flex">
+                <button 
+                    type="button" 
+                    [class]="field.arrayConfig.addButtonClass || 'btn btn-light'"
+                    (click)="addArrayItem(field.key!, field.arrayConfig!.fields)">
+                    <img src="icons/88.svg" width="30" alt="">
+                    {{ field.arrayConfig!.addButtonText }}
+                </button>
+            </div>
+        }
+    }
     @default {
-        <div [class]="field.styleClass"></div>
+    <div [class]="field.styleClass" [innerHTML]="field.template"></div>
     }
     }
     }

@@ -5,6 +5,7 @@ export interface ConditionalVisibility {
     value: any; // the value to compare against
 }
 export interface FormFieldConfig {
+    template?: string;
     key?: string;
     type?: string;
     label?: string;
@@ -20,7 +21,20 @@ export interface FormFieldConfig {
     step?: number;
     timeFormat?: "12" | "24" | undefined;
     showTimeFormat?: boolean;
-    conditionalVisibility?: ConditionalVisibility; // New property for conditional visibility
+    conditionalVisibility?: ConditionalVisibility;
+    // New properties for form array
+    isArray?: boolean;
+    arrayConfig?: FormArrayConfig;
+}
+export interface FormArrayConfig {
+    minItems: number;
+    maxItems?: number;
+    addButtonText?: string;
+    removeButtonText?: string;
+    fields: FormFieldConfig[]; // Fields for each array item
+    itemClass?: string;
+    addButtonClass?: string;
+    removeButtonClass?: string;
 }
 export interface fieldGroup {
     groupClass?: string;

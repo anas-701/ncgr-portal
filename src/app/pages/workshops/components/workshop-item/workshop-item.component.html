@@ -1,22 +1,22 @@
 <div class="col upper-col p-0">
     <div class="row position-relative p-0 m-0">
         <div class="col-12 workshops-photo-side p-0 m-0">
-            <img [src]="workshop.imageUrl" alt="">
+            <img [src]="workshop?.imageUrl" alt="">
         </div>
         <div class="workshops-tag me-3">
-            {{workshop.mode}}
+            {{workshop?.mode}}
 
 
         </div>
     </div>
     <div class="row ps-3 pe-3">
-        <h5 class="pt-3"> {{workshop.title}}
+        <h5 class="pt-3"> {{workshop?.title}}
 
         </h5>
         <p>
             <img data-bs-toggle="tooltip" data-bs-placement="top" title="المدرب " class="pe-1" src="icons/39.svg"
                 width="28" alt="">
-            <span class="d-inline-block">{{workshop.trainer}}
+            <span class="d-inline-block">{{workshop?.trainer}}
 
             </span>
         </p>
@@ -24,7 +24,7 @@
             <img data-bs-toggle="tooltip" data-bs-placement="top" title="الفئة المستهدفة " class="pe-1"
                 src="icons/40.svg" width="28" alt="">
             <span class="d-inline-block">
-                {{workshop.targetAudience}}
+                {{workshop?.targetAudience}}
 
 
             </span>
@@ -33,7 +33,7 @@
             <img data-bs-toggle="tooltip" data-bs-placement="top" title="عدد المتدربين " class="pe-1" src="icons/41.svg"
                 width="28" alt="">
             <span class="d-inline-block">
-                {{workshop.traineesCount}} متدرب
+                {{workshop?.traineesCount}} متدرب
 
 
 
@@ -44,8 +44,8 @@
             <img data-bs-toggle="tooltip" data-bs-placement="top" title="التاريخ " class="pe-1" src="icons/42.svg"
                 width="28" alt="">
             <span class="d-inline-block">
-                {{workshop.startDate}} <img width="18" src="icons/27.svg" alt="">
-                {{workshop.endDate}}
+                {{workshop?.startDate}} <img width="18" src="icons/27.svg" alt="">
+                {{workshop?.endDate}}
 
 
 
@@ -56,32 +56,29 @@
             <img data-bs-toggle="tooltip" data-bs-placement="top" title="الوقت " class="pe-1" src="icons/43.svg"
                 width="28" alt="">
             <span class="d-inline-block">
-                {{workshop.time}}
+                {{workshop?.time}}
 
 
 
 
             </span>
         </p>
-        @if(workshop.location){
-
-        <p>
+        <p [class.invisible]="!workshop?.location">
             <img data-bs-toggle="tooltip" data-bs-placement="top" title="المكان " class="pe-1" src="icons/44.svg"
                 width="28" alt="">
             <span class="d-inline-block">
-                {{workshop.location.city}}
+                {{workshop?.location?.city}}
 
 
             </span>
-            <a rel="noopener" aria-label="link" href="{{workshop.location.mapLink}}" target="_blank"><img class="pe-1"
+            <a rel="noopener" aria-label="link" href="{{workshop?.location?.mapLink}}" target="_blank"><img class="pe-1"
                     src="icons/46.svg" width="20" alt=""></a>
         </p>
-        }
         <p>
             <img data-bs-toggle="tooltip" data-bs-placement="top" title="اللغة " class="pe-1" src="icons/45.svg"
                 width="28" alt="">
             <span class="d-inline-block">
-                {{workshop.language}}
+                {{workshop?.language}}
 
 
             </span>
@@ -90,7 +87,7 @@
 </div>
 <div class="col-auto bottom-col mt-3">
     <div class="row ps-3 pe-3 align-items-center">
-        <div class="col-auto "> {{workshop.status}}
+        <div class="col-auto "> {{workshop?.status}}
 
             <img width="20" src="icons/27.svg" alt="">
         </div>
@@ -107,17 +104,17 @@
     <hr class="mt-3">
     <div class="row p-1 m-0 align-items-center text-center programs-box-btns">
         <div class="col p-0 border-end mb-2">
-            <a aria-label="link" href="#" class="d-block p-1" [routerLink]="['/workshops', workshop.id]"><img width="24"
+            <a aria-label="link" href="#" class="d-block p-1" [routerLink]="['/workshops', workshop?.id]"><img width="24"
                     src="icons/28.svg" alt="" data-bs-toggle="tooltip" data-bs-placement="top" title="تفاصيل "></a>
         </div>
         <div class="col p-0 border-end mb-2">
-            <a href="#" class="d-block  p-1" [routerLink]="['/workshops/update', workshop.id]" data-bs-toggle="tooltip"
+            <a href="#" class="d-block  p-1" [routerLink]="['/workshops/update', workshop?.id]" data-bs-toggle="tooltip"
                 data-bs-placement="top" title="تعديل"><img width="24" src="icons/29.svg" alt=""></a>
         </div>
         <div class="col p-0 border-end mb-2">
 
-            <button type="button" class="bg-transparent p-0 border-0" data-bs-toggle="modal"
-                data-bs-target="#exampleModal" (click)="openModel('rescheduling')">
+            <button type="button" data-bs-toggle="modal"
+            data-bs-target="#exampleModal" class="bg-transparent p-0 border-0" (click)="openModel('rescheduling')">
                 <img width="24" src="icons/38.svg" alt="">
             </button>
             <!-- disable-this -->
@@ -126,7 +123,7 @@
                     width="24" src="icons/38.svg" alt=""></button> -->
         </div>
         <div class="col p-0 border-end mb-2">
-            <a href="dashboard_workshops_content.html" class="d-block  p-1" data-bs-toggle="tooltip"
+            <a href="dashboard_workshops_content.html" [routerLink]="[workshop?.id, 'requirements']" class="d-block  p-1" data-bs-toggle="tooltip"
                 data-bs-placement="top" title=" متطلبات الورشة"><img width="24" src="icons/30.svg" alt=""></a>
         </div>
         <div class="col p-0 border-end mb-2">
@@ -149,43 +146,3 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            @if (model) {
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title d-flex" id="exampleModalLabel">
-                        {{ model }}
-                        @if (model !== 'rescheduling') {
-                        <img src="33.svg" alt="" width="22">
-                        }
-                        {{ model === 'rescheduling' ? 'إعادة جدولة الورشة' : 'تأكيد الحذف' }}
-                    </h5>
-                    @if (model === 'rescheduling') {
-                    <p class="mb-0 fs-6 text-dark">أدوات قياس الأداء المؤسسي</p>
-                    }
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
-            </div>
-
-            <div class="modal-body">
-                @if (model === 'rescheduling') {
-                <app-workshop-rescheduling></app-workshop-rescheduling>
-                } @else {
-                <p>
-                    هل أنت متأكد من رغبتك في حذف "مسار الموارد البشرية"؟ سيتم حذف البيانات بشكل دائم ولن تتمكن من
-                    استعادتها.
-                    اضغط "تأكيد الحذف" لإكمال العملية أو "إلغاء" للتراجع.
-                </p>
-                <div class="d-flex justify-content-end gap-2">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-                    <button type="button" class="btn btn-danger" (click)="confirmDelete()">تأكيد الحذف</button>
-                </div>
-                }
-            </div>
-            }
-        </div>
-    </div>
