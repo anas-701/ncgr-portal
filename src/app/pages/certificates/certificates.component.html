@@ -1,0 +1,105 @@
+<section class="create_program mt-4 mb-4">
+    <div class="container-xxl">
+        <div class="d-flex gap-4">
+            <div class="">
+                <app-side-bar></app-side-bar>
+            </div>
+            <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-end">
+                    <div>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    الشهادات
+                                </li>
+                            </ol>
+                        </nav>
+                        <h1>الشهادات</h1>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-auto">
+                            <button class="btn btn-primary ps-3 pe-3" type="submit"
+                                [routerLink]="['/certificates/create']"><img width="18" src="icons/21.svg" alt=""> انشاء
+                                قالب </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row mt-4">
+                    <div class="input-group mb-3 flex gap-3">
+                        <input type="text" class="form-control" placeholder="البحث عن قالب ..."
+                            aria-label="البحث عن قالب ..." aria-describedby="button-addon2">
+                        <div class="dropdown search-options-btn_menu ">
+                            <button aria-label="button" type="submit"
+                                class="d-flex align-items-center text-decoration-none dropdown-toggle position-relative search-options-btn btn btn-outline-secondary"
+                                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                <img data-bs-toggle="tooltip" data-bs-placement="top" title="تصفية" width="32"
+                                    src="icons/23.svg" alt="">
+
+                            </button>
+                            <ul class="dropdown-menu  shadow animate slideIn" aria-labelledby="dropdownUser2">
+                                <li class="p-2 dropdown-menu_body">
+                                    <h6>قالب مخصص</h6>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
+                                        <label class="form-check-label" for="flexCheckDefault5">
+                                            للبرامج التدريبية
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                            للبرامج العامة
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                            للورش التدريبية
+                                        </label>
+                                    </div>
+                                </li>
+                                <li class="pt-2 pb-2">
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <div class="p-2">
+                                        <button type="button" class="btn btn-primary me-2">تطبيق</button>
+                                        <button type="button" class="btn btn-outline-secondary">إعادة
+                                            تعيين</button>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-2">
+                    <!-- @for (item of workshops; track $index) {
+                    <div
+                        class="col-xxl-4 col-xl-6 workshops-box-outer mt-2 mb-3 p-0 d-flex flex-column justify-content-between overflow-hidden">
+                        <app-workshop-item [workshop]="item"></app-workshop-item>
+                    </div>
+                    } -->
+                    <div class="container mt-4">
+                        <app-shared-table [data]="data" [columns]="columns" [actionsTemplate]="actionButtonsTemplate">
+                            <ng-template #actionButtonsTemplate let-row>
+                                <button class="btn btn-sm btn-info mx-2" [routerLink]="['/certificates/info']" >View</button>
+                                <button class="btn btn-sm btn-warning" >Edit</button>
+                                <button class="btn btn-sm btn-danger mx-2">Delete</button>
+                            </ng-template>
+                        </app-shared-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>

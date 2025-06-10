@@ -1,0 +1,23 @@
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    .custom-header {
+        background-color: #f0f0f0; 
+        color: #333; 
+        th {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+    }
+
+    td {
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: #f9f9f9; 
+    }
+}
