@@ -1,0 +1,46 @@
+<div class="table-responsive">
+  <table class="table table-bordered custom-table">
+    <thead>
+      <tr class="custom-header">
+        @if (showCheckbox) {
+          <th class="header-cell">
+            <input type="checkbox" [checked]="allSelected" (change)="toggleAll()" />
+          </th>
+        }
+        @for (col of columns; track col.field) {
+          <th class="header-cell">{{ col.header }}</th>
+        }
+        @if (actionsTemplate) {
+          <th class="header-cell text-center">الإجراءات</th>
+        }
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (row of data; track row.id) {
+        <tr class="body-row">
+          @if (showCheckbox) {
+            <td class="body-cell">
+              <input
+                type="checkbox"
+                [(ngModel)]="row.selected"
+                (change)="onSelectionChange()"
+              />
+            </td>
+          }
+          @for (col of columns; track col.field) {
+            <td class="body-cell">{{ row[col.field] ?? '-' }}</td>
+          }
+          @if (actionsTemplate) {
+            <td class="body-cell">
+              <ng-container
+                [ngTemplateOutlet]="actionsTemplate"
+                [ngTemplateOutletContext]="{ $implicit: row }">
+              </ng-container>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

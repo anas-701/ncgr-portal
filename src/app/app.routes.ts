@@ -94,6 +94,9 @@ export const routes: Routes = [
       { path: 'workshops', 
         loadChildren: () => import('./pages/workshops/workshops.routes').then(m => m.workshopsRoutes)
        },
+      { path: 'certificates', 
+        loadChildren: () => import('./pages/certificates/certificates.routes').then(m => m.certificatesRoutes)
+       },
 
     ],
   },
