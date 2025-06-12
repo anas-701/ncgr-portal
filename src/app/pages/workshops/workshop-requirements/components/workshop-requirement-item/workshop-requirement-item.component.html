@@ -109,7 +109,7 @@
               src="icons/87.svg" width="24" alt="">
           </a>
         }
-
+        
         @case ('offline-exam') {
           @if (canGradeExam(session)) {
             <a 
@@ -124,7 +124,14 @@
           }
         }
       }
-      
+      <a href="#" class="section-workshop-session-icons-view d-inline-block pe-2" [routerLink]="[session.id, 'attendance']" >
+
+        <img data-bs-toggle="tooltip" data-bs-placement="top" title="تسجيل حضور" src="icons/95.svg" width="24" alt="">
+      </a>
+
+      <a href="#" class="d-inline-block pe-2 section-workshop-session-icons-edit" [routerLink]="[session.id, 'grades']"  >
+        <img data-bs-toggle="tooltip" title=" رصد درجات الاختبار" src="icons/96.svg" width="24" alt="">
+      </a> 
       <a 
         title="تعديل"
         [class]="workshopInfo.isPublished?'disable-this':''"

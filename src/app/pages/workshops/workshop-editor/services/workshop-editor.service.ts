@@ -5,14 +5,22 @@ import { Injectable, signal, WritableSignal } from '@angular/core';
 })
 export class WorkshopEditorService {
 
-  private matterDetails: WritableSignal<any> = signal<any>({} as any);
+  private workShop: WritableSignal<any> = signal<any>({} as any);
+  private workShopFormData: WritableSignal<any> = signal<any>({} as any);
 
 
-  getMatterDetails() {
-    return this.matterDetails()
+  getWorkShop() {
+    return this.workShop()
   }
 
-  updateMatterDetails(value: any) {
-    this.matterDetails.update(() => value);
+  updateWorkShop(value: any) {
+    this.workShop.update(() => value);
+  }
+  getWorkShopFormData() {
+    return this.workShopFormData()
+  }
+
+  updateWorkShopFormData(value: any) {
+    this.workShopFormData.update(() => value);
   }
 }

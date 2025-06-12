@@ -24,4 +24,5 @@ export class DfSelectFieldComponent extends BaseFieldComponent{
     const target = event.target as HTMLSelectElement;
     this.updateValue(target.value);
   }
+  
 }

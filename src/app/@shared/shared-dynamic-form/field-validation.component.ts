@@ -17,6 +17,9 @@ import { AbstractControl } from '@angular/forms';
         @if(control.errors?.['arabicLetters']){
             يرجى إدخال حروف عربية فقط
         }
+        @if(control.errors?.['customEmail']){
+            يجب إدخال بريد صالح
+        }
         @if(control.errors?.['url']){
             يرجى إدخال رابط صالح
         }

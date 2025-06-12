@@ -38,4 +38,7 @@ export class AppLookUpServiceService extends BaseService {
   getAllTags(): Observable<any> {
     return this.get(`${this.baseUrl}/TagsGetAllToDrop`);
   }
+  getAllWorkshopTypes(): Observable<any> {
+    return this.get(`${this.baseUrl}/WorkshopTypeGetAllToDrop`);
+  }
 }

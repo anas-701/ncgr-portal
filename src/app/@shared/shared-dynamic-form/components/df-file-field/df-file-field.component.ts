@@ -20,11 +20,13 @@ import { FieldValidationComponent } from '../../field-validation.component';
   ],
 })
 export class DfFileFieldComponent extends BaseFieldComponent{
+  uploadedImage!:string;
   removeImage(){
     this.control?.setValue(null)
   }
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
+    this.control?.patchValue(file)
     if (file) {
       if (!['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
         alert('يرجى اختيار ملف من نوع JPEG أو JPG أو PNG فقط');
@@ -38,7 +40,9 @@ export class DfFileFieldComponent extends BaseFieldComponent{
 
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.control?.patchValue(e.target.result)
+        // base64
+        this.uploadedImage=e.target.result
+        // this.control?.patchValue(e.target.result)
       };
       reader.readAsDataURL(file);
     }

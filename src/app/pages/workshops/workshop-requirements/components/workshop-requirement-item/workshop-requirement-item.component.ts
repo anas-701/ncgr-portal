@@ -1,4 +1,5 @@
 import { Component, Input, output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 export interface WorkshopSession {
   id: number;
   title: string;
@@ -22,7 +23,7 @@ interface workshopSessionQuestion{
 }
 @Component({
   selector: 'app-workshop-requirement-item',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './workshop-requirement-item.component.html',
   styleUrl: './workshop-requirement-item.component.scss'
 })

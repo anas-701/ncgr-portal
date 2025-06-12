@@ -40,10 +40,11 @@ export class SharedDynamicFormComponent implements OnInit {
   }
   private addControlsToParentForm() {
     this.fields.forEach(field => {
+      if(!field.key) return;
+
       if (field.type === 'array' && field.arrayConfig) {
         const formArray = this.fb.array([]);
   
-        // لو محتاج تضيف عناصر ابتدائية على حسب minItems
         const minItems = field.arrayConfig.minItems || 0;
         for (let i = 0; i < minItems; i++) {
           const group:any = this.fb.group({});
@@ -125,9 +126,9 @@ export class SharedDynamicFormComponent implements OnInit {
 
     switch (condition.condition) {
       case 'equals':
-        return dependentValue === condition.value;
+        return dependentValue == condition.value;
       case 'notEquals':
-        return dependentValue !== condition.value;
+        return dependentValue != condition.value;
       case 'contains':
         return dependentValue && dependentValue.toString().includes(condition.value);
       case 'greaterThan':

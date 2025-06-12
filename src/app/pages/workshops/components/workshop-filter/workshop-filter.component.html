@@ -1,0 +1,76 @@
+<form [formGroup]="filterForm">
+    <li class="p-2 dropdown-menu_body">
+
+        <h6>نوع الحالة</h6>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="published" formControlName="isActive">
+            <label class="form-check-label" for="published">منشورة</label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="unpublished" formControlName="isNotActive">
+            <label class="form-check-label" for="unpublished">غير منشورة</label>
+        </div>
+
+        <h6>لغة الورشة</h6>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="arabic" formControlName="isArabic">
+            <label class="form-check-label" for="arabic">العربية</label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="english" formControlName="isEnglish">
+            <label class="form-check-label" for="english">الإنجليزية</label>
+        </div>
+
+        <h6>نوع التدريب</h6>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="inSite" formControlName="isInSite">
+            <label class="form-check-label" for="inSite">حضوري</label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="remote" formControlName="isRemote">
+            <label class="form-check-label" for="remote">عن بعد</label>
+        </div>
+
+        <h6>الفئة المستهدفة</h6>
+        <div>
+            <select class="form-select" formControlName="categoryId">
+                <option disabled selected>اختر</option>
+                @for (option of lookupData.category.result; track $index) {
+                    <option [value]="option.id">{{option.name}}</option>
+                }
+            </select>
+        </div>
+
+        <h6>عدد المتدربين</h6>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" id="countAsc" value="asc" formControlName="countTrainerOrder">
+            <label class="form-check-label" for="countAsc">تصاعدي</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" id="countDesc" value="desc"
+                formControlName="countTrainerOrder">
+            <label class="form-check-label" for="countDesc">تنازلي</label>
+        </div>
+
+        <h6>التقييم</h6>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" id="evalAsc" value="asc" formControlName="evaluationOrder">
+            <label class="form-check-label" for="evalAsc">تصاعدي</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" id="evalDesc" value="desc" formControlName="evaluationOrder">
+            <label class="form-check-label" for="evalDesc">تنازلي</label>
+        </div>
+
+    </li>
+
+    <li class="pt-2 pb-2">
+        <hr class="dropdown-divider">
+    </li>
+    <li>
+        <div class="p-2">
+            <button type="button" class="btn btn-primary me-2" (click)="applyFilters()">تطبيق</button>
+            <button type="button" class="btn btn-outline-secondary" (click)="resetFilters()">إعادة تعيين</button>
+        </div>
+    </li>
+</form>

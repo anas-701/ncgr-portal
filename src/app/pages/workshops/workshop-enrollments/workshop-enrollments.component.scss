@@ -1,0 +1,28 @@
+
+.search-options-btn {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+
+.search-options-btn::after {
+    display: none;
+}
+
+.dropdown-menu_body {
+    height: 300px;
+    overflow: auto;
+}
+
+.dropdown-menu_body h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.modal-body h3{
+    font-size: 18px;
+}
+.modal-body p{
+    font-size: 1rem;
+    color: #222222;
+}
