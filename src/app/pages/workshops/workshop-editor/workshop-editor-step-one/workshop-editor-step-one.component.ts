@@ -1,8 +1,8 @@
-import { Component, inject, OnInit, output } from '@angular/core';
+import { Component, effect, inject, OnInit, output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { WorkshopEditorService } from '../services/workshop-editor.service';
 import { SharedDynamicFormComponent } from '../../../../@shared/shared-dynamic-form/shared-dynamic-form.component';
-import {  FormFieldConfig } from '../../../../@shared/shared-dynamic-form/interfaces/form-field-config.interface';
+import { FormFieldConfig } from '../../../../@shared/shared-dynamic-form/interfaces/form-field-config.interface';
 import { CustomValidators } from '../../../../@shared/shared-dynamic-form/custom-validators';
 
 @Component({
@@ -19,56 +19,57 @@ export class WorkshopEditorStepOneComponent implements OnInit {
   onChangeStep = output<number>();
   formFields: FormFieldConfig[] = [];
   _workshopEditorService = inject(WorkshopEditorService)
-  // signalEffect = effect(() => {
-  //   if (this._workshopEditorService.getMatterDetails()) {
-  //     this.setFormValue()
-  //   }
-  // })
+  signalEffect = effect(() => {
+    if (this._workshopEditorService.getWorkShop()) {
+      console.log(this._workshopEditorService.getWorkShop())
+      this.setFormData()
+    }
+  })
   ngOnInit(): void {
     this.initForm()
   }
   initForm() {
     this.formFields = [
       {
-        key: 'title',
+        key: 'titleAr',
         type: 'text',
         label: 'عنوان الورشة (بالعربية)',
-        styleClass:'col-md-6',
-        validators: [Validators.required,CustomValidators.arabicLetters]
+        styleClass: 'col-md-6',
+        validators: [Validators.required, CustomValidators.arabicLetters]
       },
       {
         key: 'titleEn',
         type: 'text',
         label: 'عنوان الورشة (بالانجليزية)',
-        styleClass:'col-md-6',
-        validators: [Validators.required,CustomValidators.englishLetters]
+        styleClass: 'col-md-6',
+        validators: [Validators.required, CustomValidators.englishLetters]
       },
       {
-        key: 'description',
+        key: 'descriptionAr',
         type: 'editor',
         label: 'وصف الورشة (بالعربية)',
-        styleClass:'col-md-6',
+        styleClass: 'col-md-6',
         validators: [Validators.required]
       },
       {
-        key: 'description',
+        key: 'descriptionEn',
         type: 'editor',
         label: 'وصف الورشة (بالانجليزية)',
-        styleClass:'col-md-6',
+        styleClass: 'col-md-6',
         validators: [Validators.required]
       },
       {
-        key: 'trainerName',
+        key: 'trainerNameAr',
         type: 'text',
         label: 'اسم المدرب (بالعربية)',
-        styleClass:'col-md-6',
+        styleClass: 'col-md-6',
         validators: [CustomValidators.arabicLetters]
       },
       {
         key: 'trainerNameEn',
         type: 'text',
         label: 'اسم المدرب (بالانجليزية)',
-        styleClass:'col-md-6',
+        styleClass: 'col-md-6',
         validators: [CustomValidators.englishLetters]
       },
       {
@@ -78,47 +79,46 @@ export class WorkshopEditorStepOneComponent implements OnInit {
         validators: [CustomValidators.customEmail]
       },
       {
-        key: 'file',
+        key: 'workshopPicture',
         type: 'file',
-        styleClass:'col-md-6',
+        styleClass: 'col-md-6',
         label: 'صورة الورشة',
         validators: [Validators.required]
       },
       {
         key: 'language',
         type: 'radio',
-        styleClass:'col-md-6',
+        styleClass: 'col-md-6',
         label: 'اللغة',
-        options:[
-          {label:'العربية',value:'1'},
-          {label:'الانجليزية',value:'2'},
+        options: [
+          { label: 'العربية', value: 1 },
+          { label: 'الانجليزية', value: 2 },
         ]
       },
     ];
     setTimeout(() => {
-      this.setFormData()
-    }, 1000);
+      this.setDefaultFormValue()
+    });
+  }
+  setDefaultFormValue() {
+    const defaultValue = {
+      language: 1
+    }
+    this.form.patchValue(defaultValue);
   }
   setFormData() {
-    const existingData = {
-      "title": "احمد",
-      "titleEn": "eee",
-      "description": "<p>3</p>",
-      "trainerName": "3",
-      "trainerNameEn": "3",
-      "email": "johndoe@example.com",
-      "file": "",
-      "language": "1"
-  };
-
-    this.form.patchValue(existingData);
+    this.form.patchValue(this._workshopEditorService.getWorkShop());
   }
   onSubmit() {
-    console.log('form', this.form.value)
+
     if (this.form.invalid) {
       this.form.markAllAsTouched()
       return
     }
+    this._workshopEditorService.updateWorkShop({
+      ...this._workshopEditorService.getWorkShop(),
+      ...this.form.value
+    })
     this.onChangeStep.emit(2)
   }
 }

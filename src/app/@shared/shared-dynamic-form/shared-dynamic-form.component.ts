@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { FormFieldConfig } from './interfaces/form-field-config.interface';
@@ -38,40 +38,33 @@ export class SharedDynamicFormComponent implements OnInit {
     this.addControlsToParentForm();
     this.setupConditionalVisibility();
   }
-
   private addControlsToParentForm() {
     this.fields.forEach(field => {
-      const validators = field.validators || [];
-       const initialValue = field.defaultValue ?? '';
-           this.form.addControl(field.key!, this.fb.control(initialValue, validators));
-      // this.form.addControl(field.key!, this.fb.control('', validators));
+      if (!field.key) return;
+
+      if (field.type === 'array' && field.arrayConfig) {
+        const formArray = this.fb.array([]);
+
+        const minItems = field.arrayConfig.minItems || 0;
+        for (let i = 0; i < minItems; i++) {
+          const group: any = this.fb.group({});
+          field.arrayConfig.fields.forEach(subField => {
+            group.addControl(
+              subField.key!,
+              this.fb.control('', subField.validators || [])
+            );
+          });
+          formArray.push(group);
+        }
+
+        this.form.addControl(field.key!, formArray);
+      } else {
+        const validators = field.validators || [];
+        const initialValue = field.defaultValue ?? '';
+        this.form.addControl(field.key!, this.fb.control(initialValue, validators));
+      }
     });
   }
-
-  // private setupConditionalVisibility() {
-  //   // Subscribe to form value changes to handle conditional visibility
-  //   this.form.valueChanges.subscribe(() => {
-  //     this.updateFieldVisibility();
-  //   });
-  // }
-
-  // private updateFieldVisibility() {
-  //   this.fields.forEach(field => {
-  //     if (field.conditionalVisibility) {
-  //       const shouldShow = this.shouldShowField(field);
-  //       const control = this.form.get(field.key);
-
-  //       if (!shouldShow && control) {
-  //         // Clear the value and disable the control when hidden
-  //         control.setValue('');
-  //         control.disable();
-  //       } else if (shouldShow && control) {
-  //         // Enable the control when shown
-  //         control.enable();
-  //       }
-  //     }
-  //   });
-  // }
 
   private setupConditionalVisibility() {
     // Subscribe to form value changes with debounce and distinctUntilChanged
@@ -134,9 +127,9 @@ export class SharedDynamicFormComponent implements OnInit {
 
     switch (condition.condition) {
       case 'equals':
-        return dependentValue === condition.value;
+        return dependentValue == condition.value;
       case 'notEquals':
-        return dependentValue !== condition.value;
+        return dependentValue != condition.value;
       case 'contains':
         return dependentValue && dependentValue.toString().includes(condition.value);
       case 'greaterThan':
@@ -151,8 +144,31 @@ export class SharedDynamicFormComponent implements OnInit {
   isRequired(field: FormFieldConfig): boolean {
     return field.validators?.some(validator => validator === Validators.required) || false;
   }
+  // Form Array Methods
+  getFormArray(fieldKey: string): FormArray {
+    return this.form.get(fieldKey) as FormArray;
+  }
 
+  addArrayItem(arrayKey: string, arrayFields: any[]): void {
+    const control = this.form.get(arrayKey);
+    if (control instanceof FormArray) {
+      const formArray = control as FormArray;
+      const itemGroup = this.fb.group({});
+      arrayFields.forEach(field => {
+        itemGroup.addControl(
+          field.key,
+          this.fb.control(field.defaultValue || null, field.validators || [])
+        );
+      });
+      formArray.push(itemGroup);
+    }
+  }
+
+  removeArrayItem(fieldKey: string, index: number) {
+    const formArray = this.getFormArray(fieldKey);
+    if (formArray.length > 0) {
+      formArray.removeAt(index);
+    }
+  }
   private fb = new FormBuilder();
 }
-
-

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, output } from '@angular/core';
+import { Component, effect, inject, OnInit, output } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { FormFieldConfig } from '../../../../@shared/shared-dynamic-form/interfaces/form-field-config.interface';
 import { SharedDynamicFormComponent } from '../../../../@shared/shared-dynamic-form/shared-dynamic-form.component';
@@ -20,8 +20,9 @@ export class WorkshopEditorStepThreeComponent implements OnInit {
   formFields: FormFieldConfig[] = [];
   _workshopEditorService = inject(WorkshopEditorService)
   // signalEffect = effect(() => {
-  //   if (this._workshopEditorService.getMatterDetails()) {
-  //     this.setFormValue()
+  //   if (this._workshopEditorService.getWorkShop()) {
+  //     console.log(this._workshopEditorService.getWorkShop())
+  //     this.setFormData()
   //   }
   // })
   ngOnInit(): void {
@@ -43,7 +44,7 @@ export class WorkshopEditorStepThreeComponent implements OnInit {
         label: 'تاريخ نهاية الورشة',
         validators: [Validators.required],
       },
-     
+
       {
         key: 'startTime',
         type: 'time',
@@ -59,125 +60,132 @@ export class WorkshopEditorStepThreeComponent implements OnInit {
         validators: [Validators.required],
       },
       {
-        key: 'startRegisterDate',
+        key: 'startDateRegister',
         type: 'date',
         styleClass: 'col-md-6',
         label: 'موعد بدء التسجيل',
         validators: [Validators.required],
       },
       {
-        key: 'endRegisterDate',
+        key: 'endDateRegister',
         type: 'date',
         styleClass: 'col-md-6',
         label: 'موعد انتهاء التسجيل',
         validators: [Validators.required],
       },
       {
-        key: 'trainingType',
+        key: 'trainerTypeId',
         type: 'radio',
         styleClass: 'col-md-3',
         label: 'نوع التدريب',
-        validators: [Validators.required],
         options: [
-          { label: 'حضوري', value: '1' },
-          { label: 'عن بعد', value: '2' },
+          { label: 'حضوري', value: 1 },
+          { label: 'عن بعد', value: 2 },
         ],
       },
       {
-        key: 'cityName',
+        key: 'cityNameAr',
         type: 'text',
         label: 'اسم المدينة (بالعربية)',
-        styleClass:'col-md-3',
+        styleClass: 'col-md-3',
         validators: [CustomValidators.arabicLetters],
         conditionalVisibility: {
-          dependsOn: 'trainingType',
+          dependsOn: 'trainerTypeId',
           condition: 'equals',
-          value: '1',
+          value: 1,
         }
       },
       {
         key: 'cityNameEn',
         type: 'text',
         label: 'اسم المدينة (بالانجليزية)',
-        styleClass:'col-md-3',
+        styleClass: 'col-md-3',
         validators: [CustomValidators.englishLetters],
         conditionalVisibility: {
-          dependsOn: 'trainingType',
+          dependsOn: 'trainerTypeId',
           condition: 'equals',
           value: '1',
         }
       },
       {
-        key: 'url',
+        key: 'workShopLink',
         type: 'text',
         label: 'رابط موقع الورشة',
-        styleClass:'col-md-3',
+        styleClass: 'col-md-3',
         validators: [CustomValidators.url],
         conditionalVisibility: {
-          dependsOn: 'trainingType',
+          dependsOn: 'trainerTypeId',
           condition: 'equals',
-          value: '1',
+          value: 1,
         }
       },
       {
-        styleClass:'col-12',
-        type:'template'
+        styleClass: 'col-12',
+        type: 'template'
       },
       {
-        key: 'createUrl',
+        key: 'meetingLinkTypeId',
         type: 'radio',
         styleClass: 'col-md-6',
         label: 'إنشاء رابط الاجتماع',
-        validators: [Validators.required],
         options: [
-          { label: 'يدويًا', value: '1' },
-          { label: 'تلقائيًا', value: '2' },
+          { label: 'يدويًا', value: 1 },
+          { label: 'تلقائيًا', value: 2 },
         ],
         conditionalVisibility: {
-          dependsOn: 'trainingType',
+          dependsOn: 'trainerTypeId',
           condition: 'equals',
-          value: '2',
+          value: 2,
         }
       },
       {
-        key: 'meetingUrl',
+        key: 'meetingLink',
         type: 'text',
         label: 'رابط الاجتماع',
-        styleClass:'col-md-6',
+        styleClass: 'col-md-6',
         validators: [CustomValidators.url],
         conditionalVisibility: {
-          dependsOn: 'createUrl',
+          dependsOn: 'meetingLinkTypeId',
           condition: 'equals',
-          value: '1',
+          value: 1,
         }
       },
       {
-        key: 'settingNo',
+        key: 'numberOfSeats',
         type: 'text',
         label: 'عدد المقاعد',
-        styleClass:'col-12',
+        styleClass: 'col-12',
       },
     ];
     setTimeout(() => {
+      this.setDefaultFormValue();
       this.setFormData()
-    }, 1000);
+    });
+  }
+
+  setDefaultFormValue() {
+    const defaultValue = {
+      trainerTypeId: 1,
+      meetingLinkTypeId:1
+    }
+    this.form.patchValue(defaultValue);
   }
   setFormData() {
-      const existingData = {
-        "type": "1",
-    };
-
-    this.form.patchValue(existingData);
+    this.form.patchValue(this._workshopEditorService.getWorkShop());
+    console.log(this.form.value)
   }
-  back(){
+  back() {
     this.onChangeStep.emit(2)
   }
   onSubmit() {
-    console.log('form', this.form.value)
     if (this.form.invalid) {
       this.form.markAllAsTouched()
       return
     }
+    this._workshopEditorService.updateWorkShop({
+      ...this._workshopEditorService.getWorkShop(),
+      ...this.form.value
+    })
     this.onChangeStep.emit(4)
   }
 

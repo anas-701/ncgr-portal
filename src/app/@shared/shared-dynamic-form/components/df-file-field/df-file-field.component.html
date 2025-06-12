@@ -12,7 +12,7 @@
         <!-- Image Preview -->
         @if(control?.value){
         <div class="image-preview">
-            <img [src]="control?.value" alt="صورة الغلاف" />
+            <img [src]="uploadedImage||control?.value" [alt]="label" />
             <div class="image-actions">
                 <button type="button" class="btn-remove" (click)="removeImage()" title="حذف الصورة">
                     <i class="bi bi-trash"></i>

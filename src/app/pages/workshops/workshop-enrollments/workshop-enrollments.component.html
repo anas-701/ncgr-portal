@@ -1,0 +1,135 @@
+<section class="mt-4 mb-4">
+    <div class="container-xxl">
+        <div class="d-flex gap-4">
+            <div class="">
+                <app-side-bar />
+            </div>
+            <div class="flex-grow-1">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a>الرئيسية</a></li>
+                        <li class="breadcrumb-item"><a>الورش التدريبية </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">إدارة المتدربين</li>
+                    </ol>
+                </nav>
+                <div class="row mt-4 align-items-center justify-content-between">
+                    <div class="col-auto">
+                        <h1 class="mb-2">إدارة المتدربين</h1>
+                        <h5>ورشة: مهارات إعداد التقارير الرقابية </h5>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="input-group mb-3 flex gap-3">
+                        <input type="text" class="form-control" placeholder="البحث عن متدرب ..."
+                            aria-label="البحث عن متدرب ..." aria-describedby="button-addon2">
+                        <div class="dropdown search-options-btn_menu ">
+                            <button aria-label="button" type="submit"
+                                class="d-flex align-items-center text-decoration-none dropdown-toggle position-relative search-options-btn btn btn-outline-secondary"
+                                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                <img data-bs-toggle="tooltip" data-bs-placement="top" title="تصفية" width="32"
+                                    src="icons/23.svg" alt="">
+
+                            </button>
+                            <ul class="dropdown-menu  shadow animate slideIn" aria-labelledby="dropdownUser2">
+                                <li class="p-2 dropdown-menu_body">
+                                    <h6>حالة التسجيل</h6>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
+                                        <label class="form-check-label" for="flexCheckDefault5">
+                                            مسجل
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                            غير مسجل
+                                        </label>
+                                    </div>
+                                    <h6>حالة الإكمال</h6>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault9">
+                                        <label class="form-check-label" for="flexCheckDefault9">
+                                            قيد الإنجاز
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="flexCheckDefault10">
+                                        <label class="form-check-label" for="flexCheckDefault10">
+                                            مكتمل
+                                        </label>
+                                    </div>
+                                    
+                                </li>
+                                <li class="pt-2 pb-2">
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <div class="p-2">
+                                        <button type="button" class="btn btn-primary me-2">تطبيق</button>
+                                        <button type="button" class="btn btn-outline-secondary">إعادة
+                                            تعيين</button>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-12">
+                        <p style="color:#8a8a8a">عدد المسجلين: {{data.length}}</p>
+                    </div>
+                    <div class="col-12">
+                        <app-shared-table [data]="data" [columns]="columns" [actionsTemplate]="actionButtonsTemplate">
+                            <ng-template #actionButtonsTemplate let-row>
+                                @if(row.registrationStatus===EnrollmentType.Registered){
+                                    <button class="border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#confirmModal" (click)="selectedRow=row"><img src="icons/116.svg" alt="" width="20"></button>
+                                }@else {
+                                    <button class="border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#confirmModal" (click)="selectedRow=row"><img src="icons/115.svg" alt="" width="20"></button>
+                                }
+                            </ng-template>
+                        </app-shared-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <h1 class="modal-title fs-5" id="confirmModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div> -->
+        <div class="modal-body">
+          <div class="mb-3">
+            <img src="icons/33.svg" alt="" width="20">
+          </div>
+          @if(selectedRow?.registrationStatus===EnrollmentType.Registered){
+
+              <h3 class="fw-bold">تأكيد التسجيل</h3>
+              <p>هل أنت متأكد من رغبتك في إلغاء تسجيل المتدرب/ـة ({{selectedRow?.name}}) وهويته/ـا ({{selectedRow?.nationalId}}) في البرنامج؟</p>
+          }@else {
+              <h3 class="fw-bold">تأكيد إلغاء التسجيل</h3>
+              <p>هل أنت متأكد من رغبتك في إلغاء تسجيل المتدرب/ـة ({{selectedRow?.name}}) وهويته/ـا ({{selectedRow?.nationalId}})؟ سيتم حذف تقدمه/ـا من البرنامج وسيتم إشعاره/ـا بذلك. </p>
+          }
+          <p>اضغط "تأكيد" لإكمال العملية أو "إلغاء" للتراجع.</p>
+          <div class="d-flex justify-content-end">
+
+              <button type="submit" id="toastbtn" class="btn btn-primary me-2 ps-4 pe-4">تأكيد</button>
+          <button type="button" class="btn btn-outline-secondary ps-4 pe-4"
+              data-bs-dismiss="modal">إلغاء</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

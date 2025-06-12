@@ -1,4 +1,4 @@
-<section class="create_program mt-4 mb-4">
+<section class="mt-4 mb-4">
     <div class="container-xxl">
         <div class="d-flex gap-4">
             <div class="">
@@ -20,12 +20,12 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-auto">
-                            <button class="btn btn-primary ps-3 pe-3" type="submit" [routerLink]="['/workshops/create']"><img width="18"
-                                    src="icons/21.svg" alt=""> انشاء ورشة </button></div>
+                            <button class="btn btn-primary ps-3 pe-3" type="submit"
+                                [routerLink]="['/workshops/create']"><img width="18" src="icons/21.svg" alt=""> انشاء
+                                ورشة </button>
+                        </div>
                     </div>
                 </div>
-
-
 
                 <div class="row mt-4">
                     <div class="input-group mb-3 flex gap-3">
@@ -41,115 +41,29 @@
 
                             </button>
                             <ul class="dropdown-menu  shadow animate slideIn" aria-labelledby="dropdownUser2">
-                                <li class="p-2 dropdown-menu_body">
-                                    <h6>نوع الحالة</h6>
-
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
-                                        <label class="form-check-label" for="flexCheckDefault5">
-                                            منشورة
-                                        </label>
-                                    </div>
-
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
-                                        <label class="form-check-label" for="flexCheckDefault8">
-                                            غير منشورة
-                                        </label>
-                                    </div>
-                                    <h6>لغة الورشة</h6>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault9">
-                                        <label class="form-check-label" for="flexCheckDefault9">
-                                            العربية
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
-                                            id="flexCheckDefault10">
-                                        <label class="form-check-label" for="flexCheckDefault10">
-                                            الانجليزية
-                                        </label>
-                                    </div>
-                                    <h6>نوع التدريب </h6>
-                                    <div class="form-check">
-                                        <input aria-label="input" class="form-check-input" type="checkbox" value=""
-                                            id="flexCheckDefault69">
-                                        <label class="form-check-label" for="flexCheckDefault9">
-                                            حضوري
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input aria-label="input" class="form-check-input" type="checkbox" value=""
-                                            id="flexCheckDefault100">
-                                        <label class="form-check-label" for="flexCheckDefault10">
-                                            عن بعد
-                                        </label>
-                                    </div>
-                                    <h6>الفئة المستهدفة</h6>
-                                    <div>
-
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>اختر</option>
-                                            <option value="1">الفئة الاولي</option>
-                                            <option value="2">الفئة الثانية</option>
-                                            <option value="3">الفئة الثالثة</option>
-                                        </select>
-                                    </div>
-
-                                    <h6>عدد المتدربين</h6>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            تصاعدي
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                            id="flexRadioDefault2" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            تنازلي
-                                        </label>
-                                    </div>
-                                    <h6>التقييم</h6>
-                                    <div class="form-check">
-                                        <input aria-label="input" class="form-check-input" type="radio"
-                                            name="flexRadioDefault" id="flexRadioDefault3">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            تصاعدي
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input aria-label="input" class="form-check-input" type="radio"
-                                            name="flexRadioDefault" id="flexRadioDefault4" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            تنازلي
-                                        </label>
-                                    </div>
-                                </li>
-                                <li class="pt-2 pb-2">
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <div class="p-2">
-                                        <button type="button" class="btn btn-primary me-2">تطبيق</button>
-                                        <button type="button" class="btn btn-outline-secondary">إعادة
-                                            تعيين</button>
-                                    </div>
-                                </li>
-
+                                <app-workshop-filter (onFilter)="onFilter($event)"/>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="row pt-2">
+                    <!-- Loading State -->
+                    @if(isLoading){
+                    <div class="text-center mt-4">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    }
                     @for (item of workshops; track $index) {
                     <div
                         class="col-xxl-4 col-xl-6 workshops-box-outer mt-2 mb-3 p-0 d-flex flex-column justify-content-between overflow-hidden">
-                        <app-workshop-item [workshop]="item"></app-workshop-item>
+                        <app-workshop-item [workshop]="item" (onModel)="onModel($event)"
+                            (onChangeStatus)="onChangeStatus()" [workshopTypes]="workshopTypes"></app-workshop-item>
                     </div>
                     }
+                    <app-shared-pagination [currentPage]="currentPage"
+                    [totalPages]="totalPages" (pageChange)="onPageChange($event)"/>
                 </div>
             </div>
         </div>
@@ -157,4 +71,44 @@
     </div>
 
 </section>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+            @if (model) {
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title d-flex" id="exampleModalLabel">
+                        @if (model !== 'rescheduling') {
+                        <img src="33.svg" alt="" width="22">
+                        }
+                        {{ model === 'rescheduling' ? 'إعادة جدولة الورشة' : 'تأكيد الحذف' }}
+                    </h5>
+                    @if (model === 'rescheduling') {
+                    <p class="mb-0 fs-6 text-dark">أدوات قياس الأداء المؤسسي</p>
+                    }
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+            </div>
+
+            <div class="modal-body">
+                @if (model === 'rescheduling') {
+                <app-workshop-rescheduling />
+                } @else {
+                <p>
+                    هل أنت متأكد من رغبتك في حذف "مسار الموارد البشرية"؟ سيتم حذف البيانات بشكل دائم ولن تتمكن من
+                    استعادتها.
+                    اضغط "تأكيد الحذف" لإكمال العملية أو "إلغاء" للتراجع.
+                </p>
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-danger" [disabled]="isLoading" (click)="onDelete()">تأكيد
+                        الحذف</button>
+                </div>
+                }
+            </div>
+            }
+        </div>
+    </div>
+</div>

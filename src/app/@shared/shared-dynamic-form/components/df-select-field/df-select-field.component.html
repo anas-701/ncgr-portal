@@ -1,24 +1,30 @@
-<div [class]="styleClass"> {{styleClass}}
-    @if (label) {
 
+<div [class]="styleClass">
+    @if (label) {
     <label [for]="id" class="form-label">
         {{ label }}
         @if(required){
-        <span>*</span>
+        <span class="text-danger">*</span>
         }
     </label>
     }
-    <select [id]="id" [value]="value" [disabled]="disabled" (change)="onSelect($event)" (blur)="onTouched()" class="form-select" [ngClass]="{
-        'is-invalid':control?.touched && control?.invalid
-      }">
-        <option value="" disabled>اختر...</option>
-        @for (option of options; track $index) {
-        <option [value]="option.value">
+    <select 
+        [id]="id" 
+        [value]="control?.value || ''"
+        [disabled]="disabled" 
+        (change)="onSelect($event)"
+        (blur)="onTouched()" 
+        class="form-select" 
+        [ngClass]="{
+            'is-invalid': control?.touched && control?.invalid
+        }">
+        <option value="" disabled>{{placeholder || 'Choose...'}}</option>
+        @for (option of options; track option.value) {
+        <option [value]="option.value" [selected]="option.value === control?.value">
             {{ option.label }}
         </option>
         }
     </select>
-
 </div>
- <!-- Validation Messages -->
- <field-validation [control]="control" />
+<!-- Validation Messages -->
+<field-validation [control]="control" />
