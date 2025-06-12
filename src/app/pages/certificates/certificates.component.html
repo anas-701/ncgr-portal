@@ -80,19 +80,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="row pt-2">
-                    <!-- @for (item of workshops; track $index) {
-                    <div
-                        class="col-xxl-4 col-xl-6 workshops-box-outer mt-2 mb-3 p-0 d-flex flex-column justify-content-between overflow-hidden">
-                        <app-workshop-item [workshop]="item"></app-workshop-item>
-                    </div>
-                    } -->
+                <!-- <div class="row pt-2">
                     <div class="container mt-4">
                         <app-shared-table [data]="data" [columns]="columns" [actionsTemplate]="actionButtonsTemplate">
                             <ng-template #actionButtonsTemplate let-row>
-                                <button class="btn btn-sm btn-info mx-2" [routerLink]="['/certificates/info']" >View</button>
-                                <button class="btn btn-sm btn-warning" >Edit</button>
-                                <button class="btn btn-sm btn-danger mx-2">Delete</button>
+                                <button class="img-icon"
+                                    [routerLink]="['/certificates/info']"><img width="24"  src="icons/view.png" alt="View"></button>
+                                <button class="img-icon"><img width="24"  src="icons/29.svg" alt=""></button>
+                                <button class="img-icon"><img width="24"  src="icons/32.svg" alt=""></button>
+                            </ng-template>
+                        </app-shared-table>
+                    </div>
+                </div> -->
+                <div class="row pt-2">
+                    <div class="container mt-4">
+                        <app-shared-table [data]="data" [columns]="columns" [actionsTemplate]="actionButtonsTemplate">
+                            <ng-template #actionButtonsTemplate let-row>
+                                <button class="img-icon" [routerLink]="['/certificates/info']" title="عرض التفاصيل">
+                                    <img width="24" src="icons/view.png" alt="View">
+                                </button>
+                                <button class="img-icon" title="تعديل القالب">
+                                    <img width="24" src="icons/29.svg" alt="Edit">
+                                </button>
+                                <button class="img-icon"
+                                    [title]="row.requiresApproval ? 'لا يمكن حذف القالب لارتباط شهادات به' : 'حذف القالب'"
+                                    [disabled]="row.requiresApproval">
+                                    <img width="24" src="icons/32.svg" alt="Delete">
+                                </button>
                             </ng-template>
                         </app-shared-table>
                     </div>

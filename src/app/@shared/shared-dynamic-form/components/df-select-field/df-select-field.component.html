@@ -11,7 +11,7 @@
     <select [id]="id" [value]="value" [disabled]="disabled" (change)="onSelect($event)" (blur)="onTouched()" class="form-select" [ngClass]="{
         'is-invalid':control?.touched && control?.invalid
       }">
-        <option value="" disabled>Choose...</option>
+        <option value="" disabled>اختر...</option>
         @for (option of options; track $index) {
         <option [value]="option.value">
             {{ option.label }}

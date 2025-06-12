@@ -1,114 +1,163 @@
-<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <app-shared-dynamic-form [form]="form" [fields]="formFields" [parentStyleClass]="'row'"/> 
-    <div class="d-flex gap-4 justify-content-end mt-4">
-        <button type="submit" class="btn btn-primary">
-            حفظ
-        </button>
-    </div>
-</form> -->
-
 <section class="create_program mt-4 mb-4">
-    <div class="container">
+    <div class="container-xxl">
         <div class="d-flex gap-4">
+            <!-- Sidebar -->
             <div class="dashboard_link_sec">
                 <app-side-bar></app-side-bar>
             </div>
+
+            <!-- Main Content -->
             <div class="flex-grow-1">
-                <div class="row">
-                    <div class="add-training-container">
-                        <div class="mb-4">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">
-                                        {{_router.url.includes('create')?'إنشاء  قالب':'تعديل  قالب'}}
-
-                                    </li>
-                                </ol>
-                            </nav>
-                            <h1>{{_router.url.includes('create')?'إنشاء قالب ':'تعديل  قالب'}} </h1>
-                        </div>
-                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                            <app-shared-dynamic-form [form]="form" [fields]="formFields" [parentStyleClass]="'row'" />
-                            <div class="d-flex gap-4 justify-content-end mt-4">
-                                <button type="submit" class="btn btn-primary">
-                                    حفظ
-                                </button>
-                            </div>
-                        </form>
+                <!-- Certificate Editor Section -->
+                <div class="form-section-wrapper">
+                    <div class="mb-4">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    {{_router.url.includes('create')?'إنشاء قالب':'تعديل قالب'}}
+                                </li>
+                            </ol>
+                        </nav>
+                        <h1 class="page-title">{{_router.url.includes('create')?'إنشاء قالب ':'تعديل قالب'}} </h1>
                     </div>
+
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+                        <app-shared-dynamic-form [form]="form" [fields]="formFields" [parentStyleClass]="'row'" />
+                    </form>
                 </div>
-            </div>
-        </div>
-        <div class="mt-3">
 
-            <!-- certificate-editor.component.html -->
-            <!-- src/app/certificate-editor/certificate-editor.component.html -->
+                <div class="certificate-editor-section">
+                    <div class="row">
+                        <!-- Settings Panel - Left Side -->
+                        <div class="col-md-4">
+                            <div class="card p-3 shadow-sm settings-card">
+                                <h5 class="mb-3 text-end settings-title">إعدادات القالب</h5>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card p-3 shadow-sm">
-                        <h5 class="mb-3 text-end">إعدادات القالب</h5>
+                                <!-- Upload Sections -->
+                                <div class="upload-container">
+                                    <div class="upload-row">
+                                        <!-- Certificate Background Upload -->
+                                        <div class="upload-col">
+                                            <label class="upload-label">خلفية الشهادة</label>
+                                            <div class="upload-area">
+                                                <div class="upload-box" [class.has-file]="certificateBackground">
+                                                    <div class="upload-content">
+                                                        @if (!certificateBackground) {
+                                                        <div>
+                                                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                                            <p class="upload-text">اسحب وأفلت الملفات هنا</p>
+                                                            <p class="upload-hint">5MB كحد أقصى (JPG, PNG)</p>
+                                                        </div>
+                                                        } @else {
+                                                        <img [src]="certificateBackground" class="preview-image">
+                                                        }
+                                                        <label class="btn-upload">
+                                                            {{ certificateBackground ? 'تغيير الصورة' : 'تصفح الملفات'
+                                                            }}
+                                                            <input type="file" class="d-none"
+                                                                (change)="onBackgroundUpload($event)" id="certificateBg"
+                                                                accept="image/*" />
+                                                        </label>
+                                                        @if (certificateBackground) {
+                                                        <button class="btn-remove" (click)="removeBackground()">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                        <div class="mb-3">
-                            <label for="certificateBg" class="form-label">خلفية الشهادة</label>
-                            <input type="file" class="form-control" (change)="onBackgroundUpload($event)"
-                                id="certificateBg" accept="image/*" />
+                                        <!-- Signature Upload -->
+                                        <div class="upload-col">
+                                            <label class="upload-label">صورة التوقيع</label>
+                                            <div class="upload-area">
+                                                <div class="upload-box" [class.has-file]="signatureImage">
+                                                    <div class="upload-content">
+                                                        @if (!signatureImage) {
+                                                        <div>
+                                                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                                            <p class="upload-text">اسحب وأفلت الملفات هنا</p>
+                                                            <p class="upload-hint">5MB كحد أقصى (JPG, PNG)</p>
+                                                        </div>
+                                                        } @else {
+                                                        <img [src]="signatureImage" class="preview-image">
+                                                        }
+                                                        <label class="btn-upload">
+                                                            {{ signatureImage ? 'تغيير التوقيع' : 'تصفح الملفات' }}
+                                                            <input type="file" class="d-none"
+                                                                (change)="onSignatureUpload($event)" id="signatureImage"
+                                                                accept="image/*" />
+                                                        </label>
+                                                        @if (signatureImage) {
+                                                        <button class="btn-remove" (click)="removeSignature()">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Elements List -->
+                                <div class="mt-4 elements-section">
+                                    <h6 class="elements-header">العناصر</h6>
+                                    <div class="elements-list-container">
+                                        @for (element of certificateData.templateSettings.elements; track element.id) {
+                                        <div class="element-item-wrapper" draggable="true"
+                                            (mousedown)="onDragStart($event, element)"
+                                            (touchstart)="onTouchStart($event, element)">
+                                            <div class="element-item-content">
+                                                {{element.label}}
+                                            </div>
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="signatureImage" class="form-label">صورة التوقيع</label>
-                            <input type="file" class="form-control" (change)="onSignatureUpload($event)"
-                                id="signatureImage" accept="image/*" />
-                        </div>
+                        <!-- Preview Panel - Right Side -->
+                        <div class="col-md-8">
+                            <div class="card shadow-sm p-3 text-center preview-card">
+                                <h5 class="text-end mb-3 preview-title">معاينة القالب</h5>
+                                <div class="certificate-preview position-relative" (mousemove)="onDragMove($event)"
+                                    (mouseup)="onDragEnd()" (mouseleave)="onDragEnd()" (touchmove)="onDragMove($event)"
+                                    (touchend)="onDragEnd()"
+                                    [style.background-image]="'url(' + (certificateBackground || 'assets/default-certificate.png') + ')'">
 
-                        <div class="mt-4">
-                            <h6 class="text-end">العناصر</h6>
-                            <div class="list-group">
-                                <div *ngFor="let element of certificateData.templateSettings.elements"
-                                    class="list-group-item draggable" draggable="true"
-                                    (dragstart)="onDragStart($event, element)">
-                                    {{element.label}}
+                                    @for (element of certificateData.templateSettings.elements; track element.id) {
+                                    <div class="position-absolute draggable-element"
+                                        [style.left.px]="element.position.x" [style.top.px]="element.position.y"
+                                        [style.fontSize.px]="element.fontSize" [style.color]="element.fontColor"
+                                        [style.cursor]="element.isDraggable ? 'move' : 'default'"
+                                        [style.display]="(draggedElements.has(element.id) || element.value) ? 'block' : 'none'"
+                                        (mousedown)="element.isDraggable ? onDragStart($event, element) : null"
+                                        (touchstart)="element.isDraggable ? onTouchStart($event, element) : null">
+
+                                        @if (element.type === 'text' || element.type === 'date') {
+                                        <span>{{element.value || element.label}}</span>
+                                        }
+                                        @if (element.type === 'image' && element.value) {
+                                        <img [src]="element.value" [style.width.px]="element.width"
+                                            [style.height.px]="element.height" />
+                                        }
+                                    </div>
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-
-                <div class="col-md-8">
-                    <div class="card shadow-sm p-3 text-center">
-                        <h5 class="text-end mb-3">معاينة القالب</h5>
-                        <div class="certificate-preview position-relative" (drop)="onDrop($event)"
-                            (dragover)="onDragOver($event)"
-                            style="height: 800px; background-size: contain; background-repeat: no-repeat;"
-                            [style.background-image]="'url(' + (certificateBackground || 'assets/default-certificate.png') + ')'">
-
-                            <div *ngFor="let element of certificateData.templateSettings.elements"
-                                class="position-absolute draggable-element" [style.left.px]="element.position.x"
-                                [style.top.px]="element.position.y" [style.fontSize.px]="element.fontSize"
-                                [style.color]="element.fontColor"
-                                [style.display]="draggedElements.has(element.id) || element.value ? 'block' : 'none'"
-                                draggable="true" (dragstart)="onDragStart($event, element)">
-
-                                <span *ngIf="element.type === 'text' || element.type === 'date'">{{element.value ||
-                                    element.label}}</span>
-                                <img *ngIf="element.type === 'image' && element.value" [src]="element.value"
-                                    [style.width.px]="element.width" [style.height.px]="element.height" />
-                            </div>
-                        </div>
+                    <div class="d-flex gap-4 justify-content-end mt-4">
+                        <button class="btn btn-primary" (click)="saveCertificate()">حفظ الشهادة</button>
+                        <button class="btn btn-outline-success" (click)="saveCertificate()">الغاء </button>
                     </div>
                 </div>
             </div>
-
-
-
-            <div class="row mt-3">
-                <div class="col-12 text-end">
-                    <button class="btn btn-primary" (click)="saveCertificate()">حفظ الشهادة</button>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>

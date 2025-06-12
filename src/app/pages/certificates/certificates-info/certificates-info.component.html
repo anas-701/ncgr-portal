@@ -1,1 +1,133 @@
-<p>certificates-info works!</p>
+<section class="create_program mt-4 mb-4">
+    <div class="container-xxl">
+        <div class="d-flex gap-4">
+            <div class="">
+                <app-side-bar></app-side-bar>
+            </div>
+            <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-end">
+                    <div>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    شهادة إكمال برنامج
+
+                                </li>
+                            </ol>
+                        </nav>
+                        <h1>شهادة إكمال برنامج
+
+                        </h1>
+                    </div>
+                </div>
+
+
+
+                <div class="row mt-4">
+                    <div class="input-group mb-3 flex gap-3">
+                        <input type="text" class="form-control" placeholder="البحث عن قالب ..."
+                            aria-label="البحث عن قالب ..." aria-describedby="button-addon2">
+                        <div class="dropdown search-options-btn_menu ">
+                            <button aria-label="button" type="submit"
+                                class="d-flex align-items-center text-decoration-none dropdown-toggle position-relative search-options-btn btn btn-outline-secondary"
+                                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                <img data-bs-toggle="tooltip" data-bs-placement="top" title="تصفية" width="32"
+                                    src="icons/23.svg" alt="">
+
+                            </button>
+                            <ul class="dropdown-menu  shadow animate slideIn" aria-labelledby="dropdownUser2">
+                                <li class="p-2 dropdown-menu_body">
+                                    <h6>مصدره</h6>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5">
+                                        <label class="form-check-label" for="flexCheckDefault5">
+                                            ملغية
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                             مرفوضه 
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault8">
+                                        <label class="form-check-label" for="flexCheckDefault8">
+                                             فى انتظار الموافقة
+                                        </label>
+                                    </div>
+                                </li>
+                                <li class="pt-2 pb-2">
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <div class="p-2">
+                                        <button type="button" class="btn btn-primary me-2">تطبيق</button>
+                                        <button type="button" class="btn btn-outline-secondary">إعادة
+                                            تعيين</button>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+          <div class="row pt-2">
+    <div class="container mt-4">
+             <div class="d-flex justify-content-end mb-3 " *ngIf="selectedRows.length > 0">
+            <button class="btn btn-success me-2" (click)="approveSelected()">
+                <i class="fas fa-check"></i> الموافقة على المحدد
+            </button>
+            <button class="btn btn-danger me-2" (click)="rejectSelected()">
+                <i class="fas fa-times"></i> رفض المحدد
+            </button>
+            <button class="btn btn-outline-success" (click)="clearAllSelection()">
+                <i class="fas fa-times-circle"></i> إلغاء تحديد الكل
+            </button>
+        </div>
+        <app-shared-table [data]="data" [columns]="columns" [showCheckbox]="true"  (selectionChange)="onSelectionChange($event)" [actionsTemplate]="actionButtonsTemplate">
+            <ng-template #actionButtonsTemplate let-row>
+                @if (row.actionType === 'cancel') {
+                    <button class="action-btn cancel-btn" title="إلغاء الشهادة">
+                        <i class="fas fa-ban"></i>
+                    </button>
+                }
+                
+                @if (row.actionType === 'refresh') {
+                    <button class="action-btn refresh-btn" title="تحديث الشهادة">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                }
+                
+                @if (row.actionType === 'approve') {
+                    <button class="action-btn approve-btn" title="الموافقة على الشهادة">
+                        <i class="fas fa-check"></i>
+                    </button>
+                }
+                
+                @if (row.actionType === 'multiple') {
+                    <button class="action-btn reject-btn" title="رفض الشهادة">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <button class="action-btn approve-btn" title="الموافقة على الشهادة">
+                        <i class="fas fa-check"></i>
+                    </button>
+                }
+                
+                <button class="action-btn view-btn" title="عرض التفاصيل">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </ng-template>
+        </app-shared-table>
+    </div>
+</div>
+            </div>
+        </div>
+
+    </div>
+
+</section>

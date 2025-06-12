@@ -42,7 +42,9 @@ export class SharedDynamicFormComponent implements OnInit {
   private addControlsToParentForm() {
     this.fields.forEach(field => {
       const validators = field.validators || [];
-      this.form.addControl(field.key!, this.fb.control('', validators));
+       const initialValue = field.defaultValue ?? '';
+           this.form.addControl(field.key!, this.fb.control(initialValue, validators));
+      // this.form.addControl(field.key!, this.fb.control('', validators));
     });
   }
 

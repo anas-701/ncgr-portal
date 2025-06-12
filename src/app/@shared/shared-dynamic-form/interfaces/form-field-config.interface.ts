@@ -21,6 +21,7 @@ export interface FormFieldConfig {
     timeFormat?: "12" | "24" | undefined;
     showTimeFormat?: boolean;
     conditionalVisibility?: ConditionalVisibility; // New property for conditional visibility
+    defaultValue?: any;
 }
 export interface fieldGroup {
     groupClass?: string;
