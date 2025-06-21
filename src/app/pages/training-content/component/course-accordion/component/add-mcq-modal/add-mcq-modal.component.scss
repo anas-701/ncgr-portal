@@ -4,7 +4,13 @@
   border: 1px solid #eee;
   border-radius: 5px;
 }
-
+.add_icon{
+  width: 20px;
+  height: 20px;
+  fill: #166a45;
+  filter: invert(33%) sepia(53%) saturate(496%) hue-rotate(101deg)
+    brightness(93%) contrast(103%);
+}
 .option_preview {
   margin-right: 30px;
   color: #666;
@@ -111,7 +117,7 @@ h1.modal-title.modal_title {
   select {
     width: 100%;
     border: 1px solid #d2d6db;
-    padding: 5px 10px;
+    // padding: 5px 10px;
     border-radius: 4px;
   }
 }

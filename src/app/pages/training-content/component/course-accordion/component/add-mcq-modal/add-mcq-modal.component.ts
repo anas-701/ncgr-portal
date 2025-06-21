@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SectionsService } from '../../../../services/training-content-service';
 import { Lecture, Question } from '../../../../models/section.model';
+import { ToasterService } from '../../../../../../@shared/toaster.service';
 
 @Component({
   selector: 'app-add-mcq-modal',
@@ -34,7 +35,7 @@ export class AddMcqModalComponent {
     correctAnswer: 0
   };
   editmode: boolean=false;
-
+  constructor(private toaster: ToasterService) {}
   ngOnChanges(): void {
     if (this.question) {
       this.editmode=true
@@ -66,9 +67,9 @@ export class AddMcqModalComponent {
   }
 
   onSave() {
-    if (this.newQuestion.options.length < 2) {
-      alert('Please add at least two options.');
-      return;
+    if (!this.isValidQuestion()){
+      this.toaster.error('تأكد من اضافه سؤالين على الاقل وادخال كل الحقول المطلوبة')
+      return
     }
     
     const question :Question= {
@@ -112,4 +113,16 @@ export class AddMcqModalComponent {
       correctAnswer: 0
     };
   }
+  isValidQuestion(): boolean {
+    debugger
+  const { text, score, options } = this.newQuestion;
+
+  if (!text.trim()) return false;
+  if (score <= 0) return false;
+  if (options.length < 2) return false;
+  if (!options.every(opt => opt.choice.trim())) return false;
+  // if (!options.some(opt => opt.isCorrect)) return false;
+
+  return true;
+}
 }

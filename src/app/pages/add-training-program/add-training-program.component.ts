@@ -247,6 +247,12 @@ export class AddTrainingProgramComponent {
   }
 
   submitForm(): void {
+        if(this.trainingForm.get('arabicImage')?.value === null ||
+       this.trainingForm.get('englishImage')?.value === null) {
+      this.formError = 'يرجى ملء جميع الحقول المطلوبة';
+      this.showToast('error', 'يرجى ارفاق الصور المطلوبة');
+      return;
+    }
     // For paid programs, price is required
     if (this.trainingForm.get('categoryId')?.value === '0') {
       this.trainingForm.get('price')?.setValidators(Validators.required);
@@ -257,7 +263,7 @@ export class AddTrainingProgramComponent {
     this.trainingForm.get('price')?.updateValueAndValidity();
 
     // Check certificate is valid
-    const certificateId = this.trainingForm.get('certificateId');
+    const certificateId = this.trainingForm.get('certificateId'); 
     if (certificateId) {
       certificateId.markAsTouched();
     }

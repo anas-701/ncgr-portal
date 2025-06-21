@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+
 import { CommonModule } from '@angular/common';
 import { SideBarComponent } from '../side-bar/side-bar.component';
 import { CourseAccordionComponent } from './component/course-accordion/course-accordion.component';
@@ -13,6 +13,7 @@ import { Section } from './models/section.model';
 import { SectionsService } from './services/training-content-service';
 import { ActivatedRoute } from '@angular/router';
 import { ContentHeaderComponent } from './component/content-header/content-header.component';
+import { ToasterService } from '../../@shared/toaster.service';
 
 @Component({
   selector: 'app-training-content',
@@ -37,7 +38,7 @@ export class TrainingContentComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private sectionService: SectionsService,
-    private toastr: ToastrService,
+    private toaster: ToasterService,
     private route: ActivatedRoute
   ) {}
 
@@ -48,12 +49,19 @@ export class TrainingContentComponent implements OnInit {
     });
 
     this.sectionForm = this.fb.group({
-      arabicTitle: ['', Validators.required],
-      englishTitle: ['', Validators.required],
+      arabicTitle: ['', [Validators.required,Validators.pattern(/^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF ]+$/)
+]],
+      englishTitle: ['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9\s\-_.,:;!?@#$%^&*()]+$/)
+]],
     });
   }
 
   onSubmit(): void {
+    // Check if the form is valid before proceeding
+    if (this.sectionForm.invalid) {
+      this.toaster.error('الرجاء ملء جميع الحقول بشكل صحيح');
+      return;
+    }
     if (this.sectionForm.valid) {
       const sectionRequest = {
         trainingProgramId: this.programId,
@@ -63,14 +71,14 @@ export class TrainingContentComponent implements OnInit {
 
       this.sectionService.addSection(sectionRequest).subscribe({
         next: () => {
-          this.toastr.success('تمت إضافة القسم بنجاح');
+          this.toaster.success('تمت إضافة القسم بنجاح');
           this.sectionForm.reset();
           document.getElementById('closeModalBtn')?.click();
 
           this.courseAccordion.getSectionsByProgramId(this.programId);
         },
         error: (error) => {
-          this.toastr.error('حدث خطأ ما ولم يتم إضافة القسم');
+          this.toaster.error('حدث خطأ ما ولم يتم إضافة القسم');
           console.error('Error submitting form:', error);
         },
         complete: () => {

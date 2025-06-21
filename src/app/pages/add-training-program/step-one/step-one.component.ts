@@ -8,11 +8,13 @@ import {
 } from '@angular/forms';
 import { AppLookUpServiceService } from '../../../@core/services/app-look-up-service.service';
 import { AppLookUpResponse } from '../../../@models/app-lookup-response.model';
+import { TextEditor } from '../../../@shared/text-editor/text-editor.component';
+import { ToasterService } from '../../../@shared/toaster.service';
 
 @Component({
   selector: 'app-step-one',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,TextEditor],
   templateUrl: './step-one.component.html',
   styleUrl: './step-one.component.scss',
 })
@@ -25,7 +27,7 @@ export class StepOneComponent implements OnInit {
   coverPicturePath: string | null = null;
   programPicturePath: string | null = null;
 
-  constructor(private appLookUpService: AppLookUpServiceService) {}
+  constructor(private appLookUpService: AppLookUpServiceService ,private toaster: ToasterService) {}
 
   ngOnInit() {
     this.getAppLookUpData();
@@ -84,8 +86,8 @@ export class StepOneComponent implements OnInit {
 
       // Regular expression for Arabic characters
       const arabicPattern = /^[\u0600-\u06FF\s.,!؟()[\]{}:;'"،0-9-_]+$/;
-
-      const valid = arabicPattern.test(control.value);
+      const plainText = control.value.replace(/<[^>]*>/g, '').trim();
+      const valid = arabicPattern.test(plainText);
       return valid ? null : { arabicOnly: { value: control.value } };
     };
   }
@@ -99,8 +101,8 @@ export class StepOneComponent implements OnInit {
 
       // Regular expression for English characters
       const englishPattern = /^[A-Za-z\s.,!?()[\]{}:;'"0-9-_]+$/;
-
-      const valid = englishPattern.test(control.value);
+       const plainText = control.value.replace(/<[^>]*>/g, '').trim();
+      const valid = englishPattern.test(plainText);
       return valid ? null : { englishOnly: { value: control.value } };
     };
   }
@@ -119,12 +121,12 @@ export class StepOneComponent implements OnInit {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       if (!['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
-        alert('يرجى اختيار ملف من نوع JPEG أو JPG أو PNG فقط');
+        this.toaster.warning('يرجى اختيار ملف من نوع JPEG أو JPG أو PNG فقط');
         return;
       }
 
       if (file.size > 5 * 1024 * 1024) {
-        alert('حجم الملف يجب أن لا يتجاوز 5 ميجابايت');
+        this.toaster.warning('حجم الملف يجب أن لا يتجاوز 5 ميجابايت');
         return;
       }
 

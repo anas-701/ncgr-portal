@@ -24,136 +24,41 @@
       <!-- Program Description - Arabic -->
       <div class="form-group mb-4">
         <label for="programDescription" class="form-label"
-          >وصف البرنامج التدريبي (بالعربية)</label
+          >وصف البرنامج (بالعربية)</label
         >
-        <div class="rich-text-editor">
-          <div class="toolbar">
-            <div class="d-flex justify-content-between w-100">
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-right"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-center"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-left"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-justify"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ul"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ol"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-dash"></i>
-                </button>
-              </div>
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-bold"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-italic"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-underline"></i>
-                </button>
-                <button type="button" class="btn btn-sm">H1</button>
-                <button type="button" class="btn btn-sm">H2</button>
-                <button type="button" class="btn btn-sm">H3</button>
-                <button type="button" class="btn btn-sm">H4</button>
-                <button type="button" class="btn btn-sm">H5</button>
-                <button type="button" class="btn btn-sm">H6</button>
-              </div>
-            </div>
-          </div>
-          <textarea
-            id="programDescription"
-            class="form-control editor-area"
-            formControlName="programDescription"
-            rows="6"
-            [ngClass]="{
-              'is-invalid': isFieldInvalid('programDescription')
-            }"
-          ></textarea>
-          <div
-            class="invalid-feedback"
-            *ngIf="isFieldInvalid('programDescription')"
-          >
-            {{ getErrorMessage("programDescription") }}
-          </div>
+
+        <app-editor
+          id="programDescription"
+          formControlName="programDescription"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('programDescription')
+          }"
+        ></app-editor>
+        <div
+          class="invalid-feedback"
+          *ngIf="isFieldInvalid('programDescription')"
+        >
+          {{ getErrorMessage("programDescription") }}
         </div>
       </div>
 
       <!-- Program Objectives - Arabic -->
       <div class="form-group mb-4">
         <label for="programObjectives" class="form-label"
-          >أهداف البرنامج التدريبي (بالعربية)</label
+          >أهداف البرنامج (بالعربية)</label
         >
-        <div class="rich-text-editor">
-          <div class="toolbar">
-            <div class="d-flex justify-content-between w-100">
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-right"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-center"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-left"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-justify"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ul"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ol"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-dash"></i>
-                </button>
-              </div>
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-bold"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-italic"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-underline"></i>
-                </button>
-                <button type="button" class="btn btn-sm">H1</button>
-                <button type="button" class="btn btn-sm">H2</button>
-                <button type="button" class="btn btn-sm">H3</button>
-                <button type="button" class="btn btn-sm">H4</button>
-                <button type="button" class="btn btn-sm">H5</button>
-                <button type="button" class="btn btn-sm">H6</button>
-              </div>
-            </div>
-          </div>
-          <textarea
-            id="programObjectives"
-            class="form-control editor-area"
-            formControlName="programObjectives"
-            rows="6"
-            [ngClass]="{
-              'is-invalid': isFieldInvalid('programObjectives')
-            }"
-          ></textarea>
-          <div
-            class="invalid-feedback"
-            *ngIf="isFieldInvalid('programObjectives')"
-          >
-            {{ getErrorMessage("programObjectives") }}
-          </div>
+        <app-editor
+          id="programObjectives"
+          formControlName="programObjectives"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('programObjectives')
+          }"
+        ></app-editor>
+        <div
+          class="invalid-feedback"
+          *ngIf="isFieldInvalid('programObjectives')"
+        >
+          {{ getErrorMessage("programObjectives") }}
         </div>
       </div>
     </div>
@@ -182,136 +87,40 @@
       <!-- Program Description - English -->
       <div class="form-group mb-4">
         <label for="programDescriptionEn" class="form-label"
-          >وصف البرنامج التدريبي (بالإنجليزية)</label
+          >وصف البرنامج (بالإنجليزية)</label
         >
-        <div class="rich-text-editor">
-          <div class="toolbar">
-            <div class="d-flex justify-content-between w-100">
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-right"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-center"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-left"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-justify"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ul"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ol"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-dash"></i>
-                </button>
-              </div>
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-bold"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-italic"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-underline"></i>
-                </button>
-                <button type="button" class="btn btn-sm">H1</button>
-                <button type="button" class="btn btn-sm">H2</button>
-                <button type="button" class="btn btn-sm">H3</button>
-                <button type="button" class="btn btn-sm">H4</button>
-                <button type="button" class="btn btn-sm">H5</button>
-                <button type="button" class="btn btn-sm">H6</button>
-              </div>
-            </div>
-          </div>
-          <textarea
-            id="programDescriptionEn"
-            class="form-control editor-area"
-            rows="6"
-            formControlName="programDescriptionEn"
-            [ngClass]="{
-              'is-invalid': isFieldInvalid('programDescriptionEn')
-            }"
-          ></textarea>
-          <div
-            class="invalid-feedback"
-            *ngIf="isFieldInvalid('programDescriptionEn')"
-          >
-            {{ getErrorMessage("programDescriptionEn") }}
-          </div>
+        <app-editor
+          id="programDescriptionEn"
+          formControlName="programDescriptionEn"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('programDescriptionEn')
+          }"
+        ></app-editor>
+        <div
+          class="invalid-feedback"
+          *ngIf="isFieldInvalid('programDescriptionEn')"
+        >
+          {{ getErrorMessage("programDescriptionEn") }}
         </div>
       </div>
 
       <!-- Program Objectives - English -->
       <div class="form-group mb-4">
         <label for="programObjectivesEn" class="form-label"
-          >أهداف البرنامج التدريبي (بالإنجليزية)</label
+          >أهداف البرنامج (بالإنجليزية)</label
         >
-        <div class="rich-text-editor">
-          <div class="toolbar">
-            <div class="d-flex justify-content-between w-100">
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-right"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-center"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-left"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-justify"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ul"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ol"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-dash"></i>
-                </button>
-              </div>
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-bold"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-italic"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-underline"></i>
-                </button>
-                <button type="button" class="btn btn-sm">H1</button>
-                <button type="button" class="btn btn-sm">H2</button>
-                <button type="button" class="btn btn-sm">H3</button>
-                <button type="button" class="btn btn-sm">H4</button>
-                <button type="button" class="btn btn-sm">H5</button>
-                <button type="button" class="btn btn-sm">H6</button>
-              </div>
-            </div>
-          </div>
-          <textarea
-            id="programObjectivesEn"
-            class="form-control editor-area"
-            rows="6"
-            formControlName="programObjectivesEn"
-            [ngClass]="{
-              'is-invalid': isFieldInvalid('programObjectivesEn')
-            }"
-          ></textarea>
-          <div
-            class="invalid-feedback"
-            *ngIf="isFieldInvalid('programObjectivesEn')"
-          >
-            {{ getErrorMessage("programObjectivesEn") }}
-          </div>
+        <app-editor
+          id="programObjectivesEn"
+          formControlName="programObjectivesEn"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('programObjectivesEn')
+          }"
+        ></app-editor>
+        <div
+          class="invalid-feedback"
+          *ngIf="isFieldInvalid('programObjectivesEn')"
+        >
+          {{ getErrorMessage("programObjectivesEn") }}
         </div>
       </div>
     </div>

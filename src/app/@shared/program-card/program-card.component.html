@@ -157,7 +157,7 @@
           data-bs-toggle="tooltip"
           data-bs-placement="top"
           title="حذف"
-          (click)="$event.preventDefault(); onDelete()"
+          (click)="selectedProgramForDelete(program); $event.preventDefault()"
         >
           <img width="28" src="icons/32.svg" alt="" />
         </a>
@@ -165,3 +165,31 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" [class.show]="showDeleteModal" [style.display]="showDeleteModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header m_header">
+          <h1 class="modal-title modal_title">
+            <img src="acc_icon_5.svg" alt="">
+            <span>تأكيد الحذف</span>
+          </h1>
+          <button type="button" class="btn-close" (click)="showDelete()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form_modal">
+            <p>هل أنت متأكد من رغبتك في حذف برنامج "{{selectedProgram?.titleAr}}" ؟</p>
+            <p>اضغط "تأكيد الحذف" لإكمال العملية أو "إلغاء" للتراجع.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="modal_f_btns">
+            <button type="button" class="add" (click)="onDelete()">تاكيد</button>
+            <button type="button" (click)="showDelete()" >الغاء</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade" [class.show]="showDeleteModal" [style.display]="showDeleteModal ? 'block' : 'none'"></div>

@@ -1,0 +1,193 @@
+<div
+  class="col-xxl-4 col-xl-6 general-programs-box-outer mt-2 mb-3 d-flex flex-column justify-content-between"
+>
+  <div class="col upper-col">
+    <div class="general-programs-img-title row align-items-start ms-3">
+      <div class="col-auto general-programs-photo-side mb-xl-0 mb-2">
+        <img src="sample-dashboard-content_17.png" alt="" />
+      </div>
+      <div class="col general-programs-box-title ps-xl-0">
+        <a href="all-general-info.html">دبلوم الحوكمة المؤسسية</a>
+        <div class="general-programs-target mt-1">
+          <img
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="الفئة المستهدفة"
+            width="18"
+            src="24.svg"
+            alt=""
+          />
+          <span class="text-muted small">الجهات الحكومية</span>
+        </div>
+      </div>
+      <div class="col-auto programs-box-upper-menu">
+        <div class="nav-item dropdown position-relative">
+          <a
+            aria-label="link"
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+          >
+            <img src="icons/dots-outline.svg" alt="" />
+          </a>
+          <ul class="dropdown-menu animate slideIn p-3">
+            <li class="row align-items-center justify-content-between">
+              <div class="col-auto">
+                <p class="mb-0 text-muted">المنشئ</p>
+                <h6>{{ "احمد البليسي" }}</h6>
+              </div>
+              <div class="col-auto programs-box-upper-menu-date">
+                2025/06/02
+              </div>
+            </li>
+            <li class="row align-items-center justify-content-between">
+              <div class="col-auto">
+                <p class="mb-0 text-muted">المعتمد</p>
+                <h6>{{ "احمد البليسي" }}</h6>
+              </div>
+              <div class="col-auto programs-box-upper-menu-date">
+                2025/06/03
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row general-programs-meta ms-3 me-3">
+      <div class="col-lg-12 mb-3">
+        <img
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="التاريخ "
+          class="pe-1"
+          src="42.svg"
+          width="28"
+          alt=""
+        />
+        <span class="d-inline-block">
+          2025-02-01
+
+          <img width="18" src="27.svg" alt="" /> 2025-06-30
+        </span>
+      </div>
+  
+
+      <div class="col-lg-6 mb-3">
+        <img class="pe-1" src="47.svg" width="28" alt="" />
+        <span class="d-inline-block"> 5 برامج تدريبية </span>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <img class="pe-1" src="48.svg" width="28" alt="" />
+        <span class="d-inline-block"> 3 ورش تدريبية </span>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <img class="pe-1" src="49.svg" width="28" alt="" />
+        <span class="d-inline-block"> 40 مقعد </span>
+      </div>
+      <div class="col-lg-6 mb-3">
+        <img class="pe-1" src="50.svg" width="28" alt="" />
+        <span class="d-inline-block"> شهادة معتمدة </span>
+      </div>
+    </div>
+    <div class="row general-programs-box-tags me-3">
+      <div
+        class="col-auto general-programs-tags-item"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="المسار التدريبي"
+      >
+        <img src="100.svg" width="20" alt="" /> الحوكمة والشفافية
+      </div>
+      <div
+        class="col-auto general-programs-tags-item"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title=" لغة البرنامج"
+      >
+        <img src="45.svg" width="20" alt="" /> العربية
+      </div>
+    </div>
+  </div>
+
+  <div class="row pt-2 align-items-center">
+    <div class="col-xxl-auto col-xl-4 col-lg-12 mb-lg-2 col-md-3">
+      {{ "منشور" }}
+      <img width="20" src="icons/27.svg" alt="" />
+    </div>
+    <div class="col-xxl-4 col-xl-8 col-lg-12 mb-lg-2 col-md-5">
+      <select class="form-select" aria-label="Default select example">
+        <option selected>التغيير الي ...</option>
+        <!-- <option *ngFor="let option of statusOptions" [value]="option.id">
+          {{ option.name }}
+        </option> -->
+      </select>
+    </div>
+    <div class="col-xxl-4 col-xl-12 col-lg-12 col-md-4">2025/01/20</div>
+  </div>
+  <hr class="mt-3" />
+  <div class="row align-items-center text-center programs-box-btns">
+    <div class="col border-start mb-2">
+      <a aria-label="link" routerLink="/dashboard/" class="d-block p-2">
+        <img
+          width="28"
+          src="icons/28.svg"
+          alt=""
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="تفاصيل"
+        />
+      </a>
+    </div>
+    <div class="col border-start mb-2">
+      <a
+        href="#"
+        class="d-block p-2"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="تعديل"
+        (click)="$event.preventDefault()"
+      >
+        <img width="28" src="icons/29.svg" alt="" />
+      </a>
+    </div>
+    <div class="col border-start mb-2">
+      <a
+        routerLink="/training-content/"
+        class="d-block p-2"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="المحتوي التدريبي"
+        (click)="$event.preventDefault()"
+      >
+        <img width="28" src="icons/30.svg" alt="" />
+      </a>
+    </div>
+    <div class="col border-start mb-2">
+      <a
+        href="#"
+        class="d-block p-2"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="المتدربين"
+        (click)="$event.preventDefault()"
+      >
+        <img width="28" src="icons/31.svg" alt="" />
+      </a>
+    </div>
+    <div class="col mb-2">
+      <a
+        aria-label="link"
+        href="#"
+        class="d-block p-2"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="حذف"
+        (click)="$event.preventDefault()"
+      >
+        <img width="28" src="icons/32.svg" alt="" />
+      </a>
+    </div>
+  </div>
+</div>

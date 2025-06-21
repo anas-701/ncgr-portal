@@ -1,16 +1,60 @@
+section {
+ background: white;
+}
+.modern-breadcrumb {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 30px 0 0 0;
+  align-items: center;
+}
+
+.modern-breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-link {
+  text-decoration: none;
+  color: black;
+  padding: 5px 8px;
+  border-radius: 4px;
+  transition: all 0.3s;
+  font-weight: 400
+}
+
+
+
+.breadcrumb-arrow {
+  margin: 0 8px;
+  color: #adb5bd;
+    font-size: 30px;
+}
+
+.active span {
+  color: #495057;
+  font-weight: 500;
+  padding: 5px 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
 .training-program-details{
   background: white;
 }
 .banner-container {
   width: 100%;
-  height: 100px;
+  // height: 100px;
   overflow: hidden;
 }
 
 .banner-image {
   width: 100%;
-  height: 100%;
+  max-height: 150px;
   object-fit: cover;
+}
+ .side{
+      padding: 0;
+
 }
 .program-details {
   margin-bottom: 30px;
@@ -59,7 +103,7 @@
   }
 
   .rating-box {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 
     i {
       margin-right: 0.25rem;
@@ -91,12 +135,12 @@
 
       .nav-link {
         color: #333;
-        padding: 0.75rem 1rem;
+        // padding: 0.75rem 1rem;
         font-weight: 500;
         border: none;
         border-radius: 0.25rem;
         transition: all 0.3s ease;
-        width: 100%;
+        width: -webkit-fill-available;
         text-align: center;
         margin: 0 0.25rem;
 
@@ -119,7 +163,9 @@
       }
     }
   }
-
+.accordion-border{
+  border-top: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
+}
   @media (max-width: 768px) {
     .nav-tabs {
       flex-wrap: wrap;
@@ -158,8 +204,10 @@
     }
 
     .review-item {
-      border-top: 1px solid #eee;
-      padding-top: 1rem;
+      border: 1px solid #eee;
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 90% 10%;
     }
 
     // Program topics styles
@@ -231,3 +279,4 @@
   position: relative;
   width: 100%;
 }
+

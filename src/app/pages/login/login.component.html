@@ -1,40 +1,24 @@
 <main class="form-signin my-5">
-  <form>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="text-center">
-      <a href="index.html"
-        ><img class="mb-3" src="/logo_ar.svg" width="200" alt=""
-      /></a>
+      <a [routerLink]="['/home']" >
+        <img class="mb-3" src="/logo_ar.svg" width="200" alt="logo" />
+      </a>
     </div>
     <h3 class="mb-4 text-center">تسجيل الدخول</h3>
-
     <div class="form-floating mb-3">
-      <input
-        type="email"
-        class="form-control"
-        id="floatingInput"
-        placeholder="name@example.com"
-      />
-      <label for="floatingInput text-end">اسم المستخدم</label>
+      <input type="text" id="userName" formControlName="userName" class="form-control" placeholder="name@example.com" />
+      <label for="userName text-end">اسم المستخدم</label>
     </div>
     <div class="form-floating">
-      <input
-        type="password"
-        class="form-control"
-        id="floatingPassword"
-        placeholder="Password"
-      />
-      <label for="floatingPassword text-end">كلمة المرور</label>
+      <input type="password" id="password" formControlName="password" class="form-control" placeholder="Password" />
+      <label for="password text-end">كلمة المرور</label>
     </div>
 
     <div class="checkbox mt-3 mb-3">
       <label> <input type="checkbox" value="remember-me" /> تذكرني </label>
     </div>
-    <button
-      class="submit-btn w-100 btn btn-primary p-2 rounded-0"
-      type="submit"
-      routerLink="/dashboard"
-      (click)="logged()"
-    >
+    <button type="submit" class="submit-btn w-100 btn btn-primary p-2 rounded-0" >
       تسجيل الدخول
     </button>
     <p class="mt-5 mb-3 text-muted">

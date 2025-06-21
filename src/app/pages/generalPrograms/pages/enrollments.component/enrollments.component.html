@@ -1,0 +1,435 @@
+<!-- <p>enrollments.component works!</p> -->
+
+<!-- <p>users.component works!</p> -->
+<section class="container-fluid mt-4 mb-4">
+  <div class="container-xxl">
+    <div class="row ncgr-main-area dashboard-pages">
+      <div class="dashboard_link_sec col-3">
+        <app-side-bar></app-side-bar>
+      </div>
+      <!-- content page here  -->
+      <!-- Content | start -->
+      <div class="col-9">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+              إدارة المتدربين
+            </li>
+          </ol>
+        </nav>
+        <h1>إدارة المتدربين</h1>
+
+        <!-- ###################################################### -->
+        <div class="row mt-4">
+          <p class="mt-0">برنامج: دبلوم الحوكمة المؤسسية</p>
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="البحث عن متدرب...  "
+              aria-label="البحث عن متدرب ..."
+              aria-describedby="button-addon2"
+            />
+            <div class="dropdown search-options-btn_menu mr-10">
+              <button
+                aria-label="button"
+                type="submit"
+                class="d-flex align-items-center text-decoration-none dropdown-toggle position-relative search-options-btn btn btn-outline-secondary"
+                id="dropdownUser2"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div class="circle"></div>
+                <img
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="تصفية"
+                  width="32"
+                  src="23.svg"
+                  alt=""
+                />
+              </button>
+
+              <!-- ########## -->
+              <ul
+                class="dropdown-menu shadow animate slideIn"
+                aria-labelledby="dropdownUser2"
+              >
+                <li class="p-2 dropdown-menu_body">
+                  <h6 class="text-end">حالة التسجيل</h6>
+                  <div
+                    class="d-flex justify-content-start align-items-center gap-2"
+                    formGroupName="status"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexCheckDefault1"
+                      formControlName="isActive"
+                    />
+                    <label class="form-check-label" for="addStatusId">
+                      في انتظار القبول
+                    </label>
+                  </div>
+                  <div
+                    class="d-flex justify-content-start align-items-center gap-2"
+                    formGroupName="status"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexCheckDefault2"
+                      formControlName="isNotActive"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault2">
+                      مسجل
+                    </label>
+                  </div>
+
+                  <div
+                    class="d-flex justify-content-start align-items-center gap-2"
+                    formGroupName="status"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexCheckDefault3"
+                      formControlName="isNotActive"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault3">
+                      غير مسجل
+                    </label>
+                  </div>
+
+                  <h6 class="text-end">حالة الإكمال</h6>
+                  <div
+                    class="d-flex justify-content-start align-items-center gap-2"
+                    formGroupName="status"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexCheckDefault4"
+                      formControlName="isNotActive"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault4">
+                      قيد الإنجاز
+                    </label>
+                  </div>
+
+                  <div
+                    class="d-flex justify-content-start align-items-center gap-2"
+                    formGroupName="status"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexCheckDefault5"
+                      formControlName="isNotActive"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault5">
+                      مكتمل
+                    </label>
+                  </div>
+                </li>
+                <li class="pt-2 pb-2">
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <div class="p-2">
+                    <!-- (click)="onLoadProgram()" -->
+                    <button type="button" class="btn btn-primary me-2">
+                      تطبيق
+                    </button>
+                    <!-- (click)="onResetFilters()" -->
+                    <button type="button" class="btn btn-outline-secondary">
+                      إعادة تعيين
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-2">
+          <!-- tags_paths Box -->
+
+          <!-- @for (program of trackDetails?.pathTrainingProgram; track $index)  -->
+          <!-- { -->
+
+          <!-- } -->
+        </div>
+        <!-- ########################################################################### -->
+        <div class="d-flex">
+          <p class="mt-2">عدد المقاعد: 40</p>
+          <div class="horizontal-separator-line"></div>
+          <p class="mt-2">عدد المسجلين: 30</p>
+        </div>
+        <table class="table table-bordered table-no-vertical-lines table-fixed">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">رقم الهوية</th>
+              <th scope="col" class="col-english-name text-truncate">الاسم</th>
+              <th scope="col">البريد الالكتروني</th>
+              <th scope="col">القطاع</th>
+              <th scope="col">حالة التسجيل</th>
+              <th scope="col">تاريخ التسجيل</th>
+              <th scope="col">الإكمال</th>
+              <th scope="col">تاريخ الإكمال</th>
+              <th scope="col">الإجراء</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-truncate">0501234567</td>
+              <td class="text-truncate name-style">محمد خالد فهد عبدالله</td>
+              <td class="text-truncate">salemexample.com</td>
+              <td class="text-truncate">القطاع الحكومي</td>
+              <td class="text-truncate">
+                <img
+                  src="icons/64.svg"
+                  alt="icon"
+                  width="12"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="قبول التسجيل "
+                />
+                مسجل
+              </td>
+              <td class="text-truncate">6/14/2025</td>
+              <td class="text-truncate">0%</td>
+              <td class="text-truncate">-</td>
+              <td class="text-truncate">
+                <div class="col action-btn mb-2">
+                  <div
+                    class="image-with-dialog-wrapper position-relative d-inline-block"
+                  >
+                    <a
+                      aria-label="link"
+                      href="#"
+                      routerLink="/tag-details"
+                      class="d-block p-2"
+                    >
+                      <img
+                        src="icons/37.svg"
+                        alt="icon"
+                        width="28"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="قبول التسجيل "
+                        class="dialog-trigger-img"
+                        (click)="$event.preventDefault(); openDeleteConfirmation()"
+                      />
+                    </a>
+                    <p class="dialog">قبول التسجيل</p>
+                  </div>
+
+                  <div
+                    class="image-with-dialog-wrapper position-relative d-inline-block"
+                  >
+                    <a
+                      aria-label="link"
+                      (click)="$event.preventDefault(); openDeleteConfirmation()"
+                      href="#"
+                      routerLink="/tag-details"
+                      class="d-block p-2"
+                    >
+                      <img
+                        src="116.svg"
+                        alt="icon"
+                        width="28"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="رفض الطلب "
+                        class="dialog-trigger-img"
+                      />
+                    </a>
+                    <p class="dialog">رفض الطلب</p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-truncate">0501234567</td>
+              <td class="text-truncate name-style">المعتصم خالد فهد عبدالله</td>
+              <td class="text-truncate">salemexample.com</td>
+              <td class="text-truncate">القطاع الحكومي</td>
+              <td class="text-truncate">
+                <img
+                  src="icons/64.svg"
+                  alt="icon"
+                  width="12"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="قبول التسجيل "
+                  (click)="$event.preventDefault(); openDeleteConfirmation()"
+                />
+                مسجل
+              </td>
+              <td class="text-truncate">6/14/2025</td>
+              <td class="text-truncate">0%</td>
+              <td class="text-truncate">-</td>
+              <td class="text-truncate">
+                <div class="col action-btn mb-2">
+                  <div
+                    class="image-with-dialog-wrapper position-relative d-inline-block"
+                  >
+                    <a
+                      aria-label="link"
+                      href="#"
+                      routerLink="/tag-details"
+                      class="d-block p-2"
+                      (click)="$event.preventDefault(); openDeleteConfirmation()"
+                    >
+                      <img
+                        src="icons/37.svg"
+                        alt="icon"
+                        width="28"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="قبول التسجيل "
+                        class="dialog-trigger-img"
+                        (click)="$event.preventDefault(); openDeleteConfirmation()"
+                      />
+                    </a>
+                    <p class="dialog">قبول التسجيل</p>
+                  </div>
+
+                  <div
+                    class="image-with-dialog-wrapper position-relative d-inline-block"
+                  >
+                    <a
+                      aria-label="link"
+                      href="#"
+                      routerLink="/tag-details"
+                      class="d-block p-2"
+                    >
+                      <img
+                        src="116.svg"
+                        alt="icon"
+                        width="28"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="رفض الطلب "
+                        class="dialog-trigger-img"
+                        (click)="$event.preventDefault(); openDeleteConfirmation()"
+                      />
+                    </a>
+                    <p class="dialog">رفض الطلب</p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-truncate">0501234567</td>
+              <td class="text-truncate name-style">
+                عبدالعزيز خالد فهد عبدالله
+              </td>
+              <td class="text-truncate">salemexample.com</td>
+              <td class="text-truncate">القطاع الحكومي</td>
+              <td class="text-truncate">
+                <img
+                  src="icons/73.svg"
+                  alt="icon"
+                  width="12"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="قبول التسجيل "
+                />
+                مسجل
+              </td>
+              <td class="text-truncate">6/14/2025</td>
+              <td class="text-truncate">0%</td>
+              <td class="text-truncate">-</td>
+              <td class="text-truncate">
+                <div class="col action-btn mb-2">
+                  <a
+                    aria-label="link"
+                    href="#"
+                    routerLink="/tag-details"
+                    class="d-block p-2 c-green"
+                    (click)="$event.preventDefault(); openDeleteConfirmation()"
+                  >
+                    إلغاء التسجيل
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- ########################################################################### -->
+      </div>
+      <!-- end code    -->
+    </div>
+  </div>
+</section>
+
+<!-- Delete Confirmation Modal -->
+<div
+  class="modal fade show"
+  [class.d-block]="showDeleteConfirmationModal"
+  [class.d-none]="!showDeleteConfirmationModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteTrackModalLabel"
+  [attr.aria-hidden]="!showDeleteConfirmationModal"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="تحذير"
+        width="32"
+        src="icons/warn.svg"
+                  alt=""
+                  />
+                  <h5 class="modal-title" id="deleteTrackModalLabel">
+                    تأكيد إلغاء التسجيل
+                  </h5>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" *ngIf="deleteError">
+          <!-- {{ deleteError }} -->
+        </div>
+        <div class="alert alert-success" *ngIf="deleteSuccess">
+          <!-- {{ deleteSuccess }} -->
+        </div>
+
+        <p>
+          هل أنت متأكد من رغبتك في إلغاء تسجيل المتدرب/ـة (محمد عيسى أحمد موسى)
+          وهويته/ـا ( 1000830192)؟ سيتم حذف تقدمه/ـا من البرنامج وسيتم إشعاره/ـا
+          بذلك.
+        </p>
+        <p>اضغط "تأكيد" لإكمال العملية أو "إلغاء" للتراجع.</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="onCloseDeleteConfirmationModal()"
+        >
+          تاكيد
+        </button>
+        <button
+          (click)="selectedTagToDelete?.id && onConfirmDeleteTag(1)"
+          type="button"
+          class="btn btn-success"
+          [disabled]=""
+        >
+          <span
+            *ngIf="processingDelete"
+            class="spinner-border spinner-border-sm me-1"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          الغاء
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop fade show" *ngIf="showDeleteConfirmationModal"></div>

@@ -17,7 +17,12 @@ export const appConfig: ApplicationConfig = {
       BrowserAnimationsModule,
       ToastrModule.forRoot()
     ),
-    provideToastr(),
     provideAnimations(),
+    provideToastr({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
+    
   ]
 };

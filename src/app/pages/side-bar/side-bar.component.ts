@@ -5,6 +5,7 @@ interface SidebarItem {
   label: string;
   icon: string;
   route?: string;
+  
   children?: { label: string; route: string }[];
 }
 @Component({
@@ -25,7 +26,7 @@ export class SideBarComponent {
     { label: 'المسارات التدريبية', icon: '01.svg', route: '/training-paths' },
     { label: 'البرامج التدريبية', icon: '02.svg', route: '/dashboard' },
     { label: 'الورش التدريبية', icon: '03.svg', route: '/workshops' },
-    { label: 'البرامج العامة', icon: '04.svg', route: '/public-programs' },
+    { label: 'البرامج العامة', icon: '04.svg', route: '/generalPrograms' },
     { label: 'التقييمات', icon: '05.svg', route: '/evaluations' },
     { label: 'الشهادات', icon: '06.svg', route: '/certificates' },
     { label: 'الوسوم', icon: '07.svg', route: '/tags' },

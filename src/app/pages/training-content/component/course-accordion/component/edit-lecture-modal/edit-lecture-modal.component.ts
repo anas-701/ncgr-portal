@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SectionsService } from '../../../../services/training-content-service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ToasterService } from '../../../../../../@shared/toaster.service';
 
 @Component({
   selector: 'app-edit-lecture-modal',
@@ -19,12 +20,14 @@ export class EditLectureModalComponent {
   @Output() save = new EventEmitter<any>();
   previewUrl: string | null = null;
   editedLecture?: any;
-constructor(private sectionService: SectionsService,private sanitizer: DomSanitizer) {}
+  lectureType: string = 'text'; // Default type, can be changed based on the lecture type
+constructor(private sectionService: SectionsService,private sanitizer: DomSanitizer,private toaster: ToasterService) {}
  
 getLectureById(id: number): void {
   this.sectionService.getLectureById(id).subscribe({
       next: (response) => {
         this.editedLecture = response.data;
+        this.lectureType = this.getLectureTypeName(this.editedLecture.typeId);
         console.log('Fetched lecture:', this.editedLecture);
       },
       error: (error) => {
@@ -43,7 +46,11 @@ getLectureById(id: number): void {
 
   onSave(): void {
     if (this.editedLecture) {
-      const lectureType = this.getLectureTypeName(this.editedLecture.typeId);
+      if (!this.isValidLecture()) {
+        this.toaster.error('الرجاء ملء جميع الحقول المطلوبة بشكل صحيح.');
+        return;
+      }
+       this.lectureType = this.getLectureTypeName(this.editedLecture.typeId);
       const formData = new FormData();
             formData.append('id',this.editedLecture.id.toString());
             formData.append('trainingProgramDepartment', this.editedLecture.trainingProgramDepartment.toString());
@@ -51,18 +58,18 @@ getLectureById(id: number): void {
             formData.append('titleAr', this.editedLecture.titleAr);
             formData.append('titleEn', this.editedLecture.titleEn);
 
-            if (lectureType === 'video') {
+            if (this.lectureType === 'video') {
                 formData.append('videoFile', this.editedLecture.videoFile? this.editedLecture.videoFile : '');
                 formData.append('youTubeLink', this.editedLecture.youTubeLink? this.editedLecture.youTubeLink : '');
-            } else if (lectureType === 'text') {
+            } else if (this.lectureType === 'text') {
               formData.append('contentDetails', this.editedLecture.contentDetails );
-            } else if (lectureType === 'pdf') {
+            } else if (this.lectureType === 'pdf') {
               formData.append('pdfFile', this.editedLecture.pdfFile? this.editedLecture.pdfFile : '');
-            } else if (lectureType === 'audio') {
+            } else if (this.lectureType === 'audio') {
               formData.append('soundFile', this.editedLecture.soundFile? this.editedLecture.soundFile : '');
-            } else if (lectureType === 'image') {
+            } else if (this.lectureType === 'image') {
               formData.append('image', this.editedLecture.image? this.editedLecture.image : '');
-            } else if (lectureType === 'test') {
+            } else if (this.lectureType === 'test') {
               formData.append('exameTypeId', (this.editedLecture.exameTypeId || 0).toString());
               formData.append('exameTotal', this.editedLecture.exameTotal.toString());
               formData.append('exameSuccusDegrie', this.editedLecture.exameSuccusDegrie.toString());
@@ -151,6 +158,49 @@ private revokePreviewUrl() {
     URL.revokeObjectURL(this.previewUrl);
     this.previewUrl = null;
   }
+}
+isValidLecture(): boolean {
+  const { lectureType, editedLecture } = this;
+
+  // تحقق من العناوين حسب الباترن
+  const arabicRegex = /^[\u0600-\u06FF\s]+$/;
+  const englishRegex = /^[A-Za-z\s]+$/;
+
+  const isArabicTitleValid = arabicRegex.test(editedLecture.titleAr?.trim() || '');
+  const isEnglishTitleValid = englishRegex.test(editedLecture.titleEn?.trim() || '');
+
+  if (!isArabicTitleValid || !isEnglishTitleValid) return false;
+
+  if (lectureType === 'video') {
+    if (!editedLecture.videoFile && !editedLecture.youTubeLink) return false;
+    if (editedLecture.videoFile && editedLecture.youTubeLink) return false;
+    
+    return true;
+  }
+
+  if (lectureType === 'pdf' ) return !!editedLecture.pdfFile; 
+  if ( lectureType === 'audio' ) return !!editedLecture.soundFile; 
+  if ( lectureType === 'image') return !!editedLecture.file; 
+
+  if (lectureType === 'text') return !!editedLecture.content?.trim();
+
+  if (lectureType === 'test') {
+    const { examePeriod, exameTotal, exameSuccusDegrie, exameTypeId, exameSite, exameIsTime, exameDate, exameTime } = editedLecture;
+
+    if (!examePeriod || examePeriod <= 0) return false;
+    if (!exameTotal || !exameSuccusDegrie || exameSuccusDegrie > exameTotal) return false;
+    if (!exameTypeId) return false;
+
+    if (exameTypeId === 2 && !exameSite?.trim()) return false;
+
+    if (exameIsTime === true) {
+      if (!exameDate || !exameTime) return false;
+    }
+
+    return true;
+  }
+
+  return false;
 }
 
 }

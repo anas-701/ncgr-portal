@@ -1,0 +1,179 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+        <li class="breadcrumb-item">
+            <a href="#">عن المنصة</a>
+        </li>
+    </ol>
+</nav>
+<h1>عن المنصة</h1>
+
+
+<div class="step-one-form mt-4" [formGroup]="formGroup">
+    <h4 class="mb-4">القسم الأول</h4>
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-6">
+            <!-- Program Name - Arabic -->
+            <div class="form-group mb-4">
+                <label for="programName" class="form-label">عنوان القسم (بالعربية)
+                </label>
+                <input type="text" id="programName" class="form-control" formControlName="programName" [ngClass]="{
+              'is-invalid': isFieldInvalid('programName')
+            }" />
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('programName')">
+                    {{ getErrorMessage("programName") }}
+                </div>
+            </div>
+
+            <!-- Program Description - Arabic -->
+            <div class="form-group mb-4">
+                <label for="programDescription" class="form-label">وصف القسم (بالعربية)
+                </label>
+
+                <app-editor id="programDescription" formControlName="programDescription" [ngClass]="{
+              'is-invalid': isFieldInvalid('programDescription')
+            }"></app-editor>
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('programDescription')">
+                    {{ getErrorMessage("programDescription") }}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-md-6">
+            <!-- Program Name - English -->
+            <div class="form-group mb-4">
+                <label for="programNameEn" class="form-label">عنوان القسم (بالإنجليزية)
+                </label>
+                <input type="text" id="programNameEn" class="form-control" formControlName="programNameEn" [ngClass]="{
+              'is-invalid': isFieldInvalid('programNameEn')
+            }" />
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('programNameEn')">
+                    {{ getErrorMessage("programNameEn") }}
+                </div>
+            </div>
+
+            <!-- Program Description - English -->
+            <div class="form-group mb-4">
+                <label for="programDescriptionEn" class="form-label">وصف القسم (بالإنجليزية)
+                </label>
+                <app-editor id="programDescriptionEn" formControlName="programDescriptionEn" [ngClass]="{
+              'is-invalid': isFieldInvalid('programDescriptionEn')
+            }"></app-editor>
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('programDescriptionEn')">
+                    {{ getErrorMessage("programDescriptionEn") }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- صورة -->
+   <div class="row d-flex text-center justify-content-center w-100" style="background-color: #d2d6db;padding: 5px   ;">
+    <div class="form-group ">
+        <label class="form-label">صورة</label>
+      
+        <div class="upload-box text-center">
+          <input type="file" id="imageUpload" hidden (change)="onFileSelected($event)" accept=".png,.jpg,.jpeg,.pdf" />
+      
+          <div class="upload-content">
+            <div class="upload-icon mb-2">
+              <i class="bi bi-arrow-clockwise" style="font-size: 2rem;"></i>
+            </div>
+      
+            <p class="mb-1">اسحب و أفلت الملفات هنا للرفع</p>
+            <p class="text-muted small">
+              الحد الأقصى لحجم الملف المسموح به هو 2 ميجابايت، وتشمل الصيغ المدعومة: jpg و png و pdf.
+            </p>
+      
+            <label for="imageUpload" class="btn btn-outline-dark mt-2">تصفح الملفات</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="mb-4 mt-4">القسم الثاني    </h4>
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-6">
+            <!-- Program Name - Arabic -->
+            <div class="form-group mb-4">
+                <label for="programName" class="form-label">عنوان القسم (بالعربية)
+                </label>
+                <input type="text" id="programName" class="form-control" formControlName="programName" [ngClass]="{
+              'is-invalid': isFieldInvalid('programName')
+            }" />
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('programName')">
+                    {{ getErrorMessage("programName") }}
+                </div>
+            </div>
+
+            <!-- Program Description - Arabic -->
+            <div class="form-group mb-4">
+                <label for="programDescription" class="form-label">وصف القسم (بالعربية)
+                </label>
+
+                <app-editor id="programDescription" formControlName="programDescription" [ngClass]="{
+              'is-invalid': isFieldInvalid('programDescription')
+            }"></app-editor>
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('programDescription')">
+                    {{ getErrorMessage("programDescription") }}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-md-6">
+            <!-- Program Name - English -->
+            <div class="form-group mb-4">
+                <label for="programNameEn" class="form-label">عنوان القسم (بالإنجليزية)
+                </label>
+                <input type="text" id="programNameEn" class="form-control" formControlName="programNameEn" [ngClass]="{
+              'is-invalid': isFieldInvalid('programNameEn')
+            }" />
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('programNameEn')">
+                    {{ getErrorMessage("programNameEn") }}
+                </div>
+            </div>
+
+            <!-- Program Description - English -->
+            <div class="form-group mb-4">
+                <label for="programDescriptionEn" class="form-label">وصف القسم (بالإنجليزية)
+                </label>
+                <app-editor id="programDescriptionEn" formControlName="programDescriptionEn" [ngClass]="{
+              'is-invalid': isFieldInvalid('programDescriptionEn')
+            }"></app-editor>
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('programDescriptionEn')">
+                    {{ getErrorMessage("programDescriptionEn") }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- صورة -->
+   <div class="row d-flex text-center justify-content-center w-100" style="background-color: #d2d6db;padding: 5px   ;">
+    <div class="form-group ">
+        <label class="form-label">صورة</label>
+      
+        <div class="upload-box text-center">
+          <input type="file" id="imageUpload" hidden (change)="onFileSelected($event)" accept=".png,.jpg,.jpeg,.pdf" />
+      
+          <div class="upload-content">
+            <div class="upload-icon mb-2">
+              <i class="bi bi-arrow-clockwise" style="font-size: 2rem;"></i>
+            </div>
+      
+            <p class="mb-1">اسحب و أفلت الملفات هنا للرفع</p>
+            <p class="text-muted small">
+              الحد الأقصى لحجم الملف المسموح به هو 2 ميجابايت، وتشمل الصيغ المدعومة: jpg و png و pdf.
+            </p>
+      
+            <label for="imageUpload" class="btn btn-outline-dark mt-2">تصفح الملفات</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>

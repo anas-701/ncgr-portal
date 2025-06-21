@@ -15,37 +15,40 @@
       <!-- Breadcrumb Section -->
       <div class="sm_inner_header">
         <div class="breadcrumb_inner">
-          <ul class="breadcrumb">
-            <li class="link_page">
-              <a routerLink="/">الرئيسية</a>
-              <img src="arrow_bread.svg" alt="arrow" />
+          <ul class="modern-breadcrumb">
+            <li>
+              <a routerLink="/" class="breadcrumb-link">
+                <span class="breadcrumb-text active">الرئيسية</span>
+              </a>
+              <span class="breadcrumb-arrow">›</span>
             </li>
-            <li class="link_page">
+            <li >
               <a>{{ program.titleAr }}</a>
             </li>
-          </ul>
+        </ul>
         </div>
       </div>
+      <hr class="m-0">
       <div class="row mt-4">
         <!-- Sidebar (Image + Info) -->
         <div
           class="d-flex justify-content-between align-items-center mb-1 flex-wrap"
         >
           <div class="title-info d-flex flex-column">
-            <p class="">برنامج تدريبي</p>
-            <p class="program-title mb-3">
+            <p class="mb-0 mt-3">برنامج تدريبي</p>
+            <p class="program-title mb-3 mt-0">
               {{ program.titleAr }}
             </p>
           </div>
-          <div
-            class="d-flex gap-1 justify-content-end rating-box text-warning align-items-center"
-          >
+          <div class="d-flex gap-1 justify-content-end rating-box text-warning align-items-center">
             <span>4.5</span>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
             <span class="text-muted small">(10 تقييمات)</span>
           </div>
         </div>
@@ -113,78 +116,124 @@
                 التقييمات
               </button>
             </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                data-bs-toggle="tab"
+                type="button"
+                role="tab"
+              >
+               
+              </button>
+            </li>
           </ul>
 
           <!-- Tabs Content -->
           <div class="tab-content" id="programTabsContent">
              <div class="tab-pane fade show active" id="about" role="tabpanel">
     <!-- محتوى "عن البرنامج" الأصلي -->
-    <div class="mb-4">
-      <p [innerHTML]="program.aboutAr"></p>
-    </div>
-    
-    <!-- محتوى "أهداف البرنامج" -->
-    <div class="mb-4">
-      <h5 >أهداف البرنامج</h5>
-      <p [innerHTML]="program.descriptionEn"></p>
-    </div>
-    
-    <!-- محتوى "متطلبات البرنامج" -->
-    <div class="mb-4">
-      <h5 >متطلبات البرنامج</h5>
-      <div [innerHTML]="program.programRequirementsAr"></div>
-    </div>
-    
-    <!-- محتوى "موضوعات البرنامج" -->
-    <div class="mb-4">
-      <h5 >موضوعات البرنامج</h5>
-      <div class="program-topics-container">
-        <div *ngFor="let department of departments" class="program-topic mb-4">
-          <h6>{{ department.titleAr }}:</h6>
-          <div class="lecture-list">
-            <div *ngFor="let lecture of department.lectures" class="lecture-item mb-2 p-3 border rounded">
-              <div class="d-flex align-items-center">
-                <span class="lecture-icon me-2" [class]="getLectureIcon(lecture.typeId)"></span>
-                <span class="lecture-title">{{ lecture.titleAr }}</span>
+            <div class="mb-4">
+              <p [innerHTML]="program.aboutAr"></p>
+            </div>
+            
+            <!-- محتوى "أهداف البرنامج" -->
+            <div class="mb-4">
+              <h5 >أهداف البرنامج</h5>
+              <p [innerHTML]="program.descriptionAr"></p>
+            </div>
+            
+            <!-- محتوى "متطلبات البرنامج" -->
+            <div class="mb-4">
+              <h5 >متطلبات البرنامج</h5>
+              <div [innerHTML]="program.programRequirementsAr"></div>
+            </div>
+            
+            <div class="mb-4">
+          <h5>موضوعات البرنامج</h5>
+          <div class="accordion" id="programTopicsAccordion">
+            <div *ngFor="let department of departments; let i = index" class="accordion-item">
+                <h2 class="accordion-header accordion-border" id="heading-{{ i }}">
+                <button class="accordion-button collapsed d-flex justify-content-between" type="button" data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#collapse-' + i" aria-expanded="false" [attr.aria-controls]="'collapse-' + i">
+                  {{ department.titleAr }}
+                </button>
+              </h2>
+              <div [id]="'collapse-' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading-' + i"
+                data-bs-parent="#programTopicsAccordion">
+                <div class="accordion-body">
+                  <div class="lecture-list">
+                    <div *ngFor="let lecture of department.lectures" class="lecture-item mb-2 p-3 rounded">
+                      <div class="d-flex align-items-center">
+                        <span class="lecture-icon me-2" [class]="getLectureIcon(lecture.typeId)"></span>
+                        <span class="lecture-title">{{ lecture.titleAr }}</span>
+                      </div>
+                    </div>
+                    <div *ngIf="department.lectures.length === 0" class="text-muted fst-italic">
+                      لا توجد محاضرات في هذا القسم حالياً
+                    </div>
+                  </div>
+                </div>
               </div>
+                      </div>
+                       <div
+                  *ngIf="departments.length === 0"
+                  class="text-center text-muted my-5"
+                >
+                  لم يتم إضافة موضوعات للبرنامج
+                </div>
+                    </div>
+                  </div>
+
+                      <!-- محتوى "التقييمات" -->
+                      <div class="mb-4">
+                        <h5 class="fs-5 fw-bold">التقييمات</h5>
+                        <div class="review-item mt-3">
+                          <p class="col-lg-6 mb-1"><strong>محمد خالد</strong></p>
+                          <p class="col-lg-6 small text-muted text-start">⭐ 4.5</p>
+                          <p>دورة مفيدة أنصح بها بشدة</p>
+                          
+                        </div>
+                      </div>
+                    </div>
+              <div class="tab-pane fade" id="goals" role="tabpanel">
+              <p [innerHTML]="program.descriptionAr"></p>
             </div>
-            <div *ngIf="department.lectures.length === 0" class="text-muted fst-italic">
-              لا توجد محاضرات في هذا القسم حالياً
-            </div>
-          </div>
-        </div>
-        <div *ngIf="departments.length === 0" class="text-center text-muted my-3">
-          لم يتم إضافة موضوعات للبرنامج
-        </div>
-      </div>
-    </div>
-    
-    <!-- محتوى "التقييمات" -->
-    <div class="mb-4">
-      <h5 >التقييمات</h5>
-      <div class="review-item mt-3">
-        <p class="mb-1"><strong>محمد خالد</strong></p>
-        <p class="small text-muted">دورة مفيدة أنصح بها بشدة ⭐ 4.5</p>
-      </div>
-    </div>
-  </div>
-            <div class="tab-pane fade" id="goals" role="tabpanel">
-              <p [innerHTML]="program.descriptionEn"></p>
-              <!-- <ul>
-                <li>فهم أساسيات الرقابة وتحسين الأداء.</li>
-                <li>إتقان أساليب إعداد تقارير رقابية دقيقة وموضوعية.</li>
-                <li>
-                  تعزيز القدرة على تحليل البيانات وتقديم التوصيات المناسبة.
-                </li>
-              </ul> -->
-            </div>
+            
             <div class="tab-pane fade" id="requirements" role="tabpanel">
               <h6>المتطلبات الأساسية:</h6>
               <div [innerHTML]="program.programRequirementsAr"></div>
             </div>
             <div class="tab-pane fade" id="topics" role="tabpanel">
               <div class="program-topics-container">
-                <div
+                
+                <div class="accordion" id="programTopicsAccordion">
+            <div *ngFor="let department of departments; let i = index" class="accordion-item">
+              
+              <h2 class="accordion-header accordion-border" id="heading-{{ i }}">
+                <button class="accordion-button collapsed d-flex justify-content-between" type="button" data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#collapse-' + i" aria-expanded="false" [attr.aria-controls]="'collapse-' + i">
+                  {{ department.titleAr }}
+                </button>
+              </h2>
+              <div [id]="'collapse-' + i" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading-' + i"
+                data-bs-parent="#programTopicsAccordion">
+                <div class="accordion-body">
+                  <div class="lecture-list">
+                    <div *ngFor="let lecture of department.lectures" class="lecture-item mb-2 p-3 rounded">
+                      <div class="d-flex align-items-center">
+                        <span class="lecture-icon me-2" [class]="getLectureIcon(lecture.typeId)"></span>
+                        <span class="lecture-title">{{ lecture.titleAr }}</span>
+                      </div>
+                    </div>
+                    <div *ngIf="department.lectures.length === 0" class="text-muted fst-italic">
+                      لا توجد محاضرات في هذا القسم حالياً
+                    </div>
+                  </div>
+                </div>
+              </div>
+                      </div>
+                    </div>
+                <!-- <div
                   *ngFor="let department of departments"
                   class="program-topic mb-5"
                 >
@@ -210,7 +259,7 @@
                       لا توجد محاضرات في هذا القسم حالياً
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <div
                   *ngIf="departments.length === 0"
@@ -253,7 +302,7 @@
                 <span class="fw-bold">{{program.programCostName?'مدفوع':'مجاني'}}</span>
               </div>
               <div class="line-divider"></div>
-              <ul class="list-unstyled small mt-4 program-info">
+              <ul class="list-unstyled small mt-4 program-info side">
                 <li class="d-flex align-items-center mb-3">
                   <span class="ms-2">
                     <svg

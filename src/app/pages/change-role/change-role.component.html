@@ -1,0 +1,16 @@
+
+<main class="form-signin my-5 text-center">
+    <div class="landing_roles_inner">
+        <div>
+            <a aria-label="link" [routerLink]="['/home']">
+                <img class="mb-3" src="/logo_ar.svg" width="300" alt="logo">
+            </a>
+        </div>
+        <h3 class="m-3 mb-4" *ngIf="currentRoles.length > 0">
+            المتابعة بصلاحية ...
+        </h3>
+        <a *ngFor="let currentRole of currentRoles" class="btn btn-lg btn-primary p-3 ps-5 pe-5 m-2" (click)="changeCurrentRole(currentRole.roleId)">
+            {{currentRole.nameAr}}
+        </a>
+    </div>
+    </main>

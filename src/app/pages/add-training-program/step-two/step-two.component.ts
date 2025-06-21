@@ -8,11 +8,12 @@ import {
 } from '@angular/forms';
 import { AppLookUpServiceService } from '../../../@core/services/app-look-up-service.service';
 import { AppLookUpResponse } from '../../../@models/app-lookup-response.model';
+import { TextEditor } from '../../../@shared/text-editor/text-editor.component';
 
 @Component({
   selector: 'app-step-two',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,TextEditor],
   templateUrl: './step-two.component.html',
   styleUrl: './step-two.component.scss',
 })
@@ -71,7 +72,8 @@ export class StepTwoComponent implements OnInit {
       // Regular expression for Arabic characters
       const arabicPattern = /^[\u0600-\u06FF\s.,!؟()[\]{}:;'"،0-9-_]+$/;
 
-      const valid = arabicPattern.test(control.value);
+       const plainText = control.value.replace(/<[^>]*>/g, '').trim();
+      const valid = arabicPattern.test(plainText);
       return valid ? null : { arabicOnly: { value: control.value } };
     };
   }
@@ -85,8 +87,8 @@ export class StepTwoComponent implements OnInit {
 
       // Regular expression for English characters
       const englishPattern = /^[A-Za-z\s.,!?()[\]{}:;'"0-9-_]+$/;
-
-      const valid = englishPattern.test(control.value);
+       const plainText = control.value.replace(/<[^>]*>/g, '').trim();
+      const valid = englishPattern.test(plainText);
       return valid ? null : { englishOnly: { value: control.value } };
     };
   }

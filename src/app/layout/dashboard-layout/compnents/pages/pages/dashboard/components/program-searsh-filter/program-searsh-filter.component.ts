@@ -19,11 +19,13 @@ export class ProgramSearshFilterComponent implements OnInit{
   @Input() category: AppLookUpResponse[] = [];
   @Input() paths: AppLookUpResponse[] = [];
   @Input() tags: AppLookUpResponse[] = [];
+  @Input() showRate:boolean=true;
   isActive: boolean = true;
   isNotActive: boolean = false;
   isArabic: boolean = true;
   isEnglish: boolean = false;
   ngOnInit(): void {}
+  
   onAddProgram() {
     this.addProgram.emit();
   }

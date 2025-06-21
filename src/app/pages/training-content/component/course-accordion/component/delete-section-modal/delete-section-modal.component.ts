@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SectionsService } from '../../../../services/training-content-service';
+import { ToasterService } from '../../../../../../@shared/toaster.service';
 
 @Component({
   selector: 'app-delete-section-modal',
@@ -12,8 +13,7 @@ export class DeleteSectionModalComponent {
   @Input() sectionId : any;
   @Output() close = new EventEmitter<void>();
   @Output() confirm = new EventEmitter<void>();
-  constructor(
-    private sectionService: SectionsService ){}
+  constructor( private sectionService: SectionsService ,private toaster: ToasterService){}
   closeModal(): void {
     this.close.emit();
   }
@@ -22,14 +22,14 @@ export class DeleteSectionModalComponent {
     this.sectionService.deleteSection(this.sectionId)
       .subscribe({
       next: (response) => {
-       alert('تم حذف القسم بنجاح');
+       this.toaster.success('تم حذف القسم بنجاح');
         document.getElementById('closeModalBtn')?.click();
       },
       complete: () => {
         console.log('Form submission completed');
       },
       error: (error) => {
-         alert('حدث خطأ ما ولم يتم حذف القسم');
+         this.toaster.error('حدث خطأ ما ولم يتم حذف القسم');
         console.error('Error submitting form:', error);
       
       }

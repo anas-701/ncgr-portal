@@ -1,0 +1,126 @@
+<!-- <p>reports.component works!</p> -->
+<section class="container-fluid">
+  <div class="container-xxl">
+    <div class="row ncgr-main-area dashboard-pages">
+      <!-- content page here  -->
+      <!-- Content | start -->
+      <div class="col-9">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+            <li class="breadcrumb-item active" aria-current="page">التقارير</li>
+          </ol>
+        </nav>
+        <div class="d-flex justify-content-between w-80">
+          <div><h1>التقارير</h1></div>
+
+          <div class="custom-radio-group-container">
+    <div class="btn-group my-custom-btn-group" role="group" aria-label="Category selection group">
+        
+        <div class="radio-button-wrapper">
+            <input type="radio" class="btn-check" name="btnradio" id="radioCategory1" autocomplete="off" checked>
+            <label class="btn custom-radio-label" for="radioCategory1">المسارات</label>
+        </div>
+
+        <div class="horizontal-separator-line"></div>
+
+        <div class="radio-button-wrapper">
+            <input type="radio" class="btn-check" name="btnradio" id="radioCategory2" autocomplete="off">
+            <label class="btn custom-radio-label" for="radioCategory2">البرامج</label>
+        </div>
+
+        <div class="horizontal-separator-line"></div>
+
+        <div class="radio-button-wrapper">
+            <input type="radio" class="btn-check" name="btnradio" id="radioCategory3" autocomplete="off">
+            <label class="btn custom-radio-label" for="radioCategory3">الورش</label>
+        </div>
+
+        <div class="horizontal-separator-line"></div>
+
+        <div class="radio-button-wrapper">
+            <input type="radio" class="btn-check" name="btnradio" id="radioCategory4" autocomplete="off">
+            <label class="btn custom-radio-label" for="radioCategory4">البرامج العامة</label>
+        </div>
+        
+        <div class="horizontal-separator-line"></div>
+
+        <div class="radio-button-wrapper">
+            <input type="radio" class="btn-check" name="btnradio" id="radioCategory5" autocomplete="off">
+            <label class="btn custom-radio-label" for="radioCategory5">الشهادات</label>
+        </div>
+    </div>
+</div>
+          
+        </div>
+
+         
+
+        <!-- ###################################################### -->
+
+        <div class="row mt-4 shadow w-80">
+          <div class="d-flex justify-content-between">
+            <h2 class="pt-3">المسارات التدريبيه</h2>
+            <div>
+              <img src="xls.svg" alt="icon" width="40px" />
+              <img src="maximize.svg" alt="icon" width="40px" />
+            </div>
+          </div>
+          <div class="">
+            <input
+              type="text"
+              class="form-control my-3 py-2"
+              placeholder="البحث عن برنامج ..."
+              aria-label="البحث عن برنامج ..."
+              aria-describedby="button-addon2"
+            />
+            <!-- ########################################################################### -->
+
+            <table
+              class="table table-bordered table table-bordered table-no-vertical-lines"
+            >
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">اسم المسار</th>
+                  <th scope="col">لغة المسار</th>
+                  <th scope="col">حالة المسار</th>
+                  <th scope="col">البرامج التدريبية</th>
+                  <th scope="col">البرامج العامة</th>
+                  <th scope="col">المتدربين</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>المسار المالي</td>
+                  <td>العربية والانجليزية</td>
+                  <td>مفعل</td>
+                  <td>50</td>
+                  <td>1</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td>مسار الموارد البشرية</td>
+                  <td>الإنجليزية</td>
+                  <td>مفعل</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <td>مسار المشتريات</td>
+                  <td>الإنجليزية</td>
+                  <td>غير مفعل</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>200</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- ########################################################################### -->
+          </div>
+        </div>
+      </div>
+      <!-- end code    -->
+    </div>
+  </div>
+</section>

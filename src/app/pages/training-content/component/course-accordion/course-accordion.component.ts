@@ -17,6 +17,7 @@ import { TestInfoModalComponent } from './component/test-info-modal/test-info-mo
 import { AddTfModalComponent } from './component/add-tf-modal/add-tf-modal.component';
 import { AddMcqModalComponent } from './component/add-mcq-modal/add-mcq-modal.component';
 import { SectionsService } from '../../services/training-content-service';
+import { ToasterService } from '../../../../@shared/toaster.service';
 
 @Component({
   selector: 'app-course-accordion',
@@ -57,7 +58,7 @@ export class CourseAccordionComponent {
   selectedTest: Lecture | null = null;
   selectedLectureType?: any;
   selectedQuestion: Question | null = null;
-  constructor(private sectionService: SectionsService) {}
+  constructor(private sectionService: SectionsService,private toaster: ToasterService) {}
 
   ngOnInit(): void {
     this.getSectionsByProgramId(this.programId);
@@ -195,12 +196,12 @@ export class CourseAccordionComponent {
     this.loading = true;
     this.sectionService.createLecture(lectureData).subscribe({
       next: (response) => {
-        alert('تمت إضافة المحاضرة بنجاح');
+        this.toaster.success('تمت إضافة المحاضرة بنجاح');
         this.loading = false;
         this.getSectionsByProgramId(this.programId);
       },
       error: (error) => {
-        alert('حدث خطأ أثناء إضافة المحاضرة');
+        this.toaster.error('حدث خطأ أثناء إضافة المحاضرة');
         this.loading = false;
 
         console.error('Error adding lecture:', error);
@@ -243,13 +244,13 @@ export class CourseAccordionComponent {
             this.sections[sectionIndex].lectures[lectureIndex] = updatedLecture;
           }
 
-          alert('تمت تعديل المحاضرة بنجاح');
+          this.toaster.success('تمت تعديل المحاضرة بنجاح');
           this.loading = false;
         }
         this.getSectionsByProgramId(this.programId);
       },
       error: (error) => {
-        alert('حدث خطأ أثناء تعديل المحاضرة');
+        this.toaster.error('حدث خطأ أثناء تعديل المحاضرة');
         this.loading = false;
 
         console.error('Error adding lecture:', error);
@@ -266,7 +267,7 @@ export class CourseAccordionComponent {
     this.loading = true;
     this.sectionService.deleteLecture(this.selectedLecture!.id).subscribe({
       next: (response) => {
-        alert('تم حذف المحاضرة بنجاح');
+        this.toaster.success('تم حذف المحاضرة بنجاح');
         this.loading = false;
         this.getSectionsByProgramId(this.programId);
       },
@@ -274,7 +275,7 @@ export class CourseAccordionComponent {
         console.log('Form submission completed');
       },
       error: (error) => {
-        alert('حدث خطأ ما ولم يتم حذف المحاضرة');
+        this.toaster.error('حدث خطأ ما ولم يتم حذف المحاضرة');
         this.loading = false;
 
         console.error('Error submitting form:', error);
@@ -309,27 +310,27 @@ export class CourseAccordionComponent {
         0
       );
       if (exameTotal + question.questionDegree > this.selectedTest.exameTotal) {
-        alert(
+        this.toaster.warning(
           'نتيجه الاختبار يجب ان تكون اقل من او تساوي  ' +
             this.selectedTest.exameTotal
         );
         return;
       }
       if (!question.choiceCorrect) {
-        alert('يجب اختيار اجابة قبل الحفظ ');
+        this.toaster.warning('يجب اختيار اجابة قبل الحفظ ');
         return;
       }
       this.loading = true;
       this.sectionService.addQuestion(question).subscribe({
         next: (response) => {
-          alert('تم اضافة السؤال بنجاح');
+          this.toaster.success('تم اضافة السؤال بنجاح');
           this.loading = false;
         },
         complete: () => {
           console.log('Form submission completed');
         },
         error: (error) => {
-          alert('حدث خطأ ما ولم يتم اضافة السؤال');
+          this.toaster.error('حدث خطأ ما ولم يتم اضافة السؤال');
           this.loading = false;
           console.error('Error submitting form:', error);
         },
@@ -362,24 +363,24 @@ export class CourseAccordionComponent {
         0
       );
       if (exameTotal + question.questionDegree > this.selectedTest.exameTotal) {
-        alert(
+        this.toaster.warning(
           'نتيجه الاختبار يجب ان تكون اقل من او تساوي  ' +
             this.selectedTest.exameTotal
         );
         return;
       }
       if (!question.choiceCorrect) {
-        alert('يجب اختيار اجابة قبل الحفظ ');
+        this.toaster.warning('يجب اختيار اجابة قبل الحفظ ');
         return;
       }
       this.loading = true;
       this.sectionService.updateQuestion(question).subscribe({
         next: (response) => {
-          alert('تم تعديل السؤال بنجاح');
+          this.toaster.success('تم تعديل السؤال بنجاح');
           this.loading = false;
         },
         error: (error) => {
-          alert('حدث خطأ ما ولم يتم تعديل السؤال');
+          this.toaster.error('حدث خطأ ما ولم يتم تعديل السؤال');
           this.loading = false;
 
           console.error('Error submitting form:', error);
@@ -401,11 +402,11 @@ export class CourseAccordionComponent {
       this.loading = true;
       this.sectionService.deleteQuestion(questionId).subscribe({
         next: (response) => {
-          alert('تم حذف السؤال بنجاح');
+          this.toaster.success('تم حذف السؤال بنجاح');
           this.loading = false;
         },
         error: (error) => {
-          alert('حدث خطأ ما ولم يتم حذف السؤال');
+          this.toaster.error('حدث خطأ ما ولم يتم حذف السؤال');
           this.loading = false;
 
           console.error('Error submitting form:', error);

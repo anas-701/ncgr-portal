@@ -5,52 +5,59 @@
     <div class="container">
       <div class="sm_inner_header">
         <div class="breadcrumb_inner">
-          <ul>
-            <li class="link_page">
-              <a routerLink="/">الرئيسية</a>
-              <img [src]="academyData.images.arrowBread" alt="">
+          <ul class="modern-breadcrumb">
+            <li>
+              <a routerLink="/" class="breadcrumb-link">
+                <span class="breadcrumb-text active">الرئيسية</span>
+              </a>
+              <span class="breadcrumb-arrow">›</span>
             </li>
-            <li>عن الاكاديمية</li>
-          </ul>
+            <li >
+              <span>عن المنصة</span>
+            </li>
+        </ul>
         </div>
-        <div class="share_btns">
+        <!-- <div class="share_btns">
           <a href=""><img [src]="academyData.images.print" alt=""></a>
           <a href=""><img [src]="academyData.images.share" alt=""></a>
           <a href=""><img [src]="academyData.images.email" alt=""></a>
-        </div>
+        </div> -->
       </div>
+      <hr>
   
       <div class="academy_title">
-        <h5 class="title_text">
+        <h2 class="title_text">
           {{ academyData.titles.pageTitle }}
-        </h5>
+        </h2>
   
-        <div class="row mt-4">
-          <div class="col-md-7">
+        <div class="row mt-5 align-items-center">
+          <div class="col-md-5">
             <div class="details_side">
-              <h6>{{ academyData.titles.firstSectionTitle }}</h6>
-              <p>{{ academyData.description }}</p>
+              <h3>{{ academyData.titles.firstSectionTitle }}</h3>
+              <p class="fs-5">{{ academyData.description }}</p>
             </div>
           </div>
-          <div class="col-md-5">
+          <div class="col-md-7">
             <div class="img_side_1">
-              <img [src]="academyData.images.firstSectionImage" alt="">
+              <img [src]="academyData.images.firstSectionImage" alt="" class="img-fluid rounded-3 shadow w-100 h-100">
             </div>
           </div>
         </div>
   
-        <div class="row mt-4">
-          <div class="col-md-5">
+        <div class="row mt-5 align-items-center">
+          <div class="col-md-7 ">
             <div class="img_side_1">
-              <img [src]="academyData.images.secondSectionImage" alt="">
+              <img [src]="academyData.images.secondSectionImage" alt="" class="img-fluid rounded-3 shadow w-100 h-100">
             </div>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-5">
             <div class="details_side">
-              <h6>{{ academyData.titles.secondSectionTitle }}</h6>
-              <span *ngFor="let point of academyData.points">
-                {{ point }}
-              </span>
+              <h3>{{ academyData.titles.secondSectionTitle }}</h3>
+              <ul class="fs-5 list-unstyled"> 
+                <li *ngFor="let point of academyData.points" class="mb-2">
+                  <i class="bi bi-check-circle-fill text-primary me-2"></i> {{ point }}
+                </li>
+              </ul>
             </div>
           </div>
         </div>

@@ -7,23 +7,20 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { SharedCardComponent } from '../../../../../../@shared/shared-card/shared-card.component';
 import { ProgramCardComponent } from '../../../../../../@shared/program-card/program-card.component';
 import { SideBarComponent } from '../../../../../../pages/side-bar/side-bar.component';
 import { TrainingProgramsService } from '../../../../../../@core/services/training-programs.service';
 // import { MatPaginator } from '@angular/material/paginator';
 // import { MatSort } from '@angular/material/sort';
-import {
-  GetAllProgramsRequest,
-  OrderByValue,
-  GetAllProgramsResponse,
-} from '../../../../../../@models/training-program.model';
+import { GetAllProgramsRequest, OrderByValue, GetAllProgramsResponse } from '../../../../../../@models/training-program.model';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { AppLookUpServiceService } from '../../../../../../@core/services/app-look-up-service.service';
 import { AppLookUpResponse } from '../../../../../../@models/app-lookup-response.model';
 import { ProgramHeaderComponent } from './components/program-header/program-header.component';
 import { ProgramSearshFilterComponent } from './components/program-searsh-filter/program-searsh-filter.component';
 import { TrackPaginationComponent } from '../../../../../../pages/training-track/components/track-pagination/track-pagination.component';
+import { SidebarComponent } from '../../../sidebar/sidebar.component';
+import { ToasterService } from '../../../../../../@shared/toaster.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,10 +29,7 @@ import { TrackPaginationComponent } from '../../../../../../pages/training-track
     CommonModule,
     RouterModule,
     FormsModule,
-    // SharedCardComponent,
     ProgramCardComponent,
-    SideBarComponent,
-    // MatPaginator,
     ReactiveFormsModule,
     ProgramHeaderComponent,
     ProgramSearshFilterComponent,
@@ -51,8 +45,7 @@ export class DashboardComponent implements OnInit {
   paths: AppLookUpResponse[] = [];
   tags: AppLookUpResponse[] = [];
   selectedStatus: string = '';
-  // @ViewChild(MatPaginator) paginator!: MatPaginator;
-  // @ViewChild(MatSort) sort!: MatSort;
+
   programs: GetAllProgramsResponse[] = [];
   allPrograms: GetAllProgramsResponse[] = [];
   totalItems = 0;
@@ -60,7 +53,7 @@ export class DashboardComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
   itemsPerPage = 6;
-
+  showRate = true;
   requestParams: GetAllProgramsRequest = {
     pageNumber: 1,
     pageSize: 6,
@@ -86,18 +79,20 @@ export class DashboardComponent implements OnInit {
     private programService: TrainingProgramsService,
     private fb: FormBuilder,
     private appLookUpService: AppLookUpServiceService,
-    private router: Router
+    private router: Router,
+    private toaster: ToasterService
   ) {
+
     this.searchForm = this.fb.group({
       programName: [''],
       status: this.fb.group({
-      isActive: [false],
-      isNotActive: [false]
-    }),
-    language: this.fb.group({
-      arabic: [false],
-      english: [false]
-    }),
+        isActive: [false],
+        isNotActive: [false]
+      }),
+      language: this.fb.group({
+        arabic: [false],
+        english: [false]
+      }),
       categoryId: [0],
       pathId: [0],
       tageId: [0],
@@ -193,6 +188,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadPrograms(): void {
+    debugger
     this.isLoading = true;
 
     const request = this.buildRequestParams();
@@ -235,13 +231,13 @@ export class DashboardComponent implements OnInit {
     this.searchForm.reset({
       programName: '',
       status: {
-      isActive: false,
-      isNotActive: false
-    },
-    language: {
-      arabic: false,
-      english: false
-    },
+        isActive: false,
+        isNotActive: false
+      },
+      language: {
+        arabic: false,
+        english: false
+      },
       categoryId: 0,
       pathId: 0,
       tageId: 0,
@@ -283,20 +279,19 @@ export class DashboardComponent implements OnInit {
   onProgramDelete(programId: number): void {
     // Handle program deletion
     console.log('Delete program:', programId);
-    if (confirm('هل أنت متأكد من حذف هذا البرنامج؟')) {
-      this.programService
-        .deleteTrainingProgram(programId.toString())
-        .subscribe({
-          next: () => {
-            // Reload programs after deletion
-            this.loadPrograms();
-            alert('تم حذف البرنامج بنجاح');
-          },
-          error: (error: any) => {
-            console.error('Error deleting program:', error);
-          },
-        });
-    }
+
+    this.programService
+      .deleteTrainingProgram(programId.toString())
+      .subscribe({
+        next: () => {
+          // Reload programs after deletion
+          this.loadPrograms();
+          this.toaster.success('تم حذف البرنامج بنجاح');
+        },
+        error: (error: any) => {
+          this.toaster.error('حدث خطأ أثناء حذف البرنامج');
+        },
+      });
   }
 
   // onTrainingContent(programId: number): void {

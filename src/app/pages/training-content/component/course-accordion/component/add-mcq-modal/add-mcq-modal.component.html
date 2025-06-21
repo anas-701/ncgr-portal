@@ -26,7 +26,9 @@
                             <input  type="text" id="option-{{i}}" [(ngModel)]="option.choice"  placeholder="ادخل نص الأختيار" class="form-control" >
                             <div class="input-group-append">
                             <div class="input-group-text">
-                                <input type="radio" name="correctAnswer" [checked]="newQuestion.correctAnswer === i" (change)="newQuestion.correctAnswer = i" [id]="'correct-'+i">
+                                <!-- <input type="radio" name="correctAnswer" [checked]="newQuestion.correctAnswer === i" (change)="newQuestion.correctAnswer = i" [id]="'correct-'+i"> -->
+                                <input type="radio" name="correctAnswer" [(ngModel)]="newQuestion.correctAnswer" [value]="i" [id]="'correct-'+i">
+
                                 <label [for]="'correct-'+i" class="ml-2 mb-0">إجابة صحيحة</label>
                             </div>
                             </div>
@@ -44,7 +46,7 @@
 
                     <div class="add_new_choose">
                         <button type="button" class="btn" (click)="addOption()">
-                            <img src="acc_icon_48.svg" alt="">
+                            <img src="acc_icon_48.svg" alt="" class="add_icon">
                             اضف اختيار اخر
                         </button>
                     </div>

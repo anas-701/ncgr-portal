@@ -1,0 +1,421 @@
+<!-- <p>tag-create.component works!</p> -->
+
+<section class="create_program">
+  <div class="container-xxl">
+    <div class="d-flex gap-4">
+      <div class="flex-grow-1">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+            <li class="breadcrumb-item active" aria-current="page">الوسوم</li>
+          </ol>
+        </nav>
+        <h1>الوسوم</h1>
+        <div class="row justify-content-end">
+          <div class="col-auto">
+            <button
+              class="btn btn-primary ps-3 pe-3"
+              type="button"
+              (click)="onAddTag()"
+            >
+              <img width="18" src="/21.svg" alt="" />
+              انشاء وسم
+            </button>
+          </div>
+
+          <div class="row mt-4" [formGroup]="searchForm">
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="البحث عن وسم ..."
+                aria-label="البحث عن وسم ..."
+                aria-describedby="button-addon2"
+                formControlName="tagName"
+              />
+              <div class="dropdown search-options-btn_menu">
+                <button
+                  aria-label="button"
+                  type="submit"
+                  class="d-flex align-items-center text-decoration-none dropdown-toggle position-relative search-options-btn btn btn-outline-secondary"
+                  id="dropdownUser2"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="تصفية"
+                    width="32"
+                    src="icons/23.svg"
+                    alt=""
+                  />
+                </button>
+                <ul
+                  class="dropdown-menu shadow animate slideIn"
+                  aria-labelledby="dropdownUser2"
+                >
+                  <li class="p-2 dropdown-menu_body">
+                    <h6 class="text-end">حالة الوسم</h6>
+                    <div
+                      class="d-flex justify-content-start align-items-center gap-2"
+                      formGroupName="status"
+                    >
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="flexCheckDefault1"
+                        formControlName="isActive"
+                      />
+                      <label class="form-check-label" for="addStatusId">
+                        {{
+                          tagForm.get("statusId")?.value ? "مفعل" : "غير مفعل"
+                        }}
+                      </label>
+                    </div>
+                    <div
+                      class="d-flex justify-content-start align-items-center gap-2"
+                      formGroupName="status"
+                    >
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="flexCheckDefault2"
+                        formControlName="isNotActive"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault2">
+                        غير مفعل
+                      </label>
+                    </div>
+
+                    <h6 class="text-end">مجموع البرامج</h6>
+                    <div
+                      class="d-flex justify-content-start align-items-center gap-2"
+                    >
+                      <input
+                        placeholder="input"
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault3"
+                      />
+                      <label class="form-check-label" for="flexRadioDefault3">
+                        تصاعدي
+                      </label>
+                    </div>
+                    <div
+                      class="d-flex justify-content-start align-items-center gap-2"
+                    >
+                      <input
+                        placeholder="input"
+                        class="form-check-input"
+                        type="radio"
+                        name="flexRadioDefault"
+                        id="flexRadioDefault4"
+                        checked
+                      />
+                      <label class="form-check-label" for="flexRadioDefault4">
+                        تنازلي
+                      </label>
+                    </div>
+                  </li>
+                  <li class="pt-2 pb-2">
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <div class="p-2">
+                      <!-- (click)="onLoadProgram()" -->
+                      <button type="button" class="btn btn-primary me-2">
+                        تطبيق
+                      </button>
+                      <!-- (click)="onResetFilters()" -->
+                      <button type="button" class="btn btn-outline-secondary">
+                        إعادة تعيين
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- ############################################################################# -->
+          <div class="col-md-4 mt-4 ms-auto">
+            <div class="container-fluid paths-box-outer">
+              <div class="row align-items-center text-center mt-3">
+                <div class="col-12 mb-2">
+                  <h5>#اداره المخاطر</h5>
+                </div>
+              </div>
+              <div class="row justify-content-center mb-3">
+
+                <!-- Training Programs Count -->
+                <div class="col-auto tag-item mb-2">برنامج تدريبي</div>
+
+
+              </div>
+              <div class="row pt-2 align-items-center">
+                <div class="col-auto">
+                  <span class="fw-500"> مفعل </span>
+                  <img width="20" src="icons/27.svg" alt="" />
+                </div>
+                <div class="col">
+                  <select
+                    class="form-select"
+                    aria-label="تغيير الحالة"
+                    [disabled]=""
+                  >
+                    <option value="" disabled selected>التغيير الي ...</option>
+                    <option>status.name</option>
+                  </select>
+                  <div *ngIf="isProcessing" class="mt-1 text-center">
+                    <span
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="ms-1">جاري التحديث...</span>
+                  </div>
+                </div>
+              </div>
+              <hr class="mt-3" />
+              <div class="row align-items-center text-center programs-box-btns">
+                <div class="col action-btn mb-2">
+                  <a aria-label="link" href="#" routerLink="/tag-details" class="d-block p-2">
+                    <img
+                      width="28"
+                      src="icons8-eye-48.png"
+                      alt=""
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="تفاصيل "
+                  /></a>
+                </div>
+                <div
+                  class="col action-btn mb-2"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="تعديل"
+                >
+                  <a
+                    aria-label="link"
+                    href="#"
+                    class="d-block p-2"
+                    (click)="
+                      $event.preventDefault();
+                      onEdit({
+                        id: 1,
+                        titleAr: 'اداره المخاطر',
+                        titleEn: 'Risk Management',
+                        statusId: true
+                      })
+                    "
+                    ><img width="28" src="icons/29.svg" alt=""
+                  /></a>
+                </div>
+
+                <div
+                  class="col action-btn mb-2"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="حذف"
+                >
+                  <a aria-label="link" href="#" class="d-block p-2"
+                  (click)="$event.preventDefault(); openDeleteConfirmation()"
+                    ><img width="28" src="icons/32.svg" alt=""
+                  /></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ############################################################################# -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Create New Tag Modal -->
+<div
+  class="modal fade show"
+  [class.d-block]="showModal"
+  [class.d-none]="!showModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addTagModalLabel"
+  [attr.aria-hidden]="!showModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addTagModalLabel">
+          <img class="pe-1" width="28" src="36.svg" alt="" />
+          انشاء وسم جديد
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="onCloseTag()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Alert Messages -->
+        <div class="alert alert-danger" *ngIf="formError">
+          {{ formError }}
+        </div>
+        <div class="alert alert-success" *ngIf="formSuccess">
+          {{ formSuccess }}
+        </div>
+
+        <div class="container-fluid">
+    <div class="row">
+        <form [formGroup]="tagForm">
+            <div class="mb-4 mt-2">
+                <label for="addTitleAr" class="form-label fw-500">اسم الوسم (بالعربية)</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    [class.is-invalid]="tagForm.get('titleAr')?.invalid && tagForm.get('titleAr')?.touched"
+                    [class.is-valid]="tagForm.get('titleAr')?.valid && tagForm.get('titleAr')?.touched"
+                    id="addTitleAr"
+                    formControlName="titleAr"
+                    placeholder="ادخل اسم الوسم بالعربية"
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="tagForm.get('titleAr')?.invalid && tagForm.get('titleAr')?.touched"
+                >
+                    <div *ngIf="tagForm.get('titleAr')?.errors?.['required']">
+                        الاسم بالعربية مطلوب.
+                    </div>
+                    </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="addTitleEn" class="form-label fw-500">اسم الوسم (بالانجليزية)</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    [class.is-invalid]="tagForm.get('titleEn')?.invalid && tagForm.get('titleEn')?.touched"
+                    [class.is-valid]="tagForm.get('titleEn')?.valid && tagForm.get('titleEn')?.touched"
+                    id="addTitleEn"
+                    formControlName="titleEn"
+                    placeholder="ادخل اسم الوسم بالانجليزية"
+                />
+                <div
+                    class="invalid-feedback"
+                    *ngIf="tagForm.get('titleEn')?.invalid && tagForm.get('titleEn')?.touched"
+                >
+                    <div *ngIf="tagForm.get('titleEn')?.errors?.['required']">
+                        الاسم بالإنجليزية مطلوب.
+                    </div>
+                    </div>
+            </div>
+
+            <div class="mb-2 fw-500">حالة المسار</div>
+            <div class="fr">
+                <div class="form-check form-switch">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="addStatusId"
+                        [value]="1"
+                        [checked]="tagForm.get('statusId')?.value === 1"
+                        (change)="onUpdateStatus($event)"
+                    />
+                    <label class="form-check-label" for="addStatusId">
+                        {{ tagForm.get("statusId")?.value === 1 ? "مفعل" : "غير مفعل" }}
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary me-2 ps-4 pe-4"
+          [disabled]="tagForm.invalid || processingForm"
+          (click)="onCreate()"
+        >
+          <span
+            *ngIf="processingForm"
+            class="spinner-border spinner-border-sm me-1"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          {{ isEditMode ? "تحديث" : "إنشاء" }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary ps-4 pe-4"
+          (click)="onCloseTag()"
+        >
+          إلغاء
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Backdrop for Add Modal -->
+<div class="modal-backdrop fade show" *ngIf="showModal"></div>
+
+<!-- Delete Confirmation Modal -->
+<div
+  class="modal fade show"
+  [class.d-block]="showDeleteConfirmationModal"  [class.d-none]="!showDeleteConfirmationModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteTrackModalLabel"
+  [attr.aria-hidden]="!showDeleteConfirmationModal"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteTrackModalLabel">تأكيد حذف الوسم</h5> <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="onCloseDeleteConfirmationModal()" ></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" *ngIf="deleteError">
+          {{ deleteError }}
+        </div>
+        <div class="alert alert-success" *ngIf="deleteSuccess">
+          {{ deleteSuccess }}
+        </div>
+
+        <p>هل أنت متأكد من حذف الوسم "{{ selectedTagToDelete?.titleAr }}"؟</p> <p>هذا الإجراء لا يمكن التراجع عنه.</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="onCloseDeleteConfirmationModal()" >
+          إلغاء
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          [disabled]="processingDelete"
+          (click)="selectedTagToDelete?.id && onConfirmDeleteTag(1)" >
+          <span
+            *ngIf="processingDelete"
+            class="spinner-border spinner-border-sm me-1"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          حذف
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop fade show" *ngIf="showDeleteConfirmationModal"></div>

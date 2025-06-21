@@ -1,0 +1,123 @@
+<section class="mt-4 mb-4">
+    <div class="container-xxl">
+        <div class="d-flex gap-4">
+            <!-- <div class="">
+                <app-sidebar></app-sidebar>
+            </div> -->
+            <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-end">
+                    <div>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a [routerLink]="['/control-panel']">الرئيسية</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">التقييمات</li>
+                            </ol>
+                        </nav>
+                        <h1>التقييمات</h1>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-auto">
+                            <button class="btn btn-primary ps-3 pe-3" type="submit" [routerLink]="['/workshops/create']"><img width="18" src="icons/21.svg" alt="">إنشاء تقييم</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="input-group mb-3 flex gap-3">
+                        <input type="text" class="form-control" placeholder="البحث عن تقييم ..."
+                            aria-label="البحث عن تقييم ..." aria-describedby="button-addon2">
+                        <div class="dropdown search-options-btn_menu ">
+                            <button aria-label="button" type="submit"
+                                class="d-flex align-items-center text-decoration-none dropdown-toggle position-relative search-options-btn btn btn-outline-secondary"
+                                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+
+                                <img data-bs-toggle="tooltip" data-bs-placement="top" title="تصفية" width="32"
+                                    src="icons/23.svg" alt="">
+
+                            </button>
+                            <ul class="dropdown-menu  shadow animate slideIn" aria-labelledby="dropdownUser2">
+                                <!-- <app-workshop-filter (onFilter)="onFilter($event)"/> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row pt-2">
+                    <!-- Loading State -->
+                    <div *ngIf="isLoading" class="text-center mt-4">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div *ngFor="let evaluation of evaluationList"
+                        class="col-xxl-4 col-xl-6 rating-box-outer mt-2 mb-3 d-flex flex-column justify-content-between">
+                        <div class="col upper-col">
+                            <div class="row align-items-center text-center mt-3">
+                                <div class="col-12">
+                                    <h5>{{ evaluation.titleAr }}</h5>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center mb-3 ">
+                                <div class="col-auto border-end mb-2">الورش التدريبية
+
+                                </div>
+                                <div class="col-auto border-end mb-2">5 أسئلة
+
+
+                                </div>
+                                <div class="col-auto">20 رد
+
+
+                                </div>
+                            </div>
+                            <div class="row pt-2 align-items-center">
+                                <div class="col-auto"> <span class="fw-500"> مُفعل</span>
+                                    <img width="20" src="assets/img/icons/27.svg" alt="">
+                                </div>
+                                <div class="col">
+                                    <select id="mySelect" class="form-select" aria-label="Default select example">
+                                        <option value="1">التغيير الي ...</option>
+                                        <option value="2">غير مفعل</option>
+
+
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-auto bottom-col mt-3">
+                            <hr>
+                            <div class="row align-items-center text-center programs-box-btns">
+                                <div class="col border-start mb-2">
+                                  <a aria-label="link" (click)="$event.preventDefault();" class="d-block p-2">
+                                    <img width="28" src="icons/28.svg" alt="" data-bs-toggle="tooltip" data-bs-placement="top" title="تفاصيل" />
+                                  </a>
+                                </div>
+                                <div class="col border-start mb-2">
+                                  <a href="#" class="d-block p-2" data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل" (click)="$event.preventDefault();">
+                                    <img width="28" src="icons/29.svg" alt="" />
+                                  </a>
+                                </div>
+                                <div class="col border-start mb-2">
+                                  <a class="d-block p-2" data-bs-toggle="tooltip" data-bs-placement="top" title="الأسئلة" (click)="$event.preventDefault();">
+                                    <img width="28" src="icons/51.svg" alt="" />
+                                  </a>
+                                </div>
+                                <div class="col mb-2">
+                                  <a aria-label="link" href="#" class="d-block p-2" data-bs-toggle="tooltip" data-bs-placement="top" title="حذف" (click)="$event.preventDefault()">
+                                    <img width="28" src="icons/32.svg" alt="" />
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <app-shared-pagination [pagingMetaData]="pagingMetaData" (pageChange)="onPageChange($event)" />
+            </div>
+        </div>
+    </div>
+
+
+</section>

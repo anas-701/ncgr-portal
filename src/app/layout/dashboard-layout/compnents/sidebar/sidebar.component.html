@@ -1,21 +1,50 @@
-<!-- dashboard-side-menu.component.html -->
-<div class="dashboard-side-menu">
-    <ul class="list-unstyled">
-        <li class="menu-title">روابط لوحة التحكم</li>
-        <li>
-            <a [routerLink]="['/dashboard']"><img src="01.svg" alt=""> لوحة التحكم</a>
-        </li>
-        <li>
-            <a [routerLink]="['/forms']"><img src="02.svg" alt=""> النماذج</a>
-        </li>
-        <li>
-            <a [routerLink]="['/profile']"><img src="03.svg" alt=""> الملف الشخصي</a>
-        </li>
-        <li>
-            <a [routerLink]="['/settings']"><img src="04.svg" alt=""> الإعدادات</a>
-        </li>
-        <li>
-            <a [routerLink]="['/help']"><img src="" alt=""> المساعدة</a>
-        </li>
-    </ul>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="sidebar d-flex flex-column flex-shrink-0">
+      <!-- Sidebar Toggle -->
+      <button aria-label="link" class="toggle-btn" (click)="toggleSidebar()">
+        <img src="/icons/93.svg" width="18" alt="icon" />
+      </button>
+
+      <!-- Sidebar Title -->
+      <div class="p-3 pb-0 text-white">
+        <h4 class="logo-text fw-bold mb-0">لوحة التحكم</h4>
+        <hr />
+      </div>
+
+      <!-- Sidebar Items -->
+      <div class="nav flex-column">
+        <ng-container *ngFor="let item of sidebarItems">
+          <!-- Main Item -->
+          <a *ngIf="item.isEnabled" (click)="toggleCollapse(item)"
+            [routerLink]="!item.children || item.children.length === 0 ? item.route : null"
+            class="sidebar-link text-decoration-none d-flex align-items-center justify-content-between">
+
+            <div>
+              <img class="d-inline-block pe-1" width="25" [src]="'/icons/' + item.icon" alt="icon" />
+              <span class="hide-on-collapse">{{ item.label }}</span>
+            </div>
+
+            <!-- Collapse Icon -->
+            <span class="ms-auto" *ngIf="item.children && item.children.length > 0">
+              {{ item.collapsed ? '▼' : '▲' }}
+
+            </span>
+          </a>
+
+          <!-- Children (Collapsible) -->
+          <div *ngIf="item.children && item.children.length > 0 && !item.collapsed" class="sm_card_list ps-4">
+            <ul class="sm_list_dashboard">
+              <li *ngFor="let child of item.children">
+                <a [routerLink]="child.route" class="sidebar-link text-decoration-none hide-on-collapse child-item">
+                  {{ child.label }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </ng-container>
+      </div>
+
+    </nav>
+  </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Question } from '../../../../models/section.model';
+import { ToasterService } from '../../../../../../@shared/toaster.service';
 
 @Component({
   selector: 'app-add-tf-modal',
@@ -23,7 +24,8 @@ export class AddTfModalComponent {
     correctAnswer: true
   };
  editmode: boolean=false;
-
+    constructor(private toaster: ToasterService) {}
+  
   ngOnChanges(): void {
     if (this.question) {
       this.editmode=true
@@ -34,6 +36,10 @@ export class AddTfModalComponent {
       };
     }}
   onSave() {
+    if(!this.isQuestionValid()){
+       this.toaster.error('تأكد من اختيار الاجابه الصحيحه وادخال كل الحقول المطلوبة')
+      return
+    }
     const question :Question= {
           id:0,
           trainingProgramContentDetailsId:0,
@@ -58,4 +64,12 @@ export class AddTfModalComponent {
   closeModal() {
     this.close.emit();
   }
+  isQuestionValid(): boolean {
+  const { text, score, correctAnswer } = this.newQuestion;
+  const isTextValid = text.trim().length >= 3;
+  const isScoreValid = typeof score === 'number' && score > 0;
+  const isCorrectAnswerValid = typeof correctAnswer === 'boolean';
+
+  return isTextValid && isScoreValid && isCorrectAnswerValid;
+}
 }

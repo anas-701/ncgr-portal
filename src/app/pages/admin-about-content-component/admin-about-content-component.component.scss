@@ -1,0 +1,24 @@
+.upload-section {
+    margin-top: 2rem;
+  }
+  
+  .upload-dropzone {
+    border: 2px dashed #ccc;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    transition: border-color 0.3s ease;
+  }
+  
+  .upload-dropzone:hover {
+    border-color: #007bff;
+  }
+  
+  .upload-icon {
+    color: #6c757d;
+  }
+  
+  .upload-hint {
+    font-size: 0.875rem;
+  }
+  

@@ -72,66 +72,19 @@
         <label for="targetAudience" class="form-label"
           >متطلبات البرنامج (بالعربية):</label
         >
-        <div class="rich-text-editor">
-          <div class="toolbar">
-            <div class="d-flex justify-content-between w-100">
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-right"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-center"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-left"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-justify"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ul"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ol"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-dash"></i>
-                </button>
-              </div>
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-bold"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-italic"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-underline"></i>
-                </button>
-                <button type="button" class="btn btn-sm">H1</button>
-                <button type="button" class="btn btn-sm">H2</button>
-                <button type="button" class="btn btn-sm">H3</button>
-                <button type="button" class="btn btn-sm">H4</button>
-                <button type="button" class="btn btn-sm">H5</button>
-                <button type="button" class="btn btn-sm">H6</button>
-              </div>
-            </div>
-          </div>
-          <textarea
-            id="programRequirements"
-            class="form-control editor-area"
-            formControlName="programRequirements"
-            rows="6"
-            [ngClass]="{
-              'is-invalid': isFieldInvalid('programRequirements')
-            }"
-          ></textarea>
-          <div
-            class="invalid-feedback"
-            *ngIf="isFieldInvalid('programRequirements')"
-          >
-            {{ getErrorMessage("programRequirements") }}
-          </div>
+        <app-editor
+          id="programRequirements"
+          formControlName="programRequirements"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('programRequirements')
+          }"
+        ></app-editor>
+
+        <div
+          class="invalid-feedback"
+          *ngIf="isFieldInvalid('programRequirements')"
+        >
+          {{ getErrorMessage("programRequirements") }}
         </div>
       </div>
     </div>
@@ -143,66 +96,18 @@
         <label for="targetAudienceEn" class="form-label"
           >متطلبات البرنامج (بالإنجليزية):</label
         >
-        <div class="rich-text-editor">
-          <div class="toolbar">
-            <div class="d-flex justify-content-between w-100">
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-right"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-center"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-text-left"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-justify"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ul"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-list-ol"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-dash"></i>
-                </button>
-              </div>
-              <div class="d-flex align-items-center">
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-bold"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-italic"></i>
-                </button>
-                <button type="button" class="btn btn-sm">
-                  <i class="bi bi-type-underline"></i>
-                </button>
-                <button type="button" class="btn btn-sm">H1</button>
-                <button type="button" class="btn btn-sm">H2</button>
-                <button type="button" class="btn btn-sm">H3</button>
-                <button type="button" class="btn btn-sm">H4</button>
-                <button type="button" class="btn btn-sm">H5</button>
-                <button type="button" class="btn btn-sm">H6</button>
-              </div>
-            </div>
-          </div>
-          <textarea
-            id="programRequirementsEn"
-            class="form-control editor-area"
-            formControlName="programRequirementsEn"
-            rows="6"
-            [ngClass]="{
-              'is-invalid': isFieldInvalid('programRequirementsEn')
-            }"
-          ></textarea>
-          <div
-            class="invalid-feedback"
-            *ngIf="isFieldInvalid('programRequirementsEn')"
-          >
-            {{ getErrorMessage("programRequirementsEn") }}
-          </div>
+        <app-editor
+          id="programRequirementsEn"
+          formControlName="programRequirementsEn"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('programRequirementsEn')
+          }"
+        ></app-editor>
+        <div
+          class="invalid-feedback"
+          *ngIf="isFieldInvalid('programRequirementsEn')"
+        >
+          {{ getErrorMessage("programRequirementsEn") }}
         </div>
       </div>
     </div>

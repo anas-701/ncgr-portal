@@ -1,1 +1,26 @@
-/*# sourceMappingURL=sidebar.component.css.map */
+.child-item {
+    display: inline-block;
+    background-color: white;
+    color: #000 !important;
+    padding: 6px 12px;
+    border-radius: 50%;
+    text-align: center;
+    min-width: 40px;
+    min-height: 40px;
+    line-height: 28px;
+    font-size: 14px;
+    margin: 5px 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s, color 0.2s;
+    padding-left: 1.5rem;
+    display: block;
+}
+
+.child-item:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+}
+
+.sidebar-link.active {
+    font-weight: bold;
+  }

@@ -1,0 +1,306 @@
+/* ------------------------| after login | admin | programs |------------------------ */
+
+.prog-info-data-side {
+    padding: 0 20px;
+}
+
+.programs-box-outer {
+    width: 100%;
+    min-width: 400px;
+    min-height: 300px;
+    background-color: blueviolet;
+    position: sticky;
+    top: 20px;
+    background: #FFF;
+    border: 1px solid rgba(0, 0, 0, .2);
+    box-shadow: var(--ncgr_box-shadow);
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.programs-box-title {
+    color: var(--ncgr_txt_color-primary);
+    font-size: 1.0rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.programs-photo-side {
+    height: 160px;
+    margin-bottom: 20px;
+}
+
+.programs-data-side {
+    padding: 5px 10px;
+}
+
+.programs-data-side p {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.programs-data-side p span {
+    display: inline-block;
+    font-size: 1.0rem;
+    margin-left: 3px;
+    margin-right: 3px;
+    /* font-weight: 500; */
+}
+
+.programs-data-side p span a {
+    display: inline-block;
+    color: var(--ncgr_txt_color-primary);
+    text-decoration: underline;
+}
+
+.programs-data-side p span a:hover {
+    text-decoration: none;
+}
+
+.programs-data-side p img {
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.programs-data-side p.fw-500 span {
+    font-size: 1.2rem;
+}
+
+.programs-photo-side img {
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.programs-box-btns a {
+    border-radius: 5px;
+    transition: all ease-in 0.15s;
+}
+
+.programs-box-btns a:hover {
+    background-color: #e5e7eb;
+    transition: all ease-in 0.15s;
+}
+
+.programs-box-outer .disable-this {
+    opacity: 0.75;
+    cursor: not-allowed;
+    background: #8a8a8a;
+    border-color: #8a8a8a;
+}
+
+.already-registered {
+    background: var(--ncgr_secondary_bg_color);
+    border-color: var(--ncgr_secondary_bg_color);
+}
+
+.already-registered:hover {
+    background: #b87b02;
+    border-color: #b87b02;
+}
+
+.Favoritebtn .full-heart {
+    display: none;
+}
+
+.Favoritebtn.added-to-Favorite .full-heart {
+    display: inline-block;
+}
+
+.Favoritebtn.added-to-Favorite .border-heart {
+    display: none;
+}
+
+.prog-info-data-side .nav.nav-pills {
+    background-color: rgba(0, 0, 0, .05);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.prog-info-data-side .nav.nav-pills .nav-item .nav-link {
+    color: var(--ncgr_txt_color-dark);
+    font-weight: 700;
+    font-size: 1.0rem;
+    transition: var(--ncgr_transition);
+    border-bottom: 3px solid transparent !important;
+}
+
+.prog-info-data-side .nav.nav-pills .nav-item .nav-link.active {
+    color: var(--ncgr_txt_color-primary);
+    background: none;
+    border-bottom: 3px solid var(--ncgr_txt_color-primary) !important;
+}
+
+.pills-about-inner,
+.pills-goals-inner,
+.pills-requirements-inner,
+.pills-topics-inner,
+.pills-reviews-inner,
+.pills-dates-inner {
+    font-weight: 500;
+    line-height: 200%;
+    font-size: 1.0rem;
+}
+
+.pills-about-inner h4,
+.pills-goals-inner h4,
+.pills-requirements-inner h4,
+.pills-topics-inner h4,
+.pills-reviews-inner h4,
+.pills-dates-inner h4 {
+    color: var(--ncgr_txt_color-primary);
+}
+
+.programs_content_section_lecture {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    font-size: 1.0rem;
+}
+
+.programs_content_section_lecture:last-of-type {
+    border-bottom: none;
+}
+
+.section-lecture-title-img {
+    display: inline-block;
+    background: #ecfdf3;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.section-lecture-title-img img {
+    width: 30px;
+    fill: #166a45;
+    filter: invert(33%) sepia(53%) saturate(496%) hue-rotate(101deg) brightness(93%) contrast(103%);
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button {
+    color: var(--ncgr_txt_color-dark);
+    font-weight: 700;
+    font-size: 1.0rem;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--ncgr_txt_color-dark);
+    background-color: #edf9f1;
+    font-weight: 700;
+    font-size: 1.0rem;
+}
+
+.reviews-box * {
+    vertical-align: middle;
+}
+
+.reviews-cooment-box {
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(0, 0, 0, .10);
+    border-radius: 10px;
+}
+
+.reviews-user-img {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    overflow: hidden;
+}
+
+.reviews-user-img img {
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: auto;
+}
+
+.reviews-user-name {
+    display: inline-block;
+}
+
+.reviews-box-footer {
+    padding-top: 10px;
+    font-weight: 400;
+}
+
+.reviews-numb {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #d4a844;
+}
+
+.reviews-box-none {
+    padding: 20px;
+    text-align: center;
+}
+
+.countdown-msg {
+    font-weight: 500;
+}
+
+.countdown-numb {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.countdown-unit {
+    margin-top: -5px;
+    font-size: 14px;
+}
+
+.countdown-inner .col {
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.countdown-part {
+    max-width: 80%;
+    margin: auto;
+}
+
+.programs-data-side p * {
+    vertical-align: middle;
+}
+
+.programs-data-side p span {
+    font-weight: 500;
+}
+
+.programs-data-side p.fw-500 span {
+    font-size: 1.4rem;
+}
+
+
+/* ====================================================================================================
+Responcive Cases |----------------------------- |
+================================================================= */
+
+@media only screen and (max-width:1300px) {
+    /* ------------------------| programs |------------------------ */
+    .programs-box-outer {
+        width: 100%;
+        min-width: 250px;
+    }
+}
+
+@media only screen and (max-width:991px) {
+    /* ------------------------| programs |------------------------ */
+    .programs-box-outer {
+        width: calc(100% - 10px);
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-bottom: 20px;
+    }
+}

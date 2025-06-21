@@ -3,6 +3,7 @@ import { Lecture } from '../../../../models/section.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ToasterService } from '../../../../../../@shared/toaster.service';
 
 @Component({
   selector: 'app-add-lecture-modal',
@@ -26,7 +27,7 @@ export class AddLectureModalComponent {
     testType: 'electronic',
     hasDeadline: 'false' 
   };
-constructor(private sanitizer: DomSanitizer) {}
+constructor(private sanitizer: DomSanitizer,private toaster: ToasterService) {}
   getLectureTypeName(type: string): string {
     switch(type) {
       case 'text': return 'نص';
@@ -46,6 +47,10 @@ constructor(private sanitizer: DomSanitizer) {}
 
     
 onSave(): void {
+if (!this.isValidLecture()) {
+  this.toaster.error('الرجاء ملء جميع الحقول المطلوبة بشكل صحيح.');
+  return;
+}
   this.newLecture.type = this.lectureType;
 const formData = new FormData();
 formData.append('id', '0');
@@ -148,6 +153,51 @@ private revokePreviewUrl() {
     URL.revokeObjectURL(this.previewUrl);
     this.previewUrl = null;
   }
+}
+isValidLecture(): boolean {
+  const { lectureType, newLecture } = this;
+
+  // تحقق من العناوين حسب الباترن
+  const arabicRegex = /^[\u0600-\u06FF\s]+$/;
+  const englishRegex = /^[A-Za-z\s]+$/;
+
+  const isArabicTitleValid = arabicRegex.test(newLecture.titleAr?.trim() || '');
+  const isEnglishTitleValid = englishRegex.test(newLecture.titleEn?.trim() || '');
+
+  if (!isArabicTitleValid || !isEnglishTitleValid) return false;
+
+  if (lectureType === 'video') {
+    // تحقق فقط من نوع الفيديو (رابط أو ملف)
+    if (newLecture.videoType === 'link' && !newLecture.fileUrl) return false;
+    if (newLecture.videoType === 'file' && !newLecture.file) return false;
+    return true;
+  }
+
+  if (lectureType === 'pdf' || lectureType === 'audio' || lectureType === 'image') {
+    return !!newLecture.file; // تأكد أن الملف موجود
+  }
+
+  if (lectureType === 'text') {
+    return !!newLecture.content?.trim();
+  }
+
+  if (lectureType === 'test') {
+    const { duration, totalScore, passingScore, testType, location, hasDeadline, testDate, testTime } = newLecture;
+
+    if (!duration || duration <= 0) return false;
+    if (!totalScore || !passingScore || passingScore > totalScore) return false;
+    if (!testType) return false;
+
+    if (testType === 'attendance' && !location?.trim()) return false;
+
+    if (hasDeadline === 'true') {
+      if (!testDate || !testTime) return false;
+    }
+
+    return true;
+  }
+
+  return false;
 }
 
 }

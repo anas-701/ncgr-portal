@@ -28,22 +28,19 @@
         </div>
       </div>
       <!-- Target category only shows when program type is private -->
-      <div class="col-md-6" *ngIf="formGroup.get('categoryId')?.value === '0'">
+       <div class="col-md-6" *ngIf="formGroup.get('categoryId')?.value === '0'">
         <div class="form-group mb-4">
           <label for="ProgramCost" class="form-label">الرسوم</label>
-          <select
+          <input
+            type="number"
             id="programCost"
-            class="form-select"
+            class="form-control"
             formControlName="price"
             [ngClass]="{
               'is-invalid': isFieldInvalid('price')
             }"
           >
-            <option [ngValue]="null" disabled selected>اختر الرسم</option>
-            <option *ngFor="let price of prices" [ngValue]="price.id">
-              {{ price.name }}
-            </option>
-          </select>
+        
           <div class="invalid-feedback" *ngIf="isFieldInvalid('price')">
             {{ getErrorMessage("price") }}
           </div>

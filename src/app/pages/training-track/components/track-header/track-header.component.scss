@@ -1,65 +1,33 @@
-/* Styles for the track header component */
-/* ------------------------| search | inner |------------------------ */
+.custom-breadcrumb {
+   direction: rtl;
+  .breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 0.5rem;
 
-.search-options-btn {
-  width: 50px;
-  height: 50px;
-  text-align: center;
-}
+    .breadcrumb-item {
+      display: inline-flex;
+      align-items: center;
 
-.search-options-btn::after {
-  display: none;
-}
+      &::before {
+        display: none; // إخفاء الفاصل الافتراضي
+      }
 
-.dropdown-menu_body {
-  height: 300px;
-  overflow: auto;
-}
+      .separator {
+        margin: 0 0.5rem;
+        color: #6c757d;
+      }
 
-.dropdown-menu_body h6 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-/* ------------------------| after login | admin | paths |------------------------ */
-
-.paths-box-outer {
-  position: relative;
-  overflow: hidden;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: var(--ncgr_box-shadow);
-  width: calc(33.33% - 20px);
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 30px 30px 5px 30px;
-  border-radius: 10px;
-}
-.breadcrumb-item + .breadcrumb-item::before {
-  float: right;
-  padding-right: var(--bs-breadcrumb-item-padding-x);
-  color: var(--bs-breadcrumb-divider-color);
-  content: var(--bs-breadcrumb-divider, "/");
-  margin-left: 12px;
-}
-.paths-box-outer h5 {
-  font-weight: 700;
-}
-
-/* ====================================================================================================
-Responcive Cases |----------------------------- |
-================================================================= */
-
-@media only screen and (max-width: 1400px) {
-  /* ------------------------| paths |------------------------ */
-  .paths-box-outer {
-    width: calc(50% - 30px);
+      &.active {
+        color: #000;
+      }
+    }
   }
 }
 
-@media only screen and (max-width: 991px) {
-  /* ------------------------| paths |------------------------ */
-  .paths-box-outer {
-    width: calc(100% - 30px);
-  }
+h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--ncgr_txt_color-primary, #333);
+  margin-bottom: 1.5rem;
 }

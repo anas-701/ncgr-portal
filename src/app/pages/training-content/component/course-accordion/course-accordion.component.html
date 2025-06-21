@@ -7,7 +7,7 @@
   <div class="accordion-item accordion_list_d" *ngFor="let section of sections; let i = index; trackBy: trackByFn"
        cdkDrag cdkDragLockAxis="y" [cdkDragData]="section">
     
-    <div class="accordion-header acc_list_bar" cdkDrag>
+    <div class="accordion-header acc_list_bar" >
       <button class="accordion-button coolaps_btn" type="button" (click)="toggleSection(section.id)"></button>
 
       <div class="accordion_heder">

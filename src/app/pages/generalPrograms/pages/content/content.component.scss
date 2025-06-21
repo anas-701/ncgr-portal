@@ -1,0 +1,199 @@
+/* ------------------------| after login | admin | programs_content |------------------------ */
+
+.dropdown-menu.add-workshop-session-menu {
+    min-width: 200px;
+    left: 15px !important;
+    top: 50px !important;
+    padding: 1rem 0.25rem;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: var(--ncgr_box-shadow);
+    border: none;
+    transition: all ease-in 0.15s;
+    padding: 15px;
+    min-height: 150px;
+}
+
+.dropdown-menu.add-workshop-session-menu li {
+    margin-bottom: 7px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+    padding-bottom: 7px;
+}
+
+.dropdown-menu.add-workshop-session-menu li a {
+    padding: 5px 10px;
+    display: block;
+    border-radius: 5px;
+    font-weight: 500;
+    color: var(--ncgr_txt_color-dark);
+    text-decoration: none;
+    transition: var(--ncgr_transition);
+}
+
+.dropdown-menu.add-workshop-session-menu li a img {
+    width: 25px;
+    fill: #166a45;
+    filter: invert(33%) sepia(53%) saturate(496%) hue-rotate(101deg) brightness(93%) contrast(103%);
+}
+
+.dropdown-menu.add-workshop-session-menu li a:hover {
+    color: var(--ncgr_dark_green_bg_color);
+    background: rgba(0, 0, 0, 0.05);
+    ;
+}
+
+.dropdown-menu_body {
+    min-height: 200px;
+}
+
+.dropdown-menu_body h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dropdown-menu.add-workshop-session-menu.quiz-menu {
+    width: 300px;
+    top: -150px !important;
+    left: 0;
+    min-height: 150px;
+    max-height: 150px;
+}
+
+.btn.btn-light {
+    transition: var(--ncgr_transition);
+}
+
+.btn.btn-light img {
+    transition: var(--ncgr_transition);
+}
+
+.btn.btn-light:hover img {
+    fill: #FFF;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(145deg) brightness(101%) contrast(105%);
+}
+
+.view-edit-quize h1 {
+    font-size: 1.8rem;
+}
+
+.view-edit-quize h5 {
+    font-size: 1.1rem;
+}
+
+.view-edit-quize .offcanvas-header {
+    padding: 1rem 1rem;
+    padding-bottom: 0;
+}
+
+.view-edit-quize .offcanvas-body {
+    padding: 1rem 1rem;
+    padding-top: 0;
+}
+
+.right-answer {
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 5px;
+    border: dashed 1px var(--ncgr_txt_color-primary);
+    color: var(--ncgr_txt_color-primary);
+}
+
+.programs_content_section-header {
+    position: relative;
+    background: rgba(0, 0, 0, 0.04);
+    padding: 15px 5px;
+    border-radius: 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, .1); */
+}
+
+.programs_content_section-header a.collapse-link[aria-expanded="false"] img {
+    transform: scaleY(-1);
+}
+
+.add-workshop-session-btn {
+    font-weight: 700;
+    color: var(--ncgr_txt_color-primary);
+    text-decoration: none;
+    transition: var(--ncgr_transition);
+}
+
+.add-workshop-session-btn img {
+    fill: #166a45;
+    filter: invert(33%) sepia(53%) saturate(496%) hue-rotate(101deg) brightness(93%) contrast(103%);
+}
+
+.add-workshop-session-btn:hover {
+    color: var(--ncgr_dark_green_bg_color);
+}
+
+.add-Content-mod .modal-title {
+    color: #166a45;
+    font-weight: 500;
+}
+
+.add-Content-mod .modal-title img {
+    fill: #166a45;
+    filter: invert(33%) sepia(53%) saturate(496%) hue-rotate(101deg) brightness(93%) contrast(103%);
+}
+
+.section-content-body {
+    padding: 1rem 0.25rem;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, .1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all ease-in 0.15s;
+    padding: 25px 35px;
+}
+
+.programs_content_section_workshop-session {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.section-workshop-session-title-img {
+    display: inline-block;
+    background: #ecfdf3;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.section-workshop-session-title-img img {
+    width: 30px;
+    fill: #166a45;
+    filter: invert(33%) sepia(53%) saturate(496%) hue-rotate(101deg) brightness(93%) contrast(103%);
+}
+
+.section-workshop-session-icons-side {
+    position: relative;
+}
+
+.section-workshop-session-icons-side img {
+    width: 24px;
+    fill: #000;
+    filter: invert(0%) sepia(100%) saturate(0%) hue-rotate(150deg) brightness(90%) contrast(104%);
+}
+
+.section-workshop-session-tag {
+    display: inline-block;
+    background: #c0edd0;
+    font-weight: 700;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 2px;
+    font-size: 0.9rem;
+}
+
+.add-workshop-item {
+    position: relative;
+}
+
+
+/* ====================================================================================================
+Responcive Cases |----------------------------- |
+================================================================= */

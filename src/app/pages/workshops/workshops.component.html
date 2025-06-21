@@ -1,9 +1,6 @@
 <section class="mt-4 mb-4">
     <div class="container-xxl">
         <div class="d-flex gap-4">
-            <div class="">
-                <app-side-bar></app-side-bar>
-            </div>
             <div class="flex-grow-1">
                 <div class="d-flex justify-content-between align-items-end">
                     <div>
@@ -62,8 +59,8 @@
                             (onChangeStatus)="onChangeStatus()" [workshopTypes]="workshopTypes"></app-workshop-item>
                     </div>
                     }
-                    <app-shared-pagination [currentPage]="currentPage"
-                    [totalPages]="totalPages" (pageChange)="onPageChange($event)"/>
+                    <!-- <app-shared-pagination [pageNumber]="currentPage"
+                    [pageCount]="totalPages" (pageChange)="onPageChange($event)"/> -->
                 </div>
             </div>
         </div>

@@ -1,0 +1,97 @@
+<div class="step-three-form" [formGroup]="formGroup">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Program Name - Arabic -->
+      <div class="form-group mb-4">
+        <label for="programStart" class="form-label"
+          >تاريخ بدء البرنامج</label
+        >
+        <input
+          type="date"
+          id="programStart"
+          class="form-control"
+          formControlName="programStart"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('programStart')
+          }"
+        />
+        <div class="invalid-feedback" *ngIf="isFieldInvalid('programStart')">
+          {{ getErrorMessage("programStart") }}
+        </div>
+      </div>
+           <div class="form-group mb-4">
+        <label for="registerationStart" class="form-label"
+          >موعد بدء التسجيل</label
+        >
+        <input
+          type="date"
+          id="registerationStart"
+          class="form-control"
+          formControlName="registerationStart"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('registerationStart')
+          }"
+        />
+        <div class="invalid-feedback" *ngIf="isFieldInvalid('registerationStart')">
+          {{ getErrorMessage("registerationStart") }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group mb-4">
+        <label for="programEnd" class="form-label"
+          >تاريخ انتهاء البرنامج</label
+        >
+        <input
+          type="date"
+          id="programEnd"
+          class="form-control"
+          formControlName="programEnd"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('programEnd')
+          }"
+        />
+        <div class="invalid-feedback" *ngIf="isFieldInvalid('programEnd')">
+          {{ getErrorMessage("programEnd") }}
+        </div>
+      </div>
+       <div class="form-group mb-4">
+        <label for="registerationEnd" class="form-label"
+          >موعد انتهاء التسجيل</label
+        >
+        <input
+          type="date"
+          id="registerationEnd"
+          class="form-control"
+          formControlName="registerationEnd"
+          [ngClass]="{
+            'is-invalid': isFieldInvalid('registerationEnd')
+          }"
+        />
+        <div class="invalid-feedback" *ngIf="isFieldInvalid('registerationEnd')">
+          {{ getErrorMessage("registerationEnd") }}
+        </div>
+      </div>
+    </div>
+  </div>
+   <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="form-group mb-4">
+          <label for="capacity" class="form-label">عدد المقاعد</label>
+             <input
+            type="number"
+            id="capacity"
+            class="form-control"
+            formControlName="capacity"
+            [ngClass]="{
+              'is-invalid': isFieldInvalid('capacity')
+            }"
+          >
+          <div class="invalid-feedback" *ngIf="isFieldInvalid('capacity')">
+            {{ getErrorMessage("capacity") }}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

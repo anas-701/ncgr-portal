@@ -8,7 +8,7 @@ import { environment } from '../../../environment/environment';
   providedIn: 'root',
 })
 export class TrainingProgramsService extends BaseService {
-  private readonly baseUrl = environment.apiUrl + 'v1/TrainingProgram';
+  private readonly baseUrl = environment.apiUrl + '/v1/TrainingProgram';
   private readonly departmentsUrl =
     environment.apiUrl + 'v1/TrainingProgramDepartments';
 

@@ -1,0 +1,21 @@
+<div class="NgxEditor__Wrapper">
+  <div class="custom-toolbar">
+    <button class="heading-button" (click)="setHeading(6)">H6</button>
+    <button class="heading-button" (click)="setHeading(5)">H5</button>
+    <button class="heading-button" (click)="setHeading(4)">H4</button>
+    <button class="heading-button" (click)="setHeading(3)">H3</button>
+    <button class="heading-button" (click)="setHeading(2)">H2</button>
+    <button class="heading-button" (click)="setHeading(1)">H1</button>
+
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
+  </div>
+
+<ngx-editor
+class="editor-lines"
+  [editor]="editor"
+  [(ngModel)]="value"
+  [placeholder]="placeholder"
+  [disabled]="disabled"
+  (ngModelChange)="onInput($event)"
+></ngx-editor>
+</div>

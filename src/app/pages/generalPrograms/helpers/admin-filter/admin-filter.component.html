@@ -1,0 +1,145 @@
+
+
+<!-- زر إنشاء البرنامج -->
+<div class="row justify-content-end mb-3">
+  <div class="col-auto">
+    <button
+      class="btn btn-primary d-flex align-items-center gap-2 ps-3 pe-3"
+      (click)="onAddProgram()"
+      type="submit"
+    >
+      <img width="18" src="icons/21.svg" alt="" />
+      <span>إنشاء برنامج</span>
+    </button>
+  </div>
+</div>
+
+<!-- حقل البحث + الفلاتر -->
+<div class="row" [formGroup]="searchForm" >
+  <div class="input-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="البحث عن برنامج ..."
+      aria-label="البحث عن برنامج ..."
+      formControlName="programName"
+    />
+    <div class="dropdown search-options-btn_menu">
+      <button
+        type="button"
+        class="d-flex align-items-center text-decoration-none dropdown-toggle position-relative search-options-btn btn btn-outline-secondary"
+        id="dropdownUser2"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="تصفية"
+          width="32"
+          src="icons/23.svg"
+          alt="تصفية"
+        />
+      </button>
+
+      <!-- قائمة الفلاتر -->
+      <ul class="dropdown-menu shadow animate slideIn p-3" aria-labelledby="dropdownUser2">
+        <li class="dropdown-menu_body">
+          <!-- نوع الحالة -->
+          <div class="mb-3">
+            <h6 class="fw-bold mb-2">نوع الحالة</h6>
+            <div [formGroupName]="'status'" class="d-flex flex-column gap-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="isActive" formControlName="isActive" />
+                <label class="form-check-label" for="isActive">مفعل</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="isNotActive" formControlName="isNotActive" />
+                <label class="form-check-label" for="isNotActive">غير مفعل</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- لغة البرنامج -->
+          <div class="mb-3">
+            <h6 class="fw-bold mb-2">لغة البرنامج</h6>
+            <div [formGroupName]="'language'" class="d-flex flex-column gap-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="arabic" formControlName="arabic" />
+                <label class="form-check-label" for="arabic">العربية</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="english" formControlName="english" />
+                <label class="form-check-label" for="english">الإنجليزية</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- الفئة -->
+          <div class="mb-3">
+            <h6 class="fw-bold mb-2">الفئة المستهدفة</h6>
+            <select class="form-select" formControlName="categoryId">
+              <option value="0" disabled>اختر</option>
+              <option *ngFor="let cat of category" [value]="cat.id">{{ cat.name }}</option>
+            </select>
+          </div>
+
+          <!-- المسار -->
+          <div class="mb-3">
+            <h6 class="fw-bold mb-2">المسار</h6>
+            <select class="form-select" formControlName="pathId">
+              <option value="0" disabled>اختر</option>
+              <option *ngFor="let path of paths" [value]="path.id">{{ path.name }}</option>
+            </select>
+          </div>
+
+          <!-- الوسوم -->
+          <div class="mb-3">
+            <h6 class="fw-bold mb-2">الوسوم</h6>
+            <select class="form-select" formControlName="tageId">
+              <option value="0" disabled>اختر</option>
+              <option *ngFor="let tag of tags" [value]="tag.id">{{ tag.name }}</option>
+            </select>
+          </div>
+
+          <!-- عدد المتدربين -->
+          <div class="mb-3">
+            <h6 class="fw-bold mb-2">عدد المتدربين</h6>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="traineeOrder" value="asc" id="traineesAsc" />
+              <label class="form-check-label" for="traineesAsc">تصاعدي</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="traineeOrder" value="desc" id="traineesDesc" />
+              <label class="form-check-label" for="traineesDesc">تنازلي</label>
+            </div>
+          </div>
+
+          <!-- التقييم -->
+          <div *ngIf="showRate" class="mb-3">
+            <h6 class="fw-bold mb-2">التقييم</h6>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="rateOrder" value="asc" id="rateAsc" />
+              <label class="form-check-label" for="rateAsc">تصاعدي</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" formControlName="rateOrder" value="desc" id="rateDesc" />
+              <label class="form-check-label" for="rateDesc">تنازلي</label>
+            </div>
+          </div>
+        </li>
+
+        <li><hr class="dropdown-divider" /></li>
+
+        <!-- أزرار التفعيل -->
+        <li>
+          <div class="d-flex justify-content-end gap-2 px-2">
+            <button type="button" class="btn btn-primary" (click)="onLoadProgram()">تطبيق</button>
+            <button type="button" class="btn btn-outline-secondary" (click)="onResetFilters()">إعادة تعيين</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+

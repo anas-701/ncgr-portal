@@ -7,19 +7,19 @@ import { Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './program-card.component.html',
-  styleUrls: ['./program-card.component.scss'],
+  styleUrls: ['./program-card.component.scss','../../pages/training-content/component/course-accordion/component/delete-section-modal/delete-section-modal.component.scss'],
 })
 export class ProgramCardComponent {
   @Input() program: any = {};
   @Input() statusOptions: any[] = [];
-
   @Output() viewDetails = new EventEmitter<number>();
   @Output() editProgram = new EventEmitter<number>();
   @Output() deleteProgram = new EventEmitter<number>();
   @Output() viewTrainingContent = new EventEmitter<number>();
   @Output() viewTrainees = new EventEmitter<number>();
   @Output() statusChange = new EventEmitter<{ id: number; statusId: number }>();
-
+  showDeleteModal: boolean = false;
+  selectedProgram: any;
   constructor(private router: Router) {}
 
   onView() {
@@ -37,7 +37,8 @@ export class ProgramCardComponent {
     });
   }
   onDelete() {
-    this.deleteProgram.emit(this.program.id);
+    this.showDeleteModal=false
+    this.deleteProgram.emit(this.selectedProgram.id);
   }
 
   onTrainingContent() {
@@ -57,4 +58,12 @@ export class ProgramCardComponent {
       });
     }
   }
+  showDelete(): boolean {
+    this.showDeleteModal = !this.showDeleteModal;
+    return this.showDeleteModal;
+}
+selectedProgramForDelete(program: any) {
+  this.selectedProgram = program;
+  this.showDeleteModal = true;
+}
 }

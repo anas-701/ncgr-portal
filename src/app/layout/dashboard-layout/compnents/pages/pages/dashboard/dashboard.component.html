@@ -1,9 +1,6 @@
 <section class="create_program mt-4 mb-4">
   <div class="container-xxl">
     <div class="d-flex gap-4">
-      <div class="">
-        <app-side-bar></app-side-bar>
-      </div>
       <div class="flex-grow-1">
         <!-- Header with breadcrumb -->
         <app-program-header></app-program-header>
@@ -14,6 +11,7 @@
           [category]="category"
           [paths]="paths"
           [tags]="tags"
+          [showRate]="showRate"
           (loadPrograms)="loadPrograms()"
           (resetFilters)="resetFilters()"
           (addProgram)="onAddProgram()"
