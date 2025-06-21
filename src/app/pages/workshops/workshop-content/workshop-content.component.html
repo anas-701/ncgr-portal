@@ -1,0 +1,120 @@
+<section class="mt-4 mb-4">
+    <div class="container-xxl">
+        <div class="d-flex gap-4">
+            <div class="">
+                <app-side-bar></app-side-bar>
+            </div>
+            <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-end">
+                    <div>
+                        <nav aria-label="breadcrumb" class="mb-3">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+                                <li class="breadcrumb-item"><a href="#">الورش التدريبية</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    محتوى الورشة
+                                </li>
+                            </ol>
+                        </nav>
+                        <h1 class="mb-3">محتوى الورشة</h1>
+                        <p>ورشة: أدوات قياس الأداء المؤسسي</p>
+                    </div>
+                </div>
+
+                <div class="row pt-2">
+                    <!-- Loading State -->
+                    @if(isLoading){
+                    <div class="text-center mt-4">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    }
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="d-flex gap-2">
+                                <div class="p-2 rounded-2 border bg-light">
+                                    <img src="icons/94.svg" alt="" width="25">
+                                </div>
+                                <p class="fw-semibold align-self-center mb-0">الجلسة الأولى</p>
+                            </div>
+                            <div>
+                                <span class="pe-2 border-end border-3 border-start-0">2025-02-03</span>
+                                <span class="ps-2">
+                                    <img src="icons/115.svg" alt="" width="20">
+                                    <span>حاضر</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="d-flex gap-2">
+                                <div class="p-2 rounded-2 border bg-light">
+                                    <img src="icons/94.svg" alt="" width="25">
+                                </div>
+                                <p class="fw-semibold align-self-center mb-0">الجلسة الثانية
+
+                                </p>
+                            </div>
+                            <div>
+                                <span class="pe-2 border-end border-3 border-start-0">2025-02-03</span>
+                                <span class="ps-2">
+                                    <img src="icons/115.svg" alt="" width="20">
+                                    <span>حاضر</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="d-flex gap-2">
+                                <div class="p-2 rounded-2 border bg-light">
+                                    <img src="icons/94.svg" alt="" width="25">
+                                </div>
+                                <p class="fw-semibold align-self-center mb-0">الجلسة الثالثة</p>
+                            </div>
+                            <div>
+                                <span class="pe-2 border-end border-3 border-start-0">2025-02-03</span>
+                                <span class="ps-2">
+                                    <img src="icons/125.svg" alt="" width="20">
+                                    <span>لم تبدأ بعد</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div class="d-flex gap-2 align-items-center">
+                                <div class="p-2 rounded-2 border bg-light">
+                                    <img src="icons/86.svg" alt="" width="25">
+                                </div>
+                                <div class="fw-semibold mb-0">
+                                    <p class="d-inline-block p-1 rounded-3 tag mb-1">حضوري</p>
+                                    <p class="mb-0">اختبار نهائي</p>
+                                    
+
+                                </div>
+                            </div>
+                            <div>
+                                <span class="pe-2 border-end border-3 border-start-0 fw-bold details">التفاصيل</span>
+                                <span class="ps-2">
+                                    <img src="icons/125.svg" alt="" width="20">
+                                    <span>لم تبدأ بعد</span>
+                                </span>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div class="d-flex gap-2">
+                                <div class="p-2 rounded-2 border bg-light">
+                                    <img src="icons/126.svg" alt="" width="25">
+                                </div>
+                                <p class="fw-semibold align-self-center mb-0">تقييم الورشة</p>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" [routerLink]="['../rate']">ابدأ التقييم</button>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>

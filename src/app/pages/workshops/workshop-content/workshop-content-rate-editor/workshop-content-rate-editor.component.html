@@ -1,0 +1,52 @@
+<section class="mt-4 mb-4">
+    <div class="container-xxl">
+        <div class="d-flex gap-4">
+            <div class="">
+                <app-side-bar></app-side-bar>
+            </div>
+            <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-end">
+                    <div>
+                        <nav aria-label="breadcrumb" class="mb-3">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+                                <li class="breadcrumb-item"><a href="#">الورش التدريبية</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    تقييم الورشة
+                                </li>
+                            </ol>
+                        </nav>
+                        <h1 class="mb-3">تقييم الورشة</h1>
+                        <p>ورشة: أدوات قياس الأداء المؤسسي</p>
+                    </div>
+                </div>
+
+                <div class="row pt-2">
+                    <!-- Loading State -->
+                    @if(isLoading){
+                    <div class="text-center mt-4">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    }
+                    <app-shared-rate (ratingChange)="onRatingChange($event)"/>
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <app-shared-dynamic-form [form]="form" [fields]="formFields" [parentStyleClass]="'row'" />
+                        <div class="d-flex gap-4 justify-content-end mt-4">
+                            <button type="submit" class="btn btn-primary">
+                                إعادة جدولة
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                إلغاء
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>

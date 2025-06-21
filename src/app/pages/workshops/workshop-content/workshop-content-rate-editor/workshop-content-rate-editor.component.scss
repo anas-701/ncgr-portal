@@ -1,0 +1,10 @@
+::ng-deep {
+    label.form-label {
+        font-weight: 600;
+        display: flex;
+    }
+    .custom-radio{
+        display: inline-flex !important;
+        margin-inline-end: 1rem;
+    }
+}
